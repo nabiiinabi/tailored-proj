@@ -69,7 +69,10 @@ This model depends on several assumptions:
 
 ::: {.binomial-panel}
 
+
 ```{ojs}
+
+// slider for the unknown population proportion p
 viewof p = Inputs.range([0, 1], {
   label: "p",
   value: 0.45,
@@ -78,23 +81,30 @@ viewof p = Inputs.range([0, 1], {
 ```
 
 ```{ojs}
+
+// binomial probabilities for Y = 0, 1, ..., n
 {
   const n = 20;
-  const rows = (() => {
-    if (p <= 0) {
-      return Array.from({length: n + 1}, (_, y) => ({y, probability: y === 0 ? 1 : 0}));
+
+  // C(n, y) = n! / (y! (n - y)!), multiplied one factor at a time
+  // so the intermediate values stay exact for n = 20.
+  function binomialCoefficient(n, y) {
+    const k = Math.min(y, n - y);
+    let coefficient = 1;
+    for (let i = 0; i < k; i++) {
+      coefficient *= (n - i) / (i + 1);
     }
-    if (p >= 1) {
-      return Array.from({length: n + 1}, (_, y) => ({y, probability: y === n ? 1 : 0}));
-    }
-    const out = [];
-    let prob = (1 - p) ** n;
-    for (let y = 0; y <= n; y++) {
-      out.push({y, probability: prob});
-      prob *= ((n - y) / (y + 1)) * (p / (1 - p));
-    }
-    return out;
-  })();
+    return coefficient;
+  }
+
+  // P(Y = y) = C(n, y) * p^y * (1 - p)^(n - y).
+  // At p = 0 or p = 1 this is a point mass: JS treats 0^0 as 1.
+  const rows = Array.from({length: n + 1}, (_, y) => ({
+    y,
+    probability: binomialCoefficient(n, y) * (p ** y) * ((1 - p) ** (n - y))
+  }));
+
+  // The sample had 9 passing movies, so this is P(Y = 9 | p).
   const observed = rows[9].probability;
   const chance = observed * 100;
   const chanceText = chance >= 1
