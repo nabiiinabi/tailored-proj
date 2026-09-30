@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
-  <rect width="400" height="600" fill="#f6f3ef"/>
-  <rect x="16" y="16" width="368" height="568" fill="none" stroke="#15151E" stroke-width="3" stroke-dasharray="10 7"/>
-  <text x="200" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#15151E">The Wuthering</text>
-  <text x="200" y="292" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#15151E">Heights</text>
-  <text x="200" y="340" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="16" fill="#5c5660">Replace this file with</text>
-  <text x="200" y="366" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="14" fill="#15151E">images/wuthering-heights.gif</text>
-</svg>
