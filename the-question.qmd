@@ -1,0 +1,34 @@
+---
+title: "The Question"
+---
+
+Think about the last few movies you watched. How many featured at least two women whose names you knew? Did those women ever speak to each other? And if they did, did they talk about anything other than a man?
+
+These questions form the Bechdel test. A movie passes if:
+
+1. It contains at least two named women.
+2. The women speak to each other.
+3. Their conversation is about something other than a man.
+
+(Try the Bechdel test on a few movies you’ve watched recently! One of the latest 2026 hit releases, The Odyssey, despite having a star-studded female cast, fails the Bechdel test, while The Wuthering Heights with its central theme of an intense whirlwind-romance–to say the least–somehow passes the test.)
+
+The Bechdel test is not a complete measure of whether a movie is good, feminist, or free from sexism. A movie can pass while still portraying women poorly, and a movie can fail despite having complex female characters. Instead, the test captures one specific feature of representation: whether women appear as named characters who interact about something beyond a male character.
+
+This simple test leads to a simple curiosity:
+
+How many movies overall pass the Bechdel test?
+
+We cannot watch and classify every movie ever produced so instead, we observe a sample and use it to learn about an unknown population proportion (i.e., the proportion of movies that pass the Bechdel test).
+
+## The movie sample
+
+To investigate the proportion of movies that pass the Bechdel test, we will examine a sample of 20 movies. Of these movies:
+
+- 9 passed the Bechdel test
+- 11 failed the Bechdel test.
+
+The observed pass rate is:
+
+$9/20 = 0.45$
+
+In other words, 45% of the movies in this particular sample passed. Our goal is to determine what this result can tell us about $\pi$, the unknown proportion of comparable movies that pass the test.

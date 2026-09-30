@@ -1,9 +1,37 @@
 [
   {
+    "objectID": "the-question.html",
+    "href": "the-question.html",
+    "title": "The Question",
+    "section": "",
+    "text": "Think about the last few movies you watched. How many featured at least two women whose names you knew? Did those women ever speak to each other? And if they did, did they talk about anything other than a man?\nThese questions form the Bechdel test. A movie passes if:\n(Try the Bechdel test on a few movies you’ve watched recently! One of the latest 2026 hit releases, The Odyssey, despite having a star-studded female cast, fails the Bechdel test, while The Wuthering Heights with its central theme of an intense whirlwind-romance–to say the least–somehow passes the test.)\nThe Bechdel test is not a complete measure of whether a movie is good, feminist, or free from sexism. A movie can pass while still portraying women poorly, and a movie can fail despite having complex female characters. Instead, the test captures one specific feature of representation: whether women appear as named characters who interact about something beyond a male character.\nThis simple test leads to a simple curiosity:\nHow many movies overall pass the Bechdel test?\nWe cannot watch and classify every movie ever produced so instead, we observe a sample and use it to learn about an unknown population proportion (i.e., the proportion of movies that pass the Bechdel test)."
+  },
+  {
+    "objectID": "the-question.html#the-movie-sample",
+    "href": "the-question.html#the-movie-sample",
+    "title": "The Question",
+    "section": "The movie sample",
+    "text": "The movie sample\nTo investigate the proportion of movies that pass the Bechdel test, we will examine a sample of 20 movies. Of these movies:\n\n9 passed the Bechdel test\n11 failed the Bechdel test.\n\nThe observed pass rate is:\n\\(9/20 = 0.45\\)\nIn other words, 45% of the movies in this particular sample passed. Our goal is to determine what this result can tell us about \\(\\pi\\), the unknown proportion of comparable movies that pass the test."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Beyond Pass or Fail",
     "section": "",
-    "text": "This page is for students who have completed STAT 360, or a similar probability course, and already know frequentist methods. It introduces priors, likelihoods, posterior distributions, conjugacy, credible intervals, and posterior prediction from the start."
+    "text": "This website is intended for students who have completed STAT 360 or a similar probability course and are familiar with frequentist methods. You should be familiar with probability distributions, random variables, expected values, and basic statistical notation.\nYou do not need previous experience with Bayesian statistics. Concepts such as priors, likelihoods, posterior distributions, conjugacy, credible intervals, and posterior prediction will be introduced from the beginning.\nWe will briefly review frequentist ideas such as maximum likelihood estimation, confidence intervals, and hypothesis testing. The goal is not to reteach all of frequentist inference, but to use familiar methods as a bridge to Bayesian thinking."
+  },
+  {
+    "objectID": "index.html#who-is-this-website-for",
+    "href": "index.html#who-is-this-website-for",
+    "title": "Beyond Pass or Fail",
+    "section": "",
+    "text": "This website is intended for students who have completed STAT 360 or a similar probability course and are familiar with frequentist methods. You should be familiar with probability distributions, random variables, expected values, and basic statistical notation.\nYou do not need previous experience with Bayesian statistics. Concepts such as priors, likelihoods, posterior distributions, conjugacy, credible intervals, and posterior prediction will be introduced from the beginning.\nWe will briefly review frequentist ideas such as maximum likelihood estimation, confidence intervals, and hypothesis testing. The goal is not to reteach all of frequentist inference, but to use familiar methods as a bridge to Bayesian thinking."
+  },
+  {
+    "objectID": "section-1.html",
+    "href": "section-1.html",
+    "title": "Section 1: From Twenty Movies to an Unknown Proportion",
+    "section": "",
+    "text": "Let \\(\\pi\\) represent the unknown proportion of movies in the relevant population that pass the Bechdel test.\n\\(\\pi = P\\)(a randomly selected movie passes the Bechdel test)\nIf \\(\\pi = 0.30\\), then approximately 30% of movies in the population pass.\nIf \\(\\pi = 0.50\\), then approximately half pass.\nIf \\(\\pi = 0.80\\), then approximately 80% pass.\nWe do not know the true value of \\(\\pi\\). What we observe is the sample proportion:\n\\(\\hat{\\pi} = y/n\\)\nHere:\n\\(\\hat{\\pi} = 9/20 = 0.45\\)\nThe sample tells us that 45% of these 20 movies passed. However, \\(\\hat{\\pi}\\) and \\(\\pi\\) are not the same thing. \\(\\pi\\) is the unknown population proportion we want to estimate and \\(\\hat{\\pi}\\) is a statistic calculated from the particular sample we observed."
   }
 ]

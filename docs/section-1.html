@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nabiha Tahsin">
 <meta name="dcterms.date" content="2026-09-30">
 
-<title>Beyond Pass or Fail</title>
+<title>Section 1: From Twenty Movies to an Unknown Proportion – Beyond Pass or Fail</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-book" role="img">
+    <a class="nav-link" href="./index.html"> <i class="bi bi-book" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -106,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The Question</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./section-1.html"> 
+    <a class="nav-link active" href="./section-1.html" aria-current="page"> 
 <span class="menu-text">Section 1</span></a>
   </li>  
 </ul>
@@ -120,34 +148,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#who-is-this-website-for" id="toc-who-is-this-website-for" class="nav-link active" data-scroll-target="#who-is-this-website-for">Who is this website for?</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Beyond Pass or Fail</h1>
-<p class="subtitle lead">What the Bechdel Test Can Teach Us About Bayesian Inference</p>
+<h1 class="title">Section 1: From Twenty Movies to an Unknown Proportion</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Nabiha Tahsin </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Last updated</div>
@@ -164,14 +179,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="who-is-this-website-for" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-this-website-for">Who is this website for?</h2>
-<p>This website is intended for students who have completed STAT 360 or a similar probability course and are familiar with frequentist methods. You should be familiar with probability distributions, random variables, expected values, and basic statistical notation.</p>
-<p>You do not need previous experience with Bayesian statistics. Concepts such as priors, likelihoods, posterior distributions, conjugacy, credible intervals, and posterior prediction will be introduced from the beginning.</p>
-<p>We will briefly review frequentist ideas such as maximum likelihood estimation, confidence intervals, and hypothesis testing. The goal is not to reteach all of frequentist inference, but to use familiar methods as a bridge to Bayesian thinking.</p>
+<p>Let <span class="math inline">\(\pi\)</span> represent the unknown proportion of movies in the relevant population that pass the Bechdel test.</p>
+<p><span class="math inline">\(\pi = P\)</span>(a randomly selected movie passes the Bechdel test)</p>
+<p>If <span class="math inline">\(\pi = 0.30\)</span>, then approximately 30% of movies in the population pass.</p>
+<p>If <span class="math inline">\(\pi = 0.50\)</span>, then approximately half pass.</p>
+<p>If <span class="math inline">\(\pi = 0.80\)</span>, then approximately 80% pass.</p>
+<p>We do not know the true value of <span class="math inline">\(\pi\)</span>. What we observe is the sample proportion:</p>
+<p><span class="math inline">\(\hat{\pi} = y/n\)</span></p>
+<p>Here:</p>
+<p><span class="math inline">\(\hat{\pi} = 9/20 = 0.45\)</span></p>
+<p>The sample tells us that 45% of these 20 movies passed. However, <span class="math inline">\(\hat{\pi}\)</span> and <span class="math inline">\(\pi\)</span> are not the same thing. <span class="math inline">\(\pi\)</span> is the unknown population proportion we want to estimate and <span class="math inline">\(\hat{\pi}\)</span> is a statistic calculated from the particular sample we observed.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

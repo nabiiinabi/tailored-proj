@@ -1,0 +1,23 @@
+---
+title: "Section 1: From Twenty Movies to an Unknown Proportion"
+---
+
+Let $p$ represent the unknown proportion of movies in the relevant population that pass the Bechdel test.
+
+$p = P$(a randomly selected movie passes the Bechdel test)
+
+If $p = 0.30$, then approximately 30% of movies in the population pass.
+
+If $p = 0.50$, then approximately half pass.
+
+If $p = 0.80$, then approximately 80% pass.
+
+We do not know the true value of $\pi$. What we observe is the sample proportion:
+
+$\hat{p} = y/n$
+
+Here:
+
+$\hat{p} = 9/20 = 0.45$
+
+The sample tells us that 45% of these 20 movies passed. However, $\hat{p}$ and $p$ are not the same thing. $p$ is the unknown population proportion we want to estimate and $\hat{p}$ is a statistic calculated from the particular sample we observed.
