@@ -8,6 +8,7 @@ project:
 # https://quarto.org/docs/websites/website-navigation.html
 website:
   title: "Beyond Pass or Fail"
+  site-url: https://nabiiinabi.github.io/tailored-proj/
   navbar:
     left:
       - href: index.qmd
