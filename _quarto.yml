@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - .nojekyll
+
+# Navigation options:
+# https://quarto.org/docs/websites/website-navigation.html
+website:
+  title: "Beyond Pass or Fail"
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Home"
+        icon: book
+
+format:
+  html:
+    date: last-modified
+    published-title: "Last updated"
+    date-format: "MMMM D, YYYY"
+    toc: true
+    toc-expand: true
+    crossrefs-hover: false
+    code-line-numbers: true
+    highlight-style: arrow
+    # https://quarto.org/docs/output-formats/html-themes.html
+    theme:
+      light: [journal, theme-light.scss]
+    fontsize: 13pt
+
+execute:
+  echo: false
+  message: false
+  warning: false

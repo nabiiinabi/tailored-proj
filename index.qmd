@@ -1,0 +1,8 @@
+---
+title: "Beyond Pass or Fail"
+subtitle: "What the Bechdel Test Can Teach Us About Bayesian Inference"
+author: "Nabiha Tahsin"
+abstract: "A short lesson on Bayesian inference, using the Bechdel test as a running example."
+---
+
+This page is for students who have completed STAT 360, or a similar probability course, and already know frequentist methods. It introduces priors, likelihoods, posterior distributions, conjugacy, credible intervals, and posterior prediction from the start.

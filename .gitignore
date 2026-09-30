@@ -1,0 +1,28 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
+
+# User-specific files
+.Ruserdata
+
+# RStudio files
+.Rproj.user/
+
+# knitr and R markdown caches
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+/.quarto/
+
+## Hidden Apple files
+.DS_Store
+
+**/*.quarto_ipynb
