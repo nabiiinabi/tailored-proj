@@ -64,3 +64,81 @@ This model depends on several assumptions:
 3. Each movie has the same probability $p$ of passing.
 4. The sample reasonably represents the population about which we want to make an inference.
 5. The Bechdel classifications are accurate and consistently applied.
+
+**Move the slider for $p$ and watch the Binomial distribution for $Y$ change. The bars are the probabilities of observing 0, 1, 2, ..., 20 passing movies when each movie passes with probability $p$.**
+
+::: {.binomial-panel}
+
+```{ojs}
+viewof p = Inputs.range([0, 1], {
+  label: "p",
+  value: 0.45,
+  step: 0.01
+})
+```
+
+```{ojs}
+{
+  const n = 20;
+  const rows = (() => {
+    if (p <= 0) {
+      return Array.from({length: n + 1}, (_, y) => ({y, probability: y === 0 ? 1 : 0}));
+    }
+    if (p >= 1) {
+      return Array.from({length: n + 1}, (_, y) => ({y, probability: y === n ? 1 : 0}));
+    }
+    const out = [];
+    let prob = (1 - p) ** n;
+    for (let y = 0; y <= n; y++) {
+      out.push({y, probability: prob});
+      prob *= ((n - y) / (y + 1)) * (p / (1 - p));
+    }
+    return out;
+  })();
+  const observed = rows[9].probability;
+  const chance = observed * 100;
+  const chanceText = chance >= 1
+    ? `${chance.toFixed(1)}%`
+    : chance >= 0.01
+      ? `${chance.toFixed(2)}%`
+      : chance > 0
+        ? "< 0.01%"
+        : "0%";
+  const plot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 360,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {
+      label: "Number of passing movies, Y",
+      ticks: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    },
+    y: {label: null, grid: true, nice: true},
+    marks: [
+      Plot.barY(rows, {
+        x: "y",
+        y: "probability",
+        fill: d => d.y === 9 ? "#b32b2f" : "#2c3140",
+        title: d => `Y = ${d.y}\nProbability = ${d.probability.toFixed(3)}`
+      }),
+      Plot.ruleY([0])
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Probability</p>
+    ${plot}
+    <p class="binomial-readout">When <em>p</em> = ${p.toFixed(2)}, the probability of exactly 9 passing movies is <strong>${chanceText}</strong>.</p>
+    <p class="binomial-legend"><span class="swatch swatch-observed"></span> Observed sample, Y = 9 <span class="swatch swatch-other"></span> Other possible outcomes</p>
+  </div>`;
+}
+```
+
+:::

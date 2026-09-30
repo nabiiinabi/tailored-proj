@@ -15,3 +15,128 @@ $code-block-bg-alpha: -.8;
 .navbar-brand, h1, h2, h3, h4, h5, h6, .navbar-nav .nav-link, .dropdown-item {
   font-family: $navbar-font !important;
 }
+
+.bechdel-try.callout {
+  border-left-color: $primary !important;
+  background: #f6f3ef;
+}
+
+.bechdel-try .callout-title,
+.bechdel-try .callout-icon {
+  color: $primary;
+}
+
+.movie-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.movie-card {
+  margin: 0;
+}
+
+.movie-card p {
+  margin-top: 0.55rem;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #e3dcd4;
+  border-radius: 4px;
+  background: #efeae4;
+}
+
+@media (max-width: 640px) {
+  .movie-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.binomial-panel {
+  background: #f6f3ef;
+  border: 1px solid #e3dcd4;
+  border-top: 3px solid $primary;
+  border-radius: 4px;
+  padding: 1.1rem 1.25rem 0.4rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.binomial-panel form,
+.binomial-panel label {
+  font-family: $body-font;
+  color: $body-color;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.binomial-panel input[type="number"] {
+  width: 5.5rem !important;
+  min-width: 5.5rem;
+  border: 1px solid #d9d1c8;
+  border-radius: 4px;
+  padding: 0.2rem 0.45rem;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  color: $body-color;
+  background: white;
+}
+
+.binomial-panel input[type="range"] {
+  accent-color: $primary;
+  width: min(100%, 28rem);
+}
+
+.binomial-ylabel {
+  margin: 0.35rem 0 0;
+  color: #5c5660;
+  font-size: 0.85rem;
+}
+
+.binomial-figure svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.binomial-readout {
+  margin: 0.35rem 0 0.2rem;
+  font-size: 1rem;
+}
+
+.binomial-readout strong {
+  color: $primary;
+}
+
+.binomial-legend {
+  color: #5c5660;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin: 0 0.3rem 0 0.15rem;
+  vertical-align: -0.05rem;
+}
+
+.swatch-observed {
+  background: $primary;
+  margin-left: 0;
+}
+
+.swatch-other {
+  background: #2c3140;
+  margin-left: 0.9rem;
+}

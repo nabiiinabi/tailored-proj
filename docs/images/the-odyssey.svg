@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <rect width="400" height="600" fill="#f6f3ef"/>
+  <rect x="16" y="16" width="368" height="568" fill="none" stroke="#b32b2f" stroke-width="3" stroke-dasharray="10 7"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#15151E">The Odyssey</text>
+  <text x="200" y="320" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="16" fill="#5c5660">Replace this file with</text>
+  <text x="200" y="346" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="15" fill="#b32b2f">images/the-odyssey.gif</text>
+</svg>

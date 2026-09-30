@@ -10,7 +10,27 @@ These questions form the Bechdel test. A movie passes if:
 2. The women speak to each other.
 3. Their conversation is about something other than a man.
 
-(Try the Bechdel test on a few movies you’ve watched recently! One of the latest 2026 hit releases, The Odyssey, despite having a star-studded female cast, fails the Bechdel test, while The Wuthering Heights with its central theme of an intense whirlwind-romance–to say the least–somehow passes the test.)
+::: {.callout-tip .bechdel-try appearance="minimal"}
+## Try the Bechdel test on a few movies you’ve watched recently!
+
+::: {.movie-row}
+
+::: {.movie-card}
+![](images/odyssey.jpg){fig-alt="Poster or still from The Odyssey"}
+
+:::
+
+::: {.movie-card}
+![](images/wuthering-heights.gif){fig-alt="Poster or still from The Wuthering Heights"}
+
+
+**Fails.** One of the latest 2026 hit releases, The Odyssey, despite having a star-studded female cast, fails the Bechdel test.
+
+**Passes.** The Wuthering Heights, with its central theme of an intense whirlwind-romance–to say the least–somehow passes the test.
+:::
+
+:::
+:::
 
 The Bechdel test is not a complete measure of whether a movie is good, feminist, or free from sexism. A movie can pass while still portraying women poorly, and a movie can fail despite having complex female characters. Instead, the test captures one specific feature of representation: whether women appear as named characters who interact about something beyond a male character.
 
