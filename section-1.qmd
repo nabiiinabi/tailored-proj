@@ -1,6 +1,8 @@
 ---
-title: "Section 1: From Twenty Movies to an Unknown Proportion"
+title: "Section 1"
 ---
+
+## From Twenty Movies to an Unknown Proportion
 
 Let $p$ represent the unknown proportion of movies in the relevant population that pass the Bechdel test.
 
@@ -21,3 +23,44 @@ Here:
 $\hat{p} = 9/20 = 0.45$
 
 The sample tells us that 45% of these 20 movies passed. However, $\hat{p}$ and $p$ are not the same thing. $p$ is the unknown population proportion we want to estimate and $\hat{p}$ is a statistic calculated from the particular sample we observed.
+
+## Constructing a Probability Model
+
+For each movie, define:
+
+- $X_i = 1$ if movie $i$ passes the Bechdel test
+- $X_i = 0$ if movie $i$ fails the Bechdel test
+
+Because each observation has two possible outcomes, we begin with a Bernoulli model:
+
+$X_i \mid p \sim \text{Bernoulli}(p)$
+
+This notation means that, conditional on a particular value of $p$:
+
+$P(X_i = 1 \mid p) = p$
+
+$P(X_i = 0 \mid p) = 1 - p$
+
+Now let $Y$ be the total number of passing movies:
+
+$Y = X_1 + X_2 + \cdots + X_n$
+
+If the observations satisfy the Binomial assumptions, then:
+
+$Y \mid p \sim \text{Binomial}(n, p)$
+
+For our sample:
+
+$Y \mid p \sim \text{Binomial}(20, p)$
+
+and we observed:
+
+$Y = 9$
+
+This model depends on several assumptions:
+
+1. Each movie is classified as either passing or failing.
+2. The sampled movies are independent.
+3. Each movie has the same probability $p$ of passing.
+4. The sample reasonably represents the population about which we want to make an inference.
+5. The Bechdel classifications are accurate and consistently applied.

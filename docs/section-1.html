@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-09-30">
 
-<title>Section 1: From Twenty Movies to an Unknown Proportion – Beyond Pass or Fail</title>
+<title>Section 1 – Beyond Pass or Fail</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -148,15 +148,22 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#from-twenty-movies-to-an-unknown-proportion" id="toc-from-twenty-movies-to-an-unknown-proportion" class="nav-link active" data-scroll-target="#from-twenty-movies-to-an-unknown-proportion">From Twenty Movies to an Unknown Proportion</a></li>
+  <li><a href="#constructing-a-probability-model" id="toc-constructing-a-probability-model" class="nav-link" data-scroll-target="#constructing-a-probability-model">Constructing a Probability Model</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Section 1: From Twenty Movies to an Unknown Proportion</h1>
+<h1 class="title">Section 1</h1>
 </div>
 
 
@@ -179,6 +186,8 @@ window.Quarto = {
 </header>
 
 
+<section id="from-twenty-movies-to-an-unknown-proportion" class="level2">
+<h2 class="anchored" data-anchor-id="from-twenty-movies-to-an-unknown-proportion">From Twenty Movies to an Unknown Proportion</h2>
 <p>Let <span class="math inline">\(p\)</span> represent the unknown proportion of movies in the relevant population that pass the Bechdel test.</p>
 <p><span class="math inline">\(p = P\)</span>(a randomly selected movie passes the Bechdel test)</p>
 <p>If <span class="math inline">\(p = 0.30\)</span>, then approximately 30% of movies in the population pass.</p>
@@ -189,8 +198,38 @@ window.Quarto = {
 <p>Here:</p>
 <p><span class="math inline">\(\hat{p} = 9/20 = 0.45\)</span></p>
 <p>The sample tells us that 45% of these 20 movies passed. However, <span class="math inline">\(\hat{p}\)</span> and <span class="math inline">\(p\)</span> are not the same thing. <span class="math inline">\(p\)</span> is the unknown population proportion we want to estimate and <span class="math inline">\(\hat{p}\)</span> is a statistic calculated from the particular sample we observed.</p>
+</section>
+<section id="constructing-a-probability-model" class="level2">
+<h2 class="anchored" data-anchor-id="constructing-a-probability-model">Constructing a Probability Model</h2>
+<p>For each movie, define:</p>
+<ul>
+<li><span class="math inline">\(X_i = 1\)</span> if movie <span class="math inline">\(i\)</span> passes the Bechdel test</li>
+<li><span class="math inline">\(X_i = 0\)</span> if movie <span class="math inline">\(i\)</span> fails the Bechdel test</li>
+</ul>
+<p>Because each observation has two possible outcomes, we begin with a Bernoulli model:</p>
+<p><span class="math inline">\(X_i \mid p \sim \text{Bernoulli}(p)\)</span></p>
+<p>This notation means that, conditional on a particular value of <span class="math inline">\(p\)</span>:</p>
+<p><span class="math inline">\(P(X_i = 1 \mid p) = p\)</span></p>
+<p><span class="math inline">\(P(X_i = 0 \mid p) = 1 - p\)</span></p>
+<p>Now let <span class="math inline">\(Y\)</span> be the total number of passing movies:</p>
+<p><span class="math inline">\(Y = X_1 + X_2 + \cdots + X_n\)</span></p>
+<p>If the observations satisfy the Binomial assumptions, then:</p>
+<p><span class="math inline">\(Y \mid p \sim \text{Binomial}(n, p)\)</span></p>
+<p>For our sample:</p>
+<p><span class="math inline">\(Y \mid p \sim \text{Binomial}(20, p)\)</span></p>
+<p>and we observed:</p>
+<p><span class="math inline">\(Y = 9\)</span></p>
+<p>This model depends on several assumptions:</p>
+<ol type="1">
+<li>Each movie is classified as either passing or failing.</li>
+<li>The sampled movies are independent.</li>
+<li>Each movie has the same probability <span class="math inline">\(p\)</span> of passing.</li>
+<li>The sample reasonably represents the population about which we want to make an inference.</li>
+<li>The Bechdel classifications are accurate and consistently applied.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
