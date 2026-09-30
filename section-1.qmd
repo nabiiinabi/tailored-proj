@@ -12,7 +12,7 @@ If $p = 0.50$, then approximately half pass.
 
 If $p = 0.80$, then approximately 80% pass.
 
-We do not know the true value of $\pi$. What we observe is the sample proportion:
+We do not know the true value of $p$. What we observe is the sample proportion:
 
 $\hat{p} = y/n$
 
