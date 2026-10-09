@@ -1,0 +1,35 @@
+Observable JavaScript cell
+
+1. Observable Plot call
+- Plot.plot
+- turns into SVG
+- can redraw in the broswer every time the slider changes plot
+
+2. Why not Plotly in R?
+- Built when site is rendered
+- Does not change after the website is rendered
+
+3. What does relText, shareText and atpeak with html?
+selected is one number: the kernel at the slider divided by the kernel at 
+p=0.45. At the peak it is 1. Anywhere else it is between 0 and 1. 
+relText and shareText are two ways of writing that same number.
+
+relText is the relative likelihood itself. If it is at least 0.001, 
+it is shown with three decimals, such as 0.500. If it is positive 
+but smaller than that, the text is < 0.001. If it is exactly 0, the text is 0.
+
+shareText is that same value as a percent of the peak, 
+so share = selected * 100. At or above 1% it uses one decimal (50.0%). 
+From 0.01% up to 1% it uses two decimals. Anything smaller but still 
+positive becomes < 0.01%, and an exact zero becomes 0%.
+
+atPeak is true when the slider is on 0.45. That picks which sentence to show. 
+On the peak, the sentence stops after the relative likelihood and says this value has the greatest support. Off the peak, it adds the percent sentence, using shareText.
+
+html is an Observable function that turns a template string into a real HTML element. 
+The backticks are the template, and ${...} drops a JavaScript value into it. <em> italicizes p, 
+and <strong> bolds the number. class="binomial-readout" is only a CSS hook for styling.
+
+The return builds one wrapper div. Inside it, in order: the y-axis label, 
+the plot SVG, the sentence chosen above, and the legend. ${plot}
+and ${readout} insert those already-built elements into that HTML.

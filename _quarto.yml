@@ -18,6 +18,8 @@ website:
         text: "The Question"
       - href: section-1.qmd
         text: "Section 1"
+      - href: section-3-4.qmd
+        text: "Sections 3 and 4"
 
 format:
   html:

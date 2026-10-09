@@ -1,0 +1,191 @@
+---
+title: "Sections 3 and 4"
+---
+
+## Two Ways to Describe Uncertainty
+
+Frequentist and Bayesian inference begin with the same data and can use the same Binomial model. Their main difference is how they represent uncertainty about $p$.
+
+### The Frequentist View
+
+In frequentist inference, $p$ is fixed but unknown. It does not receive a probability distribution. The sample is random. If we repeatedly selected new samples, the number of passing movies would change. Frequentist methods use this repeated-sampling behavior to evaluate estimators, construct confidence intervals, and perform hypothesis tests.
+
+A frequentist might ask:
+
+- Which value of $p$ makes the observed data most likely?
+- Which values of $p$ are reasonably compatible with the sample?
+- Would 9 or fewer passes be unusual if half of all movies passed?
+
+### The Bayesian View
+
+In Bayesian inference, uncertainty about $p$ is represented using a probability distribution. The distribution does not mean that the population proportion physically changes at random. Instead, it describes our uncertainty about its fixed but unknown value.
+
+A Bayesian might ask:
+
+- Which values of $p$ seemed plausible before observing these 20 movies?
+- How should the 9 passes and 11 failures change that uncertainty?
+- What is the probability that fewer than half of movies pass?
+
+The Bayesian analysis has three main ingredients:
+
+$$
+\text{Prior distribution} \times \text{Likelihood} \rightarrow \text{Posterior distribution}
+$$
+
+- The prior represents uncertainty before the current data.
+- The likelihood represents the evidence supplied by the current data.
+- The posterior represents updated uncertainty after combining the two.
+
+## The Likelihood: What Does the Sample Support?
+
+Under the Binomial model, the probability of observing $y$ passes among $n$ movies is:
+
+$$
+P(Y = y \mid p) = {n \choose y} p^{y}(1 - p)^{n - y}
+$$
+
+Here, ${n \choose y}$ represents the number of ways that $y$ passing movies can occur among $n$ movies.
+
+Once the data have been observed, $y$ and $n$ are fixed. We then examine the expression as a function of the unknown $p$. This creates the likelihood:
+
+$$
+L(p \mid y) = {n \choose y}\, p^{y}(1 - p)^{n - y}
+$$
+
+For 9 passes among 20 movies:
+
+$$
+L(p \mid y) = {20 \choose 9}\, p^{9}(1 - p)^{11}
+$$
+
+The value $C(20, 9)$ does not change when $p$ changes. It affects the height of the likelihood curve, but not its shape or the location of its maximum. Therefore, we can write:
+
+$$
+L(p \mid y) \propto p^{9}(1 - p)^{11}
+$$
+
+The likelihood asks:
+
+**Which possible values of $p$ make the observed result of 9 passes and 11 failures relatively plausible?**
+
+Values close to 0.45 receive the greatest likelihood support. Values close to 0 or 1 receive very little support because they make a mixed result of 9 passes and 11 failures unlikely.
+
+However, the likelihood is not automatically a probability distribution for $p$. It allows us to compare parameter values, but it does not yet allow us to say that there is a certain probability that $p$ lies in an interval.
+
+**Move the slider for $p$ across the likelihood curve. The graph reports the relative likelihood of that value and compares it with $p = 0.45$, the value receiving the greatest support.**
+
+::: {.binomial-panel}
+
+
+```{ojs}
+// slider for a proposed value of the unknown proportion p
+viewof p = Inputs.range([0, 1], {
+  label: "p",
+  value: 0.45,
+  step: 0.01
+})
+```
+
+```{ojs}
+// relative likelihood of 9 passes and 11 failures
+{
+  const mle = 0.45;
+
+  // Kernel of L(p | y) for y = 9 and n = 20. The binomial coefficient
+  // is constant in p, so it cancels in the relative likelihood.
+  function kernel(x) {
+    return (x ** 9) * ((1 - x) ** 11);
+  }
+
+  const peak = kernel(mle);
+  const curve = Array.from({length: 401}, (_, i) => {
+    const x = i / 400;
+    return {p: x, relative: kernel(x) / peak};
+  });
+
+  const selected = kernel(p) / peak;
+  const share = selected * 100;
+  const shareText = share >= 1
+    ? `${share.toFixed(1)}%`
+    : share >= 0.01
+      ? `${share.toFixed(2)}%`
+      : share > 0
+        ? "< 0.01%"
+        : "0%";
+  const relText = selected >= 0.001
+    ? selected.toFixed(3)
+    : selected > 0
+      ? "< 0.001"
+      : "0";
+  const atPeak = Math.abs(p - mle) < 0.0005;
+  const readout = atPeak
+    ? html`<p class="binomial-readout">When <em>p</em> = ${p.toFixed(2)}, the relative likelihood is <strong>${relText}</strong>. This is the value with the greatest support.</p>`
+    : html`<p class="binomial-readout">When <em>p</em> = ${p.toFixed(2)}, the relative likelihood is <strong>${relText}</strong>. That is ${shareText} of the support at <em>p</em> = 0.45.</p>`;
+
+  const plot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 360,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {
+      label: "Population proportion, p",
+      domain: [0, 1],
+      ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+    },
+    y: {
+      label: null,
+      grid: true,
+      domain: [0, 1],
+      ticks: [0, 0.25, 0.5, 0.75, 1]
+    },
+    marks: [
+      Plot.areaY(curve, {
+        x: "p",
+        y: "relative",
+        fill: "#2c3140",
+        fillOpacity: 0.12,
+        curve: "linear"
+      }),
+      Plot.line(curve, {
+        x: "p",
+        y: "relative",
+        stroke: "#2c3140",
+        strokeWidth: 2.25
+      }),
+      Plot.ruleX([mle], {
+        stroke: "#5c5660",
+        strokeDasharray: "4,3"
+      }),
+      Plot.ruleX([p], {
+        stroke: "#b32b2f",
+        strokeWidth: 2
+      }),
+      Plot.dot([{p, relative: selected}], {
+        x: "p",
+        y: "relative",
+        fill: "#b32b2f",
+        r: 5,
+        title: d => `p = ${d.p.toFixed(2)}\nRelative likelihood = ${d.relative.toFixed(3)}`
+      }),
+      Plot.ruleY([0])
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Relative likelihood</p>
+    ${plot}
+    ${readout}
+    <p class="binomial-legend"><span class="swatch swatch-observed"></span> Proposed value of <em>p</em> <span class="swatch swatch-other"></span> Likelihood curve <span class="swatch swatch-max"></span> Greatest support, <em>p</em> = 0.45</p>
+  </div>`;
+}
+```
+
+:::

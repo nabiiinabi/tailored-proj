@@ -140,3 +140,12 @@ $code-block-bg-alpha: -.8;
   background: #2c3140;
   margin-left: 0.9rem;
 }
+
+.swatch-max {
+  width: 0.95rem;
+  height: 0;
+  margin-left: 0.9rem;
+  border-top: 2px dashed #5c5660;
+  background: transparent;
+  vertical-align: 0.22rem;
+}
