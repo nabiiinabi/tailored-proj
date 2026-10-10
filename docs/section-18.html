@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-10">
+
+<title>Tweets After a Movie Release – Beyond Pass or Fail</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Beyond Pass or Fail</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./section-18.html">Tweets After a Movie Release</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-book" role="img">
+</i> 
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Question</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From Twenty Movies to an Unknown Proportion</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Two Ways to Describe Uncertainty</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Brief Frequentist Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-6-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Beginning the Bayesian Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-8-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What Do Alpha and Beta Control?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-10-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Updating with Bayes’ Rule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-12-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Posterior Mean and Shrinkage</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-14-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Does the Prior Change the Conclusion?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-16-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning One Movie at a Time</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-18.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tweets After a Movie Release</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-19-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparing the Frequentist and Bayesian Results</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./section-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusions and Takeaways</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-rate-not-a-pass-or-fail" id="toc-a-rate-not-a-pass-or-fail" class="nav-link active" data-scroll-target="#a-rate-not-a-pass-or-fail">A rate, not a pass or fail</a></li>
+  <li><a href="#a-gamma-prior" id="toc-a-gamma-prior" class="nav-link" data-scroll-target="#a-gamma-prior">A Gamma prior</a></li>
+  <li><a href="#updating-with-the-counts" id="toc-updating-with-the-counts" class="nav-link" data-scroll-target="#updating-with-the-counts">Updating with the counts</a></li>
+  <li><a href="#what-the-poisson-model-assumes" id="toc-what-the-poisson-model-assumes" class="nav-link" data-scroll-target="#what-the-poisson-model-assumes">What the Poisson model assumes</a></li>
+  <li><a href="#a-worked-example" id="toc-a-worked-example" class="nav-link" data-scroll-target="#a-worked-example">A worked example</a></li>
+  <li><a href="#the-next-minute" id="toc-the-next-minute" class="nav-link" data-scroll-target="#the-next-minute">The next minute</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tweets After a Movie Release</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Last updated</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 10, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The Bechdel-test analysis involves binary outcomes: each movie either passes or fails. However, Bayesian inference is not limited to questions with two possible outcomes.</p>
+<section id="a-rate-not-a-pass-or-fail" class="level3">
+<h3 class="anchored" data-anchor-id="a-rate-not-a-pass-or-fail">A rate, not a pass or fail</h3>
+<p>Suppose a movie studio wants to measure online attention immediately after a new movie is released.</p>
+<blockquote class="blockquote">
+<p>How many tweets should the studio expect in a typical minute?</p>
+</blockquote>
+<p>Let:</p>
+<p><span class="math display">\[\lambda\]</span> = the typical number of tweets mentioning the movie per minute during the first hour after its release.</p>
+<p>Unlike the Bechdel outcome, the number of tweets is a count. In each one-minute interval, we might observe 0, 1, 2, or many tweets. A Poisson distribution is commonly used to model the number of events occurring during a fixed period:</p>
+<p><span class="math display">\[
+Y_i \mid \lambda \sim \text{Poisson}(\lambda)
+\]</span></p>
+<p>Here, <span class="math inline">\(Y_i\)</span> is the number of tweets observed during minute <span class="math inline">\(i\)</span>, and <span class="math inline">\(\lambda\)</span> is the unknown average number of tweets per minute.</p>
+</section>
+<section id="a-gamma-prior" class="level3">
+<h3 class="anchored" data-anchor-id="a-gamma-prior">A Gamma prior</h3>
+<p>Before the movie is released, the studio may already have information from trailers, advance ticket sales, or similar movie releases. Its uncertainty about the positive rate <span class="math inline">\(\lambda\)</span> can be represented using a Gamma prior:</p>
+<p><span class="math display">\[
+\lambda \sim \text{Gamma}(\alpha, \beta)
+\]</span></p>
+<p>In this parameterization, <span class="math inline">\(\alpha\)</span> is the shape and <span class="math inline">\(\beta\)</span> is the rate in</p>
+<p><span class="math display">\[
+f(\lambda) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} \lambda^{\alpha - 1} e^{-\beta \lambda}, \qquad \lambda &gt; 0.
+\]</span></p>
+<p>Raising the shape concentrates this density around the mean, and raising the rate pulls the mean down:</p>
+<p><span class="math display">\[
+E(\lambda) = \alpha / \beta.
+\]</span></p>
+<p>The update adds observed tweets to <span class="math inline">\(\alpha\)</span> and observed minutes to <span class="math inline">\(\beta\)</span>, so those parameters also act as a prior number of tweets and a prior number of minutes.</p>
+<p>The values of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> could be selected using data from comparable movie releases.</p>
+<p>The Gamma distribution is useful because <span class="math inline">\(\lambda\)</span> (i.e., the average number of tweets per minute) must be positive. It is also conjugate to the Poisson likelihood. This means that combining a Gamma prior with Poisson data produces another Gamma distribution as the posterior.</p>
+</section>
+<section id="updating-with-the-counts" class="level3">
+<h3 class="anchored" data-anchor-id="updating-with-the-counts">Updating with the counts</h3>
+<p>Suppose the studio observes tweet counts from <span class="math inline">\(n\)</span> one-minute intervals:</p>
+<p><span class="math display">\[
+Y_1, Y_2, \ldots, Y_n
+\]</span></p>
+<p>If the total number of observed tweets is <span class="math inline">\(\sum Y_i\)</span>, then the posterior is:</p>
+<p><span class="math display">\[
+\lambda \mid \text{data} \sim \text{Gamma}(\alpha + \sum Y_i,\ \beta + n)
+\]</span></p>
+<p>For example, suppose the numbers of tweets during the first five minutes are:</p>
+<p>8, 11, 10, 13, and 8.</p>
+<p>The total is:</p>
+<p><span class="math display">\[
+\sum Y_i = 50
+\]</span></p>
+<p>Therefore, a Gamma<span class="math inline">\((\alpha, \beta)\)</span> prior would update to:</p>
+<p><span class="math display">\[
+\lambda \mid \text{data} \sim \text{Gamma}(\alpha + 50,\ \beta + 5)
+\]</span></p>
+<p>The update resembles the Beta-Binomial update from the Bechdel example. The prior parameters represent the starting information, and the observed data are added to produce the posterior parameters. However, the two models answer different kinds of questions:</p>
+<ul>
+<li>The Beta-Binomial model estimates an unknown proportion from pass-or-fail data.</li>
+<li>The Gamma-Poisson model estimates an unknown rate from count data.</li>
+</ul>
+<p>This example also demonstrates conjugacy more broadly. Conjugacy is not a special feature that applies only to Beta and Binomial distributions. Different types of data have different useful conjugate pairs:</p>
+<p>Beta prior + Binomial data → Beta posterior</p>
+<p>Gamma prior + Poisson data → Gamma posterior</p>
+</section>
+<section id="what-the-poisson-model-assumes" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-poisson-model-assumes">What the Poisson model assumes</h3>
+<p>The Poisson model assumes that tweets occur independently and at a constant average rate during the period being studied. In reality, online activity may spike after an announcement, a celebrity post, or a major scene becoming viral. Bots, retweets, and coordinated marketing may also violate the independence assumption. Restricting the analysis to a short, clearly defined period and specifying exactly what counts as a movie-related tweet would make the simplified model more defensible.</p>
+</section>
+<section id="a-worked-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-worked-example">A worked example</h3>
+<p>A Gamma(12, 2) prior has shape 12 and rate 2, so the prior mean is <span class="math inline">\(12/2 = 6\)</span>: before these counts, the prior says about 6 tweets per minute. The 50 tweets in the five minutes above then give</p>
+<p><span class="math display">\[
+\lambda \mid \text{data} \sim \text{Gamma}(50 + 12, 5 + 2) = \text{Gamma}(62, 7)
+\]</span></p>
+<p>with posterior mean <span class="math inline">\(62/7 \approx 8.86\)</span>. That mean sits between the prior mean of 6 and the observed rate of 10 tweets per minute.</p>
+</section>
+<section id="the-next-minute" class="level3">
+<h3 class="anchored" data-anchor-id="the-next-minute">The next minute</h3>
+<p><a href="./section-16-17.html#predicting-future-movies">Predicting Future Movies</a> predicted a future pass count by averaging the Binomial probability mass function over the Beta posterior. The next minute is the same kind of average. The sampling formula is now the Poisson probability mass function, and the weight is the Gamma posterior.</p>
+<p>If <span class="math inline">\(\lambda\)</span> were known, the probability of exactly <span class="math inline">\(k\)</span> tweets in the next minute would be</p>
+<p><span class="math display">\[
+P(Y_{\text{new}} = k \mid \lambda) = \frac{e^{-\lambda} \lambda^{k}}{k!}, \qquad k = 0, 1, 2, \ldots
+\]</span></p>
+<p>The posterior still spreads probability across many rates, <span class="math inline">\(\lambda \mid \text{data} \sim \text{Gamma}(\alpha', \beta')\)</span>. One plugged-in value, such as <span class="math inline">\(\lambda = 8.86\)</span>, would leave out that spread. Average the Poisson probabilities, using the Gamma density above with the posterior parameters in place of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>:</p>
+<p><span class="math display">\[
+P(Y_{\text{new}} = k \mid \text{data}) = \int_0^{\infty} P(Y_{\text{new}} = k \mid \lambda)\, f(\lambda \mid \text{data})\, d\lambda.
+\]</span></p>
+<p>The powers of <span class="math inline">\(\lambda\)</span> combine, and the two exponential decays combine, so the integral is another Gamma function. It simplifies to</p>
+<p><span class="math display">\[
+P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{\beta'}{\beta' + 1}\right)^{\alpha'} \left(\frac{1}{\beta' + 1}\right)^{k}.
+\]</span></p>
+<p>For Gamma(62, 7), <span class="math inline">\(\alpha' = 62\)</span> and <span class="math inline">\(\beta' = 7\)</span>. As in <a href="./section-16-17.html#predicting-future-movies">Predicting Future Movies</a>, the expected count equals the posterior mean of the unknown rate, here <span class="math inline">\(62/7 \approx 8.86\)</span>. The predictive distribution is wider than the Poisson probabilities at the single value <span class="math inline">\(\lambda = 8.86\)</span>, because the average still includes the uncertainty left in <span class="math inline">\(\lambda\)</span>.</p>
+<p><strong>Choose whether to change the prior or the observed counts. The other stays at the example: Gamma(12, 2), or the minutes 8, 11, 10, 13, and 8.</strong></p>
+<div class="binomial-panel">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="134" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb1-134"><a href="#cb1-134" aria-label="134"></a>viewof whatChanges <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb1-135"><a href="#cb1-135" aria-label="135"></a>  [<span class="st">"Prior"</span><span class="op">,</span> <span class="st">"Observed data"</span>]<span class="op">,</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-label="136"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"What to change"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Prior"</span>}</span>
+<span id="cb1-137"><a href="#cb1-137" aria-label="137"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="141" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 140;"><span id="cb2-141"><a href="#cb2-141" aria-label="141"></a><span class="co">// Only the selected piece can move. The other stays at the worked example.</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-label="142"></a>viewof varied <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-label="143"></a>  <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb2-144"><a href="#cb2-144" aria-label="144"></a>      <span class="dt">shape</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Shape α"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-label="145"></a>      <span class="dt">rate</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Rate β"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span>})</span>
+<span id="cb2-146"><a href="#cb2-146" aria-label="146"></a>    })</span>
+<span id="cb2-147"><a href="#cb2-147" aria-label="147"></a>  <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb2-148"><a href="#cb2-148" aria-label="148"></a>      <span class="dt">minute1</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 1"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-label="149"></a>      <span class="dt">minute2</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 2"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">11</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-label="150"></a>      <span class="dt">minute3</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 3"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-label="151"></a>      <span class="dt">minute4</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 4"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-label="152"></a>      <span class="dt">minute5</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 5"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})</span>
+<span id="cb2-153"><a href="#cb2-153" aria-label="153"></a>    })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="157" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 156;"><span id="cb3-157"><a href="#cb3-157" aria-label="157"></a><span class="co">// Gamma prior, its Poisson update, and the next-minute predictive distribution</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-label="158"></a>{</span>
+<span id="cb3-159"><a href="#cb3-159" aria-label="159"></a>  <span class="kw">const</span> shape <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span> <span class="op">?</span> varied<span class="op">.</span><span class="at">shape</span> <span class="op">:</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-label="160"></a>  <span class="kw">const</span> rate <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span> <span class="op">?</span> varied<span class="op">.</span><span class="at">rate</span> <span class="op">:</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-label="161"></a>  <span class="kw">const</span> counts <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Observed data"</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-label="162"></a>    <span class="op">?</span> [varied<span class="op">.</span><span class="at">minute1</span><span class="op">,</span> varied<span class="op">.</span><span class="at">minute2</span><span class="op">,</span> varied<span class="op">.</span><span class="at">minute3</span><span class="op">,</span> varied<span class="op">.</span><span class="at">minute4</span><span class="op">,</span> varied<span class="op">.</span><span class="at">minute5</span>]</span>
+<span id="cb3-163"><a href="#cb3-163" aria-label="163"></a>    <span class="op">:</span> [<span class="dv">8</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">;</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-label="164"></a>  <span class="kw">const</span> total <span class="op">=</span> counts<span class="op">.</span><span class="fu">reduce</span>((sum<span class="op">,</span> count) <span class="kw">=&gt;</span> sum <span class="op">+</span> count<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-label="165"></a>  <span class="kw">const</span> n <span class="op">=</span> counts<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-label="166"></a>  <span class="kw">const</span> postShape <span class="op">=</span> shape <span class="op">+</span> total<span class="op">;</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-label="167"></a>  <span class="kw">const</span> postRate <span class="op">=</span> rate <span class="op">+</span> n<span class="op">;</span></span>
+<span id="cb3-168"><a href="#cb3-168" aria-label="168"></a>  <span class="kw">const</span> priorMean <span class="op">=</span> shape <span class="op">/</span> rate<span class="op">;</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-label="169"></a>  <span class="kw">const</span> sampleRate <span class="op">=</span> total <span class="op">/</span> n<span class="op">;</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-label="170"></a>  <span class="kw">const</span> posteriorMean <span class="op">=</span> postShape <span class="op">/</span> postRate<span class="op">;</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-label="171"></a></span>
+<span id="cb3-172"><a href="#cb3-172" aria-label="172"></a>  <span class="kw">function</span> <span class="fu">logGamma</span>(z) {</span>
+<span id="cb3-173"><a href="#cb3-173" aria-label="173"></a>    <span class="kw">const</span> c <span class="op">=</span> [</span>
+<span id="cb3-174"><a href="#cb3-174" aria-label="174"></a>      <span class="fl">0.99999999999980993</span><span class="op">,</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-label="175"></a>      <span class="fl">676.5203681218851</span><span class="op">,</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-label="176"></a>      <span class="op">-</span><span class="fl">1259.1392167224028</span><span class="op">,</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-label="177"></a>      <span class="fl">771.32342877765313</span><span class="op">,</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-label="178"></a>      <span class="op">-</span><span class="fl">176.61502916214059</span><span class="op">,</span></span>
+<span id="cb3-179"><a href="#cb3-179" aria-label="179"></a>      <span class="fl">12.507343278686905</span><span class="op">,</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-label="180"></a>      <span class="op">-</span><span class="fl">0.13857109526572012</span><span class="op">,</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-label="181"></a>      <span class="fl">9.9843695780195716e-6</span><span class="op">,</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-label="182"></a>      <span class="fl">1.5056327351493116e-7</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-label="183"></a>    ]<span class="op">;</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-label="184"></a>    <span class="cf">if</span> (z <span class="op">&lt;</span> <span class="fl">0.5</span>) <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> z)) <span class="op">-</span> <span class="fu">logGamma</span>(<span class="dv">1</span> <span class="op">-</span> z)<span class="op">;</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-label="185"></a>    z <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-label="186"></a>    <span class="kw">let</span> x <span class="op">=</span> c[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-label="187"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> c<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) x <span class="op">+=</span> c[i] <span class="op">/</span> (z <span class="op">+</span> i)<span class="op">;</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-label="188"></a>    <span class="kw">const</span> t <span class="op">=</span> z <span class="op">+</span> <span class="fl">7.5</span><span class="op">;</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-label="189"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>) <span class="op">+</span> (z <span class="op">+</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(t) <span class="op">-</span> t <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(x)<span class="op">;</span></span>
+<span id="cb3-190"><a href="#cb3-190" aria-label="190"></a>  }</span>
+<span id="cb3-191"><a href="#cb3-191" aria-label="191"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-label="192"></a>  <span class="kw">function</span> <span class="fu">gammaDensity</span>(x<span class="op">,</span> a<span class="op">,</span> b) {</span>
+<span id="cb3-193"><a href="#cb3-193" aria-label="193"></a>    <span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">||</span> a <span class="op">&lt;=</span> <span class="dv">0</span> <span class="op">||</span> b <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-label="194"></a>    <span class="cf">if</span> (x <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> a <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> b <span class="op">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-label="195"></a>    <span class="kw">const</span> logDensity <span class="op">=</span> a <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(b) <span class="op">-</span> <span class="fu">logGamma</span>(a) <span class="op">+</span> (a <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(x) <span class="op">-</span> b <span class="op">*</span> x<span class="op">;</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-label="196"></a>    <span class="kw">const</span> density <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(logDensity)<span class="op">;</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-label="197"></a>    <span class="cf">return</span> <span class="bu">Number</span><span class="op">.</span><span class="fu">isFinite</span>(density) <span class="op">?</span> density <span class="op">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-label="198"></a>  }</span>
+<span id="cb3-199"><a href="#cb3-199" aria-label="199"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-label="200"></a>  <span class="kw">function</span> <span class="fu">gammaSd</span>(a<span class="op">,</span> b) {</span>
+<span id="cb3-201"><a href="#cb3-201" aria-label="201"></a>    <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(a) <span class="op">/</span> b<span class="op">;</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-label="202"></a>  }</span>
+<span id="cb3-203"><a href="#cb3-203" aria-label="203"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-label="204"></a>  <span class="kw">const</span> xMax <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(</span>
+<span id="cb3-205"><a href="#cb3-205" aria-label="205"></a>    <span class="dv">12</span><span class="op">,</span></span>
+<span id="cb3-206"><a href="#cb3-206" aria-label="206"></a>    priorMean <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> <span class="fu">gammaSd</span>(shape<span class="op">,</span> rate)<span class="op">,</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-label="207"></a>    posteriorMean <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> <span class="fu">gammaSd</span>(postShape<span class="op">,</span> postRate)<span class="op">,</span></span>
+<span id="cb3-208"><a href="#cb3-208" aria-label="208"></a>    sampleRate <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-label="209"></a>  )<span class="op">;</span></span>
+<span id="cb3-210"><a href="#cb3-210" aria-label="210"></a>  <span class="kw">const</span> steps <span class="op">=</span> <span class="dv">301</span><span class="op">;</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-label="211"></a>  <span class="kw">const</span> curve <span class="op">=</span> (a<span class="op">,</span> b) <span class="kw">=&gt;</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> steps}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-212"><a href="#cb3-212" aria-label="212"></a>    <span class="kw">const</span> lambda <span class="op">=</span> (i <span class="op">/</span> (steps <span class="op">-</span> <span class="dv">1</span>)) <span class="op">*</span> xMax<span class="op">;</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-label="213"></a>    <span class="cf">return</span> {lambda<span class="op">,</span> <span class="dt">density</span><span class="op">:</span> <span class="fu">gammaDensity</span>(lambda<span class="op">,</span> a<span class="op">,</span> b)}<span class="op">;</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-label="214"></a>  })<span class="op">;</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-label="215"></a>  <span class="kw">const</span> plotStyle <span class="op">=</span> {</span>
+<span id="cb3-216"><a href="#cb3-216" aria-label="216"></a>    <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-label="217"></a>    <span class="dt">color</span><span class="op">:</span> <span class="st">"#15151E"</span><span class="op">,</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-label="218"></a>    <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Helvetica, sans-serif"</span><span class="op">,</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-label="219"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-label="220"></a>  }<span class="op">;</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-label="221"></a></span>
+<span id="cb3-222"><a href="#cb3-222" aria-label="222"></a>  <span class="kw">const</span> updatePlot <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-223"><a href="#cb3-223" aria-label="223"></a>    <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">280</span><span class="op">,</span> width <span class="op">-</span> <span class="dv">4</span>)<span class="op">,</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-label="224"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-label="225"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-label="226"></a>    <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-label="227"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">48</span><span class="op">,</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-label="228"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">52</span><span class="op">,</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-label="229"></a>    <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Tweets per minute, λ"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> xMax]}<span class="op">,</span></span>
+<span id="cb3-230"><a href="#cb3-230" aria-label="230"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">nice</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-label="231"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-232"><a href="#cb3-232" aria-label="232"></a>      Plot<span class="op">.</span><span class="fu">areaY</span>(<span class="fu">curve</span>(postShape<span class="op">,</span> postRate)<span class="op">,</span> {</span>
+<span id="cb3-233"><a href="#cb3-233" aria-label="233"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"lambda"</span><span class="op">,</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-label="234"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"density"</span><span class="op">,</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-label="235"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#b32b2f"</span><span class="op">,</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-label="236"></a>        <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.12</span><span class="op">,</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-label="237"></a>        <span class="dt">curve</span><span class="op">:</span> <span class="st">"linear"</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-label="238"></a>      })<span class="op">,</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-label="239"></a>      Plot<span class="op">.</span><span class="fu">line</span>(<span class="fu">curve</span>(shape<span class="op">,</span> rate)<span class="op">,</span> {</span>
+<span id="cb3-240"><a href="#cb3-240" aria-label="240"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"lambda"</span><span class="op">,</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-label="241"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"density"</span><span class="op">,</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-label="242"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2c3140"</span><span class="op">,</span></span>
+<span id="cb3-243"><a href="#cb3-243" aria-label="243"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.25</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-label="244"></a>      })<span class="op">,</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-label="245"></a>      Plot<span class="op">.</span><span class="fu">line</span>(<span class="fu">curve</span>(postShape<span class="op">,</span> postRate)<span class="op">,</span> {</span>
+<span id="cb3-246"><a href="#cb3-246" aria-label="246"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"lambda"</span><span class="op">,</span></span>
+<span id="cb3-247"><a href="#cb3-247" aria-label="247"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"density"</span><span class="op">,</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-label="248"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#b32b2f"</span><span class="op">,</span></span>
+<span id="cb3-249"><a href="#cb3-249" aria-label="249"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.25</span></span>
+<span id="cb3-250"><a href="#cb3-250" aria-label="250"></a>      })<span class="op">,</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-label="251"></a>      Plot<span class="op">.</span><span class="fu">ruleX</span>([sampleRate]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#5c5660"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-label="252"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb3-253"><a href="#cb3-253" aria-label="253"></a>    ]<span class="op">,</span></span>
+<span id="cb3-254"><a href="#cb3-254" aria-label="254"></a>    <span class="dt">style</span><span class="op">:</span> plotStyle</span>
+<span id="cb3-255"><a href="#cb3-255" aria-label="255"></a>  })<span class="op">;</span></span>
+<span id="cb3-256"><a href="#cb3-256" aria-label="256"></a></span>
+<span id="cb3-257"><a href="#cb3-257" aria-label="257"></a>  <span class="kw">const</span> predictiveVariance <span class="op">=</span> postShape <span class="op">*</span> (postRate <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> (postRate <span class="op">*</span> postRate)<span class="op">;</span></span>
+<span id="cb3-258"><a href="#cb3-258" aria-label="258"></a>  <span class="kw">const</span> kMax <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">12</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(posteriorMean <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(predictiveVariance)))<span class="op">;</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-label="259"></a>  <span class="kw">const</span> predictive <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> kMax <span class="op">+</span> <span class="dv">1</span>}<span class="op">,</span> (_<span class="op">,</span> k) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-260"><a href="#cb3-260" aria-label="260"></a>    <span class="kw">const</span> logProbability <span class="op">=</span> <span class="fu">logGamma</span>(postShape <span class="op">+</span> k) <span class="op">-</span> <span class="fu">logGamma</span>(postShape) <span class="op">-</span> <span class="fu">logGamma</span>(k <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb3-261"><a href="#cb3-261" aria-label="261"></a>      <span class="op">+</span> postShape <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(postRate <span class="op">/</span> (postRate <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb3-262"><a href="#cb3-262" aria-label="262"></a>      <span class="op">+</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">1</span> <span class="op">/</span> (postRate <span class="op">+</span> <span class="dv">1</span>))<span class="op">;</span></span>
+<span id="cb3-263"><a href="#cb3-263" aria-label="263"></a>    <span class="cf">return</span> {k<span class="op">,</span> <span class="dt">probability</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(logProbability)}<span class="op">;</span></span>
+<span id="cb3-264"><a href="#cb3-264" aria-label="264"></a>  })<span class="op">;</span></span>
+<span id="cb3-265"><a href="#cb3-265" aria-label="265"></a>  <span class="kw">const</span> yMax <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>predictive<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> row<span class="op">.</span><span class="at">probability</span>))<span class="op">;</span></span>
+<span id="cb3-266"><a href="#cb3-266" aria-label="266"></a></span>
+<span id="cb3-267"><a href="#cb3-267" aria-label="267"></a>  <span class="kw">const</span> predictivePlot <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-268"><a href="#cb3-268" aria-label="268"></a>    <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">280</span><span class="op">,</span> width <span class="op">-</span> <span class="dv">4</span>)<span class="op">,</span></span>
+<span id="cb3-269"><a href="#cb3-269" aria-label="269"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span></span>
+<span id="cb3-270"><a href="#cb3-270" aria-label="270"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb3-271"><a href="#cb3-271" aria-label="271"></a>    <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb3-272"><a href="#cb3-272" aria-label="272"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">48</span><span class="op">,</span></span>
+<span id="cb3-273"><a href="#cb3-273" aria-label="273"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">52</span><span class="op">,</span></span>
+<span id="cb3-274"><a href="#cb3-274" aria-label="274"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb3-275"><a href="#cb3-275" aria-label="275"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Tweets in the next minute"</span><span class="op">,</span></span>
+<span id="cb3-276"><a href="#cb3-276" aria-label="276"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.6</span><span class="op">,</span> kMax <span class="op">+</span> <span class="fl">0.6</span>]<span class="op">,</span></span>
+<span id="cb3-277"><a href="#cb3-277" aria-label="277"></a>      <span class="dt">ticks</span><span class="op">:</span> kMax <span class="op">&lt;=</span> <span class="dv">16</span> <span class="op">?</span> <span class="kw">undefined</span> <span class="op">:</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">6</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(i <span class="op">*</span> kMax <span class="op">/</span> <span class="dv">5</span>))</span>
+<span id="cb3-278"><a href="#cb3-278" aria-label="278"></a>    }<span class="op">,</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-label="279"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> yMax <span class="op">*</span> <span class="fl">1.12</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-280"><a href="#cb3-280" aria-label="280"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-281"><a href="#cb3-281" aria-label="281"></a>      Plot<span class="op">.</span><span class="fu">rectY</span>(predictive<span class="op">,</span> {</span>
+<span id="cb3-282"><a href="#cb3-282" aria-label="282"></a>        <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">k</span> <span class="op">-</span> <span class="fl">0.38</span><span class="op">,</span></span>
+<span id="cb3-283"><a href="#cb3-283" aria-label="283"></a>        <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">k</span> <span class="op">+</span> <span class="fl">0.38</span><span class="op">,</span></span>
+<span id="cb3-284"><a href="#cb3-284" aria-label="284"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"probability"</span><span class="op">,</span></span>
+<span id="cb3-285"><a href="#cb3-285" aria-label="285"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2c3140"</span></span>
+<span id="cb3-286"><a href="#cb3-286" aria-label="286"></a>      })<span class="op">,</span></span>
+<span id="cb3-287"><a href="#cb3-287" aria-label="287"></a>      Plot<span class="op">.</span><span class="fu">ruleX</span>([posteriorMean]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#b32b2f"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb3-288"><a href="#cb3-288" aria-label="288"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb3-289"><a href="#cb3-289" aria-label="289"></a>    ]<span class="op">,</span></span>
+<span id="cb3-290"><a href="#cb3-290" aria-label="290"></a>    <span class="dt">style</span><span class="op">:</span> plotStyle</span>
+<span id="cb3-291"><a href="#cb3-291" aria-label="291"></a>  })<span class="op">;</span></span>
+<span id="cb3-292"><a href="#cb3-292" aria-label="292"></a></span>
+<span id="cb3-293"><a href="#cb3-293" aria-label="293"></a>  <span class="kw">function</span> <span class="fu">formatParam</span>(x) {</span>
+<span id="cb3-294"><a href="#cb3-294" aria-label="294"></a>    <span class="kw">const</span> tenth <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(x <span class="op">*</span> <span class="dv">10</span>) <span class="op">/</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb3-295"><a href="#cb3-295" aria-label="295"></a>    <span class="cf">return</span> <span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(tenth) <span class="op">?</span> <span class="bu">String</span>(tenth) <span class="op">:</span> tenth<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb3-296"><a href="#cb3-296" aria-label="296"></a>  }</span>
+<span id="cb3-297"><a href="#cb3-297" aria-label="297"></a></span>
+<span id="cb3-298"><a href="#cb3-298" aria-label="298"></a>  <span class="kw">function</span> <span class="fu">formatMean</span>(x) {</span>
+<span id="cb3-299"><a href="#cb3-299" aria-label="299"></a>    <span class="kw">const</span> hundredths <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(x <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb3-300"><a href="#cb3-300" aria-label="300"></a>    <span class="cf">return</span> <span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(hundredths) <span class="op">?</span> <span class="bu">String</span>(hundredths) <span class="op">:</span> hundredths<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb3-301"><a href="#cb3-301" aria-label="301"></a>  }</span>
+<span id="cb3-302"><a href="#cb3-302" aria-label="302"></a></span>
+<span id="cb3-303"><a href="#cb3-303" aria-label="303"></a>  <span class="kw">const</span> held <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span></span>
+<span id="cb3-304"><a href="#cb3-304" aria-label="304"></a>    <span class="op">?</span> <span class="st">"The five counts stay at 8, 11, 10, 13, and 8, so only the prior is moving the posterior."</span></span>
+<span id="cb3-305"><a href="#cb3-305" aria-label="305"></a>    <span class="op">:</span> <span class="st">"The prior stays Gamma(12, 2), mean 6, so only the counts are moving the posterior."</span><span class="op">;</span></span>
+<span id="cb3-306"><a href="#cb3-306" aria-label="306"></a></span>
+<span id="cb3-307"><a href="#cb3-307" aria-label="307"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="binomial-figure"&gt;</span></span>
+<span id="cb3-308"><a href="#cb3-308" aria-label="308"></a><span class="vs">    &lt;p class="binomial-ylabel"&gt;Density&lt;/p&gt;</span></span>
+<span id="cb3-309"><a href="#cb3-309" aria-label="309"></a><span class="vs">    </span><span class="sc">${</span>updatePlot<span class="sc">}</span></span>
+<span id="cb3-310"><a href="#cb3-310" aria-label="310"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The prior is Gamma(</span><span class="sc">${</span><span class="fu">formatParam</span>(shape)<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="fu">formatParam</span>(rate)<span class="sc">}</span><span class="vs">), with mean &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(priorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt;. These 5 minutes contain &lt;strong&gt;</span><span class="sc">${</span>total<span class="sc">}</span><span class="vs">&lt;/strong&gt; tweets, a rate of &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(sampleRate)<span class="sc">}</span><span class="vs">&lt;/strong&gt; per minute. The posterior is Gamma(</span><span class="sc">${</span><span class="fu">formatParam</span>(postShape)<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="fu">formatParam</span>(postRate)<span class="sc">}</span><span class="vs">), with mean &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(posteriorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt;. </span><span class="sc">${</span>held<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb3-311"><a href="#cb3-311" aria-label="311"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Prior &lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Posterior &lt;span class="swatch swatch-max"&gt;&lt;/span&gt; Observed rate&lt;/p&gt;</span></span>
+<span id="cb3-312"><a href="#cb3-312" aria-label="312"></a><span class="vs">    &lt;p class="binomial-ylabel"&gt;Probability of the next minute&lt;/p&gt;</span></span>
+<span id="cb3-313"><a href="#cb3-313" aria-label="313"></a><span class="vs">    </span><span class="sc">${</span>predictivePlot<span class="sc">}</span></span>
+<span id="cb3-314"><a href="#cb3-314" aria-label="314"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The next minute is expected to have about &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(posteriorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt; tweets. The bars are the probabilities of each possible count.&lt;/p&gt;</span></span>
+<span id="cb3-315"><a href="#cb3-315" aria-label="315"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Predictive probability &lt;span class="swatch swatch-observed" style="width:0.95rem;height:0;border-top:2px solid #b32b2f;background:transparent;vertical-align:0.22rem"&gt;&lt;/span&gt; Expected count&lt;/p&gt;</span></span>
+<span id="cb3-316"><a href="#cb3-316" aria-label="316"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb3-317"><a href="#cb3-317" aria-label="317"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiB3aGF0Q2hhbmdlcyA9IElucHV0cy5yYWRpbyhcbiAgW1wiUHJpb3JcIiwgXCJPYnNlcnZlZCBkYXRhXCJdLFxuICB7bGFiZWw6IFwiV2hhdCB0byBjaGFuZ2VcIiwgdmFsdWU6IFwiUHJpb3JcIn1cbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIE9ubHkgdGhlIHNlbGVjdGVkIHBpZWNlIGNhbiBtb3ZlLiBUaGUgb3RoZXIgc3RheXMgYXQgdGhlIHdvcmtlZCBleGFtcGxlLlxudmlld29mIHZhcmllZCA9IHdoYXRDaGFuZ2VzID09PSBcIlByaW9yXCJcbiAgPyBJbnB1dHMuZm9ybSh7XG4gICAgICBzaGFwZTogSW5wdXRzLnJhbmdlKFsxLCA0MF0sIHtsYWJlbDogXCJTaGFwZSDOsVwiLCB2YWx1ZTogMTIsIHN0ZXA6IDF9KSxcbiAgICAgIHJhdGU6IElucHV0cy5yYW5nZShbMC41LCA4XSwge2xhYmVsOiBcIlJhdGUgzrJcIiwgdmFsdWU6IDIsIHN0ZXA6IDAuNX0pXG4gICAgfSlcbiAgOiBJbnB1dHMuZm9ybSh7XG4gICAgICBtaW51dGUxOiBJbnB1dHMucmFuZ2UoWzAsIDMwXSwge2xhYmVsOiBcIk1pbnV0ZSAxXCIsIHZhbHVlOiA4LCBzdGVwOiAxfSksXG4gICAgICBtaW51dGUyOiBJbnB1dHMucmFuZ2UoWzAsIDMwXSwge2xhYmVsOiBcIk1pbnV0ZSAyXCIsIHZhbHVlOiAxMSwgc3RlcDogMX0pLFxuICAgICAgbWludXRlMzogSW5wdXRzLnJhbmdlKFswLCAzMF0sIHtsYWJlbDogXCJNaW51dGUgM1wiLCB2YWx1ZTogMTAsIHN0ZXA6IDF9KSxcbiAgICAgIG1pbnV0ZTQ6IElucHV0cy5yYW5nZShbMCwgMzBdLCB7bGFiZWw6IFwiTWludXRlIDRcIiwgdmFsdWU6IDEzLCBzdGVwOiAxfSksXG4gICAgICBtaW51dGU1OiBJbnB1dHMucmFuZ2UoWzAsIDMwXSwge2xhYmVsOiBcIk1pbnV0ZSA1XCIsIHZhbHVlOiA4LCBzdGVwOiAxfSlcbiAgICB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gR2FtbWEgcHJpb3IsIGl0cyBQb2lzc29uIHVwZGF0ZSwgYW5kIHRoZSBuZXh0LW1pbnV0ZSBwcmVkaWN0aXZlIGRpc3RyaWJ1dGlvblxue1xuICBjb25zdCBzaGFwZSA9IHdoYXRDaGFuZ2VzID09PSBcIlByaW9yXCIgPyB2YXJpZWQuc2hhcGUgOiAxMjtcbiAgY29uc3QgcmF0ZSA9IHdoYXRDaGFuZ2VzID09PSBcIlByaW9yXCIgPyB2YXJpZWQucmF0ZSA6IDI7XG4gIGNvbnN0IGNvdW50cyA9IHdoYXRDaGFuZ2VzID09PSBcIk9ic2VydmVkIGRhdGFcIlxuICAgID8gW3ZhcmllZC5taW51dGUxLCB2YXJpZWQubWludXRlMiwgdmFyaWVkLm1pbnV0ZTMsIHZhcmllZC5taW51dGU0LCB2YXJpZWQubWludXRlNV1cbiAgICA6IFs4LCAxMSwgMTAsIDEzLCA4XTtcbiAgY29uc3QgdG90YWwgPSBjb3VudHMucmVkdWNlKChzdW0sIGNvdW50KSA9PiBzdW0gKyBjb3VudCwgMCk7XG4gIGNvbnN0IG4gPSBjb3VudHMubGVuZ3RoO1xuICBjb25zdCBwb3N0U2hhcGUgPSBzaGFwZSArIHRvdGFsO1xuICBjb25zdCBwb3N0UmF0ZSA9IHJhdGUgKyBuO1xuICBjb25zdCBwcmlvck1lYW4gPSBzaGFwZSAvIHJhdGU7XG4gIGNvbnN0IHNhbXBsZVJhdGUgPSB0b3RhbCAvIG47XG4gIGNvbnN0IHBvc3Rlcmlvck1lYW4gPSBwb3N0U2hhcGUgLyBwb3N0UmF0ZTtcblxuICBmdW5jdGlvbiBsb2dHYW1tYSh6KSB7XG4gICAgY29uc3QgYyA9IFtcbiAgICAgIDAuOTk5OTk5OTk5OTk5ODA5OTMsXG4gICAgICA2NzYuNTIwMzY4MTIxODg1MSxcbiAgICAgIC0xMjU5LjEzOTIxNjcyMjQwMjgsXG4gICAgICA3NzEuMzIzNDI4Nzc3NjUzMTMsXG4gICAgICAtMTc2LjYxNTAyOTE2MjE0MDU5LFxuICAgICAgMTIuNTA3MzQzMjc4Njg2OTA1LFxuICAgICAgLTAuMTM4NTcxMDk1MjY1NzIwMTIsXG4gICAgICA5Ljk4NDM2OTU3ODAxOTU3MTZlLTYsXG4gICAgICAxLjUwNTYzMjczNTE0OTMxMTZlLTdcbiAgICBdO1xuICAgIGlmICh6IDwgMC41KSByZXR1cm4gTWF0aC5sb2coTWF0aC5QSSAvIE1hdGguc2luKE1hdGguUEkgKiB6KSkgLSBsb2dHYW1tYSgxIC0geik7XG4gICAgeiAtPSAxO1xuICAgIGxldCB4ID0gY1swXTtcbiAgICBmb3IgKGxldCBpID0gMTsgaSA8IGMubGVuZ3RoOyBpKyspIHggKz0gY1tpXSAvICh6ICsgaSk7XG4gICAgY29uc3QgdCA9IHogKyA3LjU7XG4gICAgcmV0dXJuIDAuNSAqIE1hdGgubG9nKDIgKiBNYXRoLlBJKSArICh6ICsgMC41KSAqIE1hdGgubG9nKHQpIC0gdCArIE1hdGgubG9nKHgpO1xuICB9XG5cbiAgZnVuY3Rpb24gZ2FtbWFEZW5zaXR5KHgsIGEsIGIpIHtcbiAgICBpZiAoeCA8IDAgfHwgYSA8PSAwIHx8IGIgPD0gMCkgcmV0dXJuIDA7XG4gICAgaWYgKHggPT09IDApIHJldHVybiBhID09PSAxID8gYiA6IDA7XG4gICAgY29uc3QgbG9nRGVuc2l0eSA9IGEgKiBNYXRoLmxvZyhiKSAtIGxvZ0dhbW1hKGEpICsgKGEgLSAxKSAqIE1hdGgubG9nKHgpIC0gYiAqIHg7XG4gICAgY29uc3QgZGVuc2l0eSA9IE1hdGguZXhwKGxvZ0RlbnNpdHkpO1xuICAgIHJldHVybiBOdW1iZXIuaXNGaW5pdGUoZGVuc2l0eSkgPyBkZW5zaXR5IDogMDtcbiAgfVxuXG4gIGZ1bmN0aW9uIGdhbW1hU2QoYSwgYikge1xuICAgIHJldHVybiBNYXRoLnNxcnQoYSkgLyBiO1xuICB9XG5cbiAgY29uc3QgeE1heCA9IE1hdGgubWF4KFxuICAgIDEyLFxuICAgIHByaW9yTWVhbiArIDQgKiBnYW1tYVNkKHNoYXBlLCByYXRlKSxcbiAgICBwb3N0ZXJpb3JNZWFuICsgNCAqIGdhbW1hU2QocG9zdFNoYXBlLCBwb3N0UmF0ZSksXG4gICAgc2FtcGxlUmF0ZSArIDJcbiAgKTtcbiAgY29uc3Qgc3RlcHMgPSAzMDE7XG4gIGNvbnN0IGN1cnZlID0gKGEsIGIpID0+IEFycmF5LmZyb20oe2xlbmd0aDogc3RlcHN9LCAoXywgaSkgPT4ge1xuICAgIGNvbnN0IGxhbWJkYSA9IChpIC8gKHN0ZXBzIC0gMSkpICogeE1heDtcbiAgICByZXR1cm4ge2xhbWJkYSwgZGVuc2l0eTogZ2FtbWFEZW5zaXR5KGxhbWJkYSwgYSwgYil9O1xuICB9KTtcbiAgY29uc3QgcGxvdFN0eWxlID0ge1xuICAgIGJhY2tncm91bmQ6IFwidHJhbnNwYXJlbnRcIixcbiAgICBjb2xvcjogXCIjMTUxNTFFXCIsXG4gICAgZm9udEZhbWlseTogXCJIZWx2ZXRpY2EsIHNhbnMtc2VyaWZcIixcbiAgICBmb250U2l6ZTogXCIxM3B4XCJcbiAgfTtcblxuICBjb25zdCB1cGRhdGVQbG90ID0gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogTWF0aC5tYXgoMjgwLCB3aWR0aCAtIDQpLFxuICAgIGhlaWdodDogMzQwLFxuICAgIG1hcmdpblRvcDogMTYsXG4gICAgbWFyZ2luUmlnaHQ6IDE2LFxuICAgIG1hcmdpbkJvdHRvbTogNDgsXG4gICAgbWFyZ2luTGVmdDogNTIsXG4gICAgeDoge2xhYmVsOiBcIlR3ZWV0cyBwZXIgbWludXRlLCDOu1wiLCBkb21haW46IFswLCB4TWF4XX0sXG4gICAgeToge2xhYmVsOiBudWxsLCBncmlkOiB0cnVlLCBuaWNlOiB0cnVlfSxcbiAgICBtYXJrczogW1xuICAgICAgUGxvdC5hcmVhWShjdXJ2ZShwb3N0U2hhcGUsIHBvc3RSYXRlKSwge1xuICAgICAgICB4OiBcImxhbWJkYVwiLFxuICAgICAgICB5OiBcImRlbnNpdHlcIixcbiAgICAgICAgZmlsbDogXCIjYjMyYjJmXCIsXG4gICAgICAgIGZpbGxPcGFjaXR5OiAwLjEyLFxuICAgICAgICBjdXJ2ZTogXCJsaW5lYXJcIlxuICAgICAgfSksXG4gICAgICBQbG90LmxpbmUoY3VydmUoc2hhcGUsIHJhdGUpLCB7XG4gICAgICAgIHg6IFwibGFtYmRhXCIsXG4gICAgICAgIHk6IFwiZGVuc2l0eVwiLFxuICAgICAgICBzdHJva2U6IFwiIzJjMzE0MFwiLFxuICAgICAgICBzdHJva2VXaWR0aDogMi4yNVxuICAgICAgfSksXG4gICAgICBQbG90LmxpbmUoY3VydmUocG9zdFNoYXBlLCBwb3N0UmF0ZSksIHtcbiAgICAgICAgeDogXCJsYW1iZGFcIixcbiAgICAgICAgeTogXCJkZW5zaXR5XCIsXG4gICAgICAgIHN0cm9rZTogXCIjYjMyYjJmXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyLjI1XG4gICAgICB9KSxcbiAgICAgIFBsb3QucnVsZVgoW3NhbXBsZVJhdGVdLCB7c3Ryb2tlOiBcIiM1YzU2NjBcIiwgc3Ryb2tlV2lkdGg6IDIsIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIn0pLFxuICAgICAgUGxvdC5ydWxlWShbMF0pXG4gICAgXSxcbiAgICBzdHlsZTogcGxvdFN0eWxlXG4gIH0pO1xuXG4gIGNvbnN0IHByZWRpY3RpdmVWYXJpYW5jZSA9IHBvc3RTaGFwZSAqIChwb3N0UmF0ZSArIDEpIC8gKHBvc3RSYXRlICogcG9zdFJhdGUpO1xuICBjb25zdCBrTWF4ID0gTWF0aC5tYXgoMTIsIE1hdGguY2VpbChwb3N0ZXJpb3JNZWFuICsgNCAqIE1hdGguc3FydChwcmVkaWN0aXZlVmFyaWFuY2UpKSk7XG4gIGNvbnN0IHByZWRpY3RpdmUgPSBBcnJheS5mcm9tKHtsZW5ndGg6IGtNYXggKyAxfSwgKF8sIGspID0+IHtcbiAgICBjb25zdCBsb2dQcm9iYWJpbGl0eSA9IGxvZ0dhbW1hKHBvc3RTaGFwZSArIGspIC0gbG9nR2FtbWEocG9zdFNoYXBlKSAtIGxvZ0dhbW1hKGsgKyAxKVxuICAgICAgKyBwb3N0U2hhcGUgKiBNYXRoLmxvZyhwb3N0UmF0ZSAvIChwb3N0UmF0ZSArIDEpKVxuICAgICAgKyBrICogTWF0aC5sb2coMSAvIChwb3N0UmF0ZSArIDEpKTtcbiAgICByZXR1cm4ge2ssIHByb2JhYmlsaXR5OiBNYXRoLmV4cChsb2dQcm9iYWJpbGl0eSl9O1xuICB9KTtcbiAgY29uc3QgeU1heCA9IE1hdGgubWF4KC4uLnByZWRpY3RpdmUubWFwKHJvdyA9PiByb3cucHJvYmFiaWxpdHkpKTtcblxuICBjb25zdCBwcmVkaWN0aXZlUGxvdCA9IFBsb3QucGxvdCh7XG4gICAgd2lkdGg6IE1hdGgubWF4KDI4MCwgd2lkdGggLSA0KSxcbiAgICBoZWlnaHQ6IDI4MCxcbiAgICBtYXJnaW5Ub3A6IDE2LFxuICAgIG1hcmdpblJpZ2h0OiAxNixcbiAgICBtYXJnaW5Cb3R0b206IDQ4LFxuICAgIG1hcmdpbkxlZnQ6IDUyLFxuICAgIHg6IHtcbiAgICAgIGxhYmVsOiBcIlR3ZWV0cyBpbiB0aGUgbmV4dCBtaW51dGVcIixcbiAgICAgIGRvbWFpbjogWy0wLjYsIGtNYXggKyAwLjZdLFxuICAgICAgdGlja3M6IGtNYXggPD0gMTYgPyB1bmRlZmluZWQgOiBBcnJheS5mcm9tKHtsZW5ndGg6IDZ9LCAoXywgaSkgPT4gTWF0aC5yb3VuZChpICoga01heCAvIDUpKVxuICAgIH0sXG4gICAgeToge2xhYmVsOiBudWxsLCBkb21haW46IFswLCB5TWF4ICogMS4xMl0sIGdyaWQ6IHRydWV9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LnJlY3RZKHByZWRpY3RpdmUsIHtcbiAgICAgICAgeDE6IGQgPT4gZC5rIC0gMC4zOCxcbiAgICAgICAgeDI6IGQgPT4gZC5rICsgMC4zOCxcbiAgICAgICAgeTogXCJwcm9iYWJpbGl0eVwiLFxuICAgICAgICBmaWxsOiBcIiMyYzMxNDBcIlxuICAgICAgfSksXG4gICAgICBQbG90LnJ1bGVYKFtwb3N0ZXJpb3JNZWFuXSwge3N0cm9rZTogXCIjYjMyYjJmXCIsIHN0cm9rZVdpZHRoOiAyfSksXG4gICAgICBQbG90LnJ1bGVZKFswXSlcbiAgICBdLFxuICAgIHN0eWxlOiBwbG90U3R5bGVcbiAgfSk7XG5cbiAgZnVuY3Rpb24gZm9ybWF0UGFyYW0oeCkge1xuICAgIGNvbnN0IHRlbnRoID0gTWF0aC5yb3VuZCh4ICogMTApIC8gMTA7XG4gICAgcmV0dXJuIE51bWJlci5pc0ludGVnZXIodGVudGgpID8gU3RyaW5nKHRlbnRoKSA6IHRlbnRoLnRvRml4ZWQoMSk7XG4gIH1cblxuICBmdW5jdGlvbiBmb3JtYXRNZWFuKHgpIHtcbiAgICBjb25zdCBodW5kcmVkdGhzID0gTWF0aC5yb3VuZCh4ICogMTAwKSAvIDEwMDtcbiAgICByZXR1cm4gTnVtYmVyLmlzSW50ZWdlcihodW5kcmVkdGhzKSA/IFN0cmluZyhodW5kcmVkdGhzKSA6IGh1bmRyZWR0aHMudG9GaXhlZCgyKTtcbiAgfVxuXG4gIGNvbnN0IGhlbGQgPSB3aGF0Q2hhbmdlcyA9PT0gXCJQcmlvclwiXG4gICAgPyBcIlRoZSBmaXZlIGNvdW50cyBzdGF5IGF0IDgsIDExLCAxMCwgMTMsIGFuZCA4LCBzbyBvbmx5IHRoZSBwcmlvciBpcyBtb3ZpbmcgdGhlIHBvc3Rlcmlvci5cIlxuICAgIDogXCJUaGUgcHJpb3Igc3RheXMgR2FtbWEoMTIsIDIpLCBtZWFuIDYsIHNvIG9ubHkgdGhlIGNvdW50cyBhcmUgbW92aW5nIHRoZSBwb3N0ZXJpb3IuXCI7XG5cbiAgcmV0dXJuIGh0bWxgPGRpdiBjbGFzcz1cImJpbm9taWFsLWZpZ3VyZVwiPlxuICAgIDxwIGNsYXNzPVwiYmlub21pYWwteWxhYmVsXCI+RGVuc2l0eTwvcD5cbiAgICAke3VwZGF0ZVBsb3R9XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC1yZWFkb3V0XCI+VGhlIHByaW9yIGlzIEdhbW1hKCR7Zm9ybWF0UGFyYW0oc2hhcGUpfSwgJHtmb3JtYXRQYXJhbShyYXRlKX0pLCB3aXRoIG1lYW4gPHN0cm9uZz4ke2Zvcm1hdE1lYW4ocHJpb3JNZWFuKX08L3N0cm9uZz4uIFRoZXNlIDUgbWludXRlcyBjb250YWluIDxzdHJvbmc+JHt0b3RhbH08L3N0cm9uZz4gdHdlZXRzLCBhIHJhdGUgb2YgPHN0cm9uZz4ke2Zvcm1hdE1lYW4oc2FtcGxlUmF0ZSl9PC9zdHJvbmc+IHBlciBtaW51dGUuIFRoZSBwb3N0ZXJpb3IgaXMgR2FtbWEoJHtmb3JtYXRQYXJhbShwb3N0U2hhcGUpfSwgJHtmb3JtYXRQYXJhbShwb3N0UmF0ZSl9KSwgd2l0aCBtZWFuIDxzdHJvbmc+JHtmb3JtYXRNZWFuKHBvc3Rlcmlvck1lYW4pfTwvc3Ryb25nPi4gJHtoZWxkfTwvcD5cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLWxlZ2VuZFwiPjxzcGFuIGNsYXNzPVwic3dhdGNoIHN3YXRjaC1vdGhlclwiIHN0eWxlPVwibWFyZ2luLWxlZnQ6MFwiPjwvc3Bhbj4gUHJpb3IgPHNwYW4gY2xhc3M9XCJzd2F0Y2ggc3dhdGNoLW9ic2VydmVkXCI+PC9zcGFuPiBQb3N0ZXJpb3IgPHNwYW4gY2xhc3M9XCJzd2F0Y2ggc3dhdGNoLW1heFwiPjwvc3Bhbj4gT2JzZXJ2ZWQgcmF0ZTwvcD5cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLXlsYWJlbFwiPlByb2JhYmlsaXR5IG9mIHRoZSBuZXh0IG1pbnV0ZTwvcD5cbiAgICAke3ByZWRpY3RpdmVQbG90fVxuICAgIDxwIGNsYXNzPVwiYmlub21pYWwtcmVhZG91dFwiPlRoZSBuZXh0IG1pbnV0ZSBpcyBleHBlY3RlZCB0byBoYXZlIGFib3V0IDxzdHJvbmc+JHtmb3JtYXRNZWFuKHBvc3Rlcmlvck1lYW4pfTwvc3Ryb25nPiB0d2VldHMuIFRoZSBiYXJzIGFyZSB0aGUgcHJvYmFiaWxpdGllcyBvZiBlYWNoIHBvc3NpYmxlIGNvdW50LjwvcD5cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLWxlZ2VuZFwiPjxzcGFuIGNsYXNzPVwic3dhdGNoIHN3YXRjaC1vdGhlclwiIHN0eWxlPVwibWFyZ2luLWxlZnQ6MFwiPjwvc3Bhbj4gUHJlZGljdGl2ZSBwcm9iYWJpbGl0eSA8c3BhbiBjbGFzcz1cInN3YXRjaCBzd2F0Y2gtb2JzZXJ2ZWRcIiBzdHlsZT1cIndpZHRoOjAuOTVyZW07aGVpZ2h0OjA7Ym9yZGVyLXRvcDoycHggc29saWQgI2IzMmIyZjtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50O3ZlcnRpY2FsLWFsaWduOjAuMjJyZW1cIj48L3NwYW4+IEV4cGVjdGVkIGNvdW50PC9wPlxuICA8L2Rpdj5gO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd3aGF0Q2hhbmdlcycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd2YXJpZWQnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

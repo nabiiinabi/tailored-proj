@@ -1,16 +1,16 @@
 ---
-title: "Sections 6 and 7"
+title: "Beginning the Bayesian Analysis"
 ---
-
-## Beginning the Bayesian Analysis
 
 The frequentist analysis told us that 9 or fewer passes would not be unusual if $p$ were 0.50. However, it does not directly answer the question we may be most interested in:
 
-- What is the probability that fewer than half of comparable movies pass?
+> What is the probability that fewer than half of comparable movies pass?
 
 To make a probability statement about $p$ itself, we need to represent our uncertainty about $p$ with a probability distribution. This brings us to the Bayesian approach. Unlike the frequentist analysis, Bayesian inference requires us to consider what values of $p$ seemed plausible before we observed the sample.
 
-Suppose three moviegoers are asked the following question before seeing the sample: What proportion of movies do you believe pass the Bechdel test?
+Suppose three moviegoers are asked the following question before seeing the sample:
+
+> What proportion of movies do you believe pass the Bechdel test?
 
 - The first expects the pass rate to be relatively low.
 - The second is genuinely uncertain and does not favor low, middle, or high values.

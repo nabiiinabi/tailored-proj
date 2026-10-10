@@ -1,8 +1,8 @@
 ---
-title: "Section 5"
+title: "A Brief Frequentist Analysis"
 ---
 
-## A Brief Frequentist Analysis
+### The maximum likelihood estimate
 
 The maximum likelihood estimate is the value of $p$ that maximizes the likelihood:
 
@@ -22,6 +22,8 @@ $$
 \hat{p}_{\text{MLE}} = 9/20 = 0.45
 $$
 
+### A frequentist confidence interval
+
 The MLE gives us a single best estimate of $p$, but it does not show how precise that estimate is. To represent the uncertainty caused by sampling only 20 movies, we can construct a 95% Wilson confidence interval:
 
 $$
@@ -34,7 +36,11 @@ Formally, the 95% confidence level describes the long-run reliability of the Wil
 
 This differs from a Bayesian 95% credible interval, which allows us to say that, given the prior, model, and observed data, there is a 95% posterior probability that $p$ lies within the reported interval.
 
-We can also test whether the pass rate is below 50%:
+### Hypothesis testing
+
+> Is the pass rate below 0.50?
+
+We can test that question directly:
 
 $$
 H_0: p = 0.50

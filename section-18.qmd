@@ -1,0 +1,321 @@
+---
+title: "Tweets After a Movie Release"
+---
+
+The Bechdel-test analysis involves binary outcomes: each movie either passes or fails. However, Bayesian inference is not limited to questions with two possible outcomes.
+
+### A rate, not a pass or fail
+
+Suppose a movie studio wants to measure online attention immediately after a new movie is released.
+
+> How many tweets should the studio expect in a typical minute?
+
+Let:
+
+$$\lambda$$ = the typical number of tweets mentioning the movie per minute during the first hour after its release.
+
+Unlike the Bechdel outcome, the number of tweets is a count. In each one-minute interval, we might observe 0, 1, 2, or many tweets. A Poisson distribution is commonly used to model the number of events occurring during a fixed period:
+
+$$
+Y_i \mid \lambda \sim \text{Poisson}(\lambda)
+$$
+
+Here, $Y_i$ is the number of tweets observed during minute $i$, and $\lambda$ is the unknown average number of tweets per minute.
+
+### A Gamma prior
+
+Before the movie is released, the studio may already have information from trailers, advance ticket sales, or similar movie releases. Its uncertainty about the positive rate $\lambda$ can be represented using a Gamma prior:
+
+$$
+\lambda \sim \text{Gamma}(\alpha, \beta)
+$$
+
+In this parameterization, $\alpha$ is the shape and $\beta$ is the rate in
+
+$$
+f(\lambda) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} \lambda^{\alpha - 1} e^{-\beta \lambda}, \qquad \lambda > 0.
+$$
+
+Raising the shape concentrates this density around the mean, and raising the rate pulls the mean down:
+
+$$
+E(\lambda) = \alpha / \beta.
+$$
+
+The update adds observed tweets to $\alpha$ and observed minutes to $\beta$, so those parameters also act as a prior number of tweets and a prior number of minutes.
+
+The values of $\alpha$ and $\beta$ could be selected using data from comparable movie releases.
+
+The Gamma distribution is useful because $\lambda$ (i.e., the average number of tweets per minute) must be positive. It is also conjugate to the Poisson likelihood. This means that combining a Gamma prior with Poisson data produces another Gamma distribution as the posterior.
+
+### Updating with the counts
+
+Suppose the studio observes tweet counts from $n$ one-minute intervals:
+
+$$
+Y_1, Y_2, \ldots, Y_n
+$$
+
+If the total number of observed tweets is $\sum Y_i$, then the posterior is:
+
+$$
+\lambda \mid \text{data} \sim \text{Gamma}(\alpha + \sum Y_i,\ \beta + n)
+$$
+
+For example, suppose the numbers of tweets during the first five minutes are:
+
+8, 11, 10, 13, and 8.
+
+The total is:
+
+$$
+\sum Y_i = 50
+$$
+
+Therefore, a Gamma$(\alpha, \beta)$ prior would update to:
+
+$$
+\lambda \mid \text{data} \sim \text{Gamma}(\alpha + 50,\ \beta + 5)
+$$
+
+The update resembles the Beta-Binomial update from the Bechdel example. The prior parameters represent the starting information, and the observed data are added to produce the posterior parameters. However, the two models answer different kinds of questions:
+
+- The Beta-Binomial model estimates an unknown proportion from pass-or-fail data.
+- The Gamma-Poisson model estimates an unknown rate from count data.
+
+This example also demonstrates conjugacy more broadly. Conjugacy is not a special feature that applies only to Beta and Binomial distributions. Different types of data have different useful conjugate pairs:
+
+Beta prior + Binomial data → Beta posterior
+
+Gamma prior + Poisson data → Gamma posterior
+
+### What the Poisson model assumes
+
+The Poisson model assumes that tweets occur independently and at a constant average rate during the period being studied. In reality, online activity may spike after an announcement, a celebrity post, or a major scene becoming viral. Bots, retweets, and coordinated marketing may also violate the independence assumption. Restricting the analysis to a short, clearly defined period and specifying exactly what counts as a movie-related tweet would make the simplified model more defensible.
+
+### A worked example
+
+A Gamma(12, 2) prior has shape 12 and rate 2, so the prior mean is $12/2 = 6$: before these counts, the prior says about 6 tweets per minute. The 50 tweets in the five minutes above then give
+
+$$
+\lambda \mid \text{data} \sim \text{Gamma}(50 + 12, 5 + 2) = \text{Gamma}(62, 7)
+$$
+
+with posterior mean $62/7 \approx 8.86$. That mean sits between the prior mean of 6 and the observed rate of 10 tweets per minute.
+
+### The next minute
+
+[Predicting Future Movies](section-16-17.qmd#predicting-future-movies) predicted a future pass count by averaging the Binomial probability mass function over the Beta posterior. The next minute is the same kind of average. The sampling formula is now the Poisson probability mass function, and the weight is the Gamma posterior.
+
+If $\lambda$ were known, the probability of exactly $k$ tweets in the next minute would be
+
+$$
+P(Y_{\text{new}} = k \mid \lambda) = \frac{e^{-\lambda} \lambda^{k}}{k!}, \qquad k = 0, 1, 2, \ldots
+$$
+
+The posterior still spreads probability across many rates, $\lambda \mid \text{data} \sim \text{Gamma}(\alpha', \beta')$. One plugged-in value, such as $\lambda = 8.86$, would leave out that spread. Average the Poisson probabilities, using the Gamma density above with the posterior parameters in place of $\alpha$ and $\beta$:
+
+$$
+P(Y_{\text{new}} = k \mid \text{data}) = \int_0^{\infty} P(Y_{\text{new}} = k \mid \lambda)\, f(\lambda \mid \text{data})\, d\lambda.
+$$
+
+The powers of $\lambda$ combine, and the two exponential decays combine, so the integral is another Gamma function. It simplifies to
+
+$$
+P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{\beta'}{\beta' + 1}\right)^{\alpha'} \left(\frac{1}{\beta' + 1}\right)^{k}.
+$$
+
+For Gamma(62, 7), $\alpha' = 62$ and $\beta' = 7$. As in [Predicting Future Movies](section-16-17.qmd#predicting-future-movies), the expected count equals the posterior mean of the unknown rate, here $62/7 \approx 8.86$. The predictive distribution is wider than the Poisson probabilities at the single value $\lambda = 8.86$, because the average still includes the uncertainty left in $\lambda$.
+
+**Choose whether to change the prior or the observed counts. The other stays at the example: Gamma(12, 2), or the minutes 8, 11, 10, 13, and 8.**
+
+::: {.binomial-panel}
+
+```{ojs}
+viewof whatChanges = Inputs.radio(
+  ["Prior", "Observed data"],
+  {label: "What to change", value: "Prior"}
+)
+```
+
+```{ojs}
+// Only the selected piece can move. The other stays at the worked example.
+viewof varied = whatChanges === "Prior"
+  ? Inputs.form({
+      shape: Inputs.range([1, 40], {label: "Shape α", value: 12, step: 1}),
+      rate: Inputs.range([0.5, 8], {label: "Rate β", value: 2, step: 0.5})
+    })
+  : Inputs.form({
+      minute1: Inputs.range([0, 30], {label: "Minute 1", value: 8, step: 1}),
+      minute2: Inputs.range([0, 30], {label: "Minute 2", value: 11, step: 1}),
+      minute3: Inputs.range([0, 30], {label: "Minute 3", value: 10, step: 1}),
+      minute4: Inputs.range([0, 30], {label: "Minute 4", value: 13, step: 1}),
+      minute5: Inputs.range([0, 30], {label: "Minute 5", value: 8, step: 1})
+    })
+```
+
+```{ojs}
+// Gamma prior, its Poisson update, and the next-minute predictive distribution
+{
+  const shape = whatChanges === "Prior" ? varied.shape : 12;
+  const rate = whatChanges === "Prior" ? varied.rate : 2;
+  const counts = whatChanges === "Observed data"
+    ? [varied.minute1, varied.minute2, varied.minute3, varied.minute4, varied.minute5]
+    : [8, 11, 10, 13, 8];
+  const total = counts.reduce((sum, count) => sum + count, 0);
+  const n = counts.length;
+  const postShape = shape + total;
+  const postRate = rate + n;
+  const priorMean = shape / rate;
+  const sampleRate = total / n;
+  const posteriorMean = postShape / postRate;
+
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function gammaDensity(x, a, b) {
+    if (x < 0 || a <= 0 || b <= 0) return 0;
+    if (x === 0) return a === 1 ? b : 0;
+    const logDensity = a * Math.log(b) - logGamma(a) + (a - 1) * Math.log(x) - b * x;
+    const density = Math.exp(logDensity);
+    return Number.isFinite(density) ? density : 0;
+  }
+
+  function gammaSd(a, b) {
+    return Math.sqrt(a) / b;
+  }
+
+  const xMax = Math.max(
+    12,
+    priorMean + 4 * gammaSd(shape, rate),
+    posteriorMean + 4 * gammaSd(postShape, postRate),
+    sampleRate + 2
+  );
+  const steps = 301;
+  const curve = (a, b) => Array.from({length: steps}, (_, i) => {
+    const lambda = (i / (steps - 1)) * xMax;
+    return {lambda, density: gammaDensity(lambda, a, b)};
+  });
+  const plotStyle = {
+    background: "transparent",
+    color: "#15151E",
+    fontFamily: "Helvetica, sans-serif",
+    fontSize: "13px"
+  };
+
+  const updatePlot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 340,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {label: "Tweets per minute, λ", domain: [0, xMax]},
+    y: {label: null, grid: true, nice: true},
+    marks: [
+      Plot.areaY(curve(postShape, postRate), {
+        x: "lambda",
+        y: "density",
+        fill: "#b32b2f",
+        fillOpacity: 0.12,
+        curve: "linear"
+      }),
+      Plot.line(curve(shape, rate), {
+        x: "lambda",
+        y: "density",
+        stroke: "#2c3140",
+        strokeWidth: 2.25
+      }),
+      Plot.line(curve(postShape, postRate), {
+        x: "lambda",
+        y: "density",
+        stroke: "#b32b2f",
+        strokeWidth: 2.25
+      }),
+      Plot.ruleX([sampleRate], {stroke: "#5c5660", strokeWidth: 2, strokeDasharray: "4,3"}),
+      Plot.ruleY([0])
+    ],
+    style: plotStyle
+  });
+
+  const predictiveVariance = postShape * (postRate + 1) / (postRate * postRate);
+  const kMax = Math.max(12, Math.ceil(posteriorMean + 4 * Math.sqrt(predictiveVariance)));
+  const predictive = Array.from({length: kMax + 1}, (_, k) => {
+    const logProbability = logGamma(postShape + k) - logGamma(postShape) - logGamma(k + 1)
+      + postShape * Math.log(postRate / (postRate + 1))
+      + k * Math.log(1 / (postRate + 1));
+    return {k, probability: Math.exp(logProbability)};
+  });
+  const yMax = Math.max(...predictive.map(row => row.probability));
+
+  const predictivePlot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 280,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {
+      label: "Tweets in the next minute",
+      domain: [-0.6, kMax + 0.6],
+      ticks: kMax <= 16 ? undefined : Array.from({length: 6}, (_, i) => Math.round(i * kMax / 5))
+    },
+    y: {label: null, domain: [0, yMax * 1.12], grid: true},
+    marks: [
+      Plot.rectY(predictive, {
+        x1: d => d.k - 0.38,
+        x2: d => d.k + 0.38,
+        y: "probability",
+        fill: "#2c3140"
+      }),
+      Plot.ruleX([posteriorMean], {stroke: "#b32b2f", strokeWidth: 2}),
+      Plot.ruleY([0])
+    ],
+    style: plotStyle
+  });
+
+  function formatParam(x) {
+    const tenth = Math.round(x * 10) / 10;
+    return Number.isInteger(tenth) ? String(tenth) : tenth.toFixed(1);
+  }
+
+  function formatMean(x) {
+    const hundredths = Math.round(x * 100) / 100;
+    return Number.isInteger(hundredths) ? String(hundredths) : hundredths.toFixed(2);
+  }
+
+  const held = whatChanges === "Prior"
+    ? "The five counts stay at 8, 11, 10, 13, and 8, so only the prior is moving the posterior."
+    : "The prior stays Gamma(12, 2), mean 6, so only the counts are moving the posterior.";
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Density</p>
+    ${updatePlot}
+    <p class="binomial-readout">The prior is Gamma(${formatParam(shape)}, ${formatParam(rate)}), with mean <strong>${formatMean(priorMean)}</strong>. These 5 minutes contain <strong>${total}</strong> tweets, a rate of <strong>${formatMean(sampleRate)}</strong> per minute. The posterior is Gamma(${formatParam(postShape)}, ${formatParam(postRate)}), with mean <strong>${formatMean(posteriorMean)}</strong>. ${held}</p>
+    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Prior <span class="swatch swatch-observed"></span> Posterior <span class="swatch swatch-max"></span> Observed rate</p>
+    <p class="binomial-ylabel">Probability of the next minute</p>
+    ${predictivePlot}
+    <p class="binomial-readout">The next minute is expected to have about <strong>${formatMean(posteriorMean)}</strong> tweets. The bars are the probabilities of each possible count.</p>
+    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Predictive probability <span class="swatch swatch-observed" style="width:0.95rem;height:0;border-top:2px solid #b32b2f;background:transparent;vertical-align:0.22rem"></span> Expected count</p>
+  </div>`;
+}
+```
+
+:::

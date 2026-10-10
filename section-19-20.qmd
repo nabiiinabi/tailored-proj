@@ -1,0 +1,245 @@
+---
+title: "Comparing the Frequentist and Bayesian Results"
+---
+
+The frequentist and Bayesian analyses begin with the same observation: 9 of the 20 sampled movies passed the Bechdel test. They use that information differently, and they answer different questions.
+
+### Comparing the point estimates
+
+The frequentist maximum likelihood estimate is:
+
+$$
+\hat{p}_{\text{MLE}} = y/n = 9/20 = 0.45
+$$
+
+This is the value of $p$ that makes the observed sample most likely. It uses only the data. It does not use a prior.
+
+The Bayesian point estimate used here is the posterior mean, so it depends on the prior:
+
+- The lower-pass prior Beta(3, 7) has mean 0.30. After 9 passes and 11 failures the posterior is Beta(12, 18), with mean $12/30 = 0.40$.
+- The neutral prior Beta(1, 1) has mean 0.50. The posterior is Beta(10, 12), with mean $10/22 \approx 0.455$.
+- The higher-pass prior Beta(7, 3) has mean 0.70. The posterior is Beta(16, 14), with mean $16/30 \approx 0.533$.
+
+The lower-pass estimate stays below the sample proportion of 0.45 because that prior pulled toward lower pass rates. The neutral estimate stays near 0.45 because Beta(1, 1) is weak next to 20 movies. The higher-pass estimate stays above 0.45 because that prior pulled toward higher pass rates.
+
+With only 20 movies, different priors still produce different posterior means. A much larger sample would give the data more weight, and the three estimates would move closer together.
+
+### Comparing the intervals
+
+A point estimate does not show which other values remain plausible. Both frameworks use intervals, and the intervals do not mean the same thing.
+
+The 95% Wilson confidence interval is approximately $(0.258,\ 0.658)$. Values of $p$ in that range are reasonably compatible with the observed data under the frequentist model. The formal claim is about the procedure: if we repeatedly drew samples of 20 movies in the same way and built a 95% Wilson interval each time, about 95% of those intervals would contain the fixed unknown $p$. It does not say that the probability $p$ lies between 0.258 and 0.658 is 95%. In the frequentist framework, $p$ is fixed and the interval would change from sample to sample.
+
+Under the lower-pass posterior Beta(12, 18), the equal-tail 95% credible interval is approximately $(0.235,\ 0.577)$. Given that prior, the Binomial model, and these 20 movies, there is a 95% posterior probability that $p$ lies between about 0.235 and 0.577.
+
+The two intervals overlap, and they answer different questions:
+
+- The confidence interval describes the long-run behavior of a procedure across repeated samples.
+- The credible interval describes posterior uncertainty about $p$ after conditioning on the chosen prior, the model, and the observed data.
+
+The lower-pass credible interval sits to the left of the Wilson interval because the prior favored lower pass rates. A different prior produces a different credible interval. The Wilson interval does not change when the prior changes.
+
+### Comparing the hypothesis test and the posterior probability
+
+The frequentist test was:
+
+$$
+H_0: p = 0.50
+$$
+
+$$
+H_a: p < 0.50
+$$
+
+The one-sided p-value was:
+
+$$
+P(Y \le 9 \mid p = 0.50) \approx 0.412
+$$
+
+If the pass rate were exactly 0.50, there would be about a 41.2% chance of seeing 9 or fewer passes in 20 movies. That is not a small probability, so the sample is not strong frequentist evidence that $p$ is below 0.50.
+
+The p-value is not the probability that the null hypothesis is true. In particular:
+
+$$
+\text{p-value} \neq P(p = 0.50 \mid \text{data})
+$$
+
+The Bayesian question is different. After the same 9 passes and 11 failures:
+
+- Under Beta(12, 18), $P(p < 0.50 \mid y) \approx 0.868$.
+- Under Beta(10, 12), $P(p < 0.50 \mid y) \approx 0.668$.
+- Under Beta(16, 14), $P(p < 0.50 \mid y) \approx 0.356$.
+
+For the lower-pass prior, about 86.8% of the posterior lies below 0.50. That number and the p-value 0.412 are easy to set side by side, and they are probabilities of different events:
+
+> If $p$ were exactly 0.50, how likely is a sample at least as low as the one we saw?
+
+> After seeing the data, and given the prior and the model, how probable is it that $p$ is below 0.50?
+
+The frequentist calculation conditions on the null value and looks at the data. The Bayesian calculation conditions on the data and looks at possible values of $p$. The posterior probability also changes with the prior. Under the higher-pass prior, most of the posterior is still above 0.50.
+
+**Choose a prior. The Wilson interval stays fixed. The credible interval, the posterior mean, and $P(p < 0.50 \mid y)$ all change. The mark at 0.45 is the maximum likelihood estimate, and the gray line is $p = 0.50$.**
+
+::: {.binomial-panel}
+
+```{ojs}
+viewof comparedPrior = Inputs.radio(
+  ["Lower-pass", "Neutral", "Higher-pass"],
+  {label: "Prior", value: "Lower-pass"}
+)
+```
+
+```{ojs}
+// Wilson confidence interval beside the credible interval for the selected posterior
+{
+  const priors = {
+    "Lower-pass": {alpha: 3, beta: 7},
+    Neutral: {alpha: 1, beta: 1},
+    "Higher-pass": {alpha: 7, beta: 3}
+  };
+  const prior = priors[comparedPrior];
+  const postAlpha = prior.alpha + 9;
+  const postBeta = prior.beta + 11;
+  const posteriorMean = postAlpha / (postAlpha + postBeta);
+  const wilson = [0.258, 0.658];
+
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function betaCDF(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const total = a + b - 1;
+    let sum = 0;
+    for (let k = a; k <= total; k++) {
+      let logCoefficient = 0;
+      for (let i = 0; i < k; i++) logCoefficient += Math.log(total - i) - Math.log(i + 1);
+      sum += Math.exp(logCoefficient + k * Math.log(x) + (total - k) * Math.log(1 - x));
+    }
+    return Math.min(1, Math.max(0, sum));
+  }
+
+  function betaQuantile(probability, a, b) {
+    let low = 0;
+    let high = 1;
+    for (let step = 0; step < 60; step++) {
+      const mid = (low + high) / 2;
+      if (betaCDF(mid, a, b) < probability) low = mid;
+      else high = mid;
+    }
+    return (low + high) / 2;
+  }
+
+  const credible = [
+    betaQuantile(0.025, postAlpha, postBeta),
+    betaQuantile(0.975, postAlpha, postBeta)
+  ];
+  const belowHalf = betaCDF(0.5, postAlpha, postBeta);
+  const rows = [
+    {name: "95% credible interval", start: credible[0], end: credible[1], point: posteriorMean, color: "#b32b2f"},
+    {name: "95% Wilson interval", start: wilson[0], end: wilson[1], point: 0.45, color: "#5c5660"}
+  ];
+
+  const plot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 220,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 168,
+    x: {
+      label: "Population proportion, p",
+      domain: [0, 1],
+      ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+    },
+    y: {label: null, domain: rows.map(row => row.name)},
+    marks: [
+      Plot.ruleX([0.5], {stroke: "#8a837c"}),
+      Plot.link(rows, {
+        x1: "start",
+        x2: "end",
+        y: "name",
+        stroke: "color",
+        strokeWidth: 10,
+        strokeLinecap: "round"
+      }),
+      Plot.dot(rows, {x: "point", y: "name", fill: "color", r: 5})
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+
+  function formatMean(x) {
+    const three = x.toFixed(3);
+    return three.endsWith("0") ? x.toFixed(2) : three;
+  }
+
+  function formatBound(x) {
+    return x.toFixed(3);
+  }
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Interval</p>
+    ${plot}
+    <p class="binomial-readout">The maximum likelihood estimate is <strong>0.45</strong>. The ${comparedPrior.toLowerCase()} posterior mean is <strong>${formatMean(posteriorMean)}</strong>. The Wilson interval is <strong>(${formatBound(wilson[0])}, ${formatBound(wilson[1])})</strong>. The 95% credible interval is <strong>(${formatBound(credible[0])}, ${formatBound(credible[1])})</strong>. Given this prior, the posterior probability that p is below 0.50 is <strong>${(belowHalf * 100).toFixed(1)}%</strong>.</p>
+    <p class="binomial-legend"><span class="swatch swatch-max" style="margin-left:0"></span> Wilson interval and MLE <span class="swatch swatch-observed"></span> Credible interval and posterior mean</p>
+  </div>`;
+}
+```
+
+:::
+
+A general contrast: Frequentist vs Bayesian
+
+### Two ways to describe uncertainty
+
+Both approaches use the observed movies, but they interpret uncertainty about the pass rate $p$ differently.
+
+::: {.compare}
+
+| | Frequentist inference | Bayesian inference |
+|---|---|---|
+| **Starting point** | Treats $p$ as fixed but unknown. Studies how results vary across repeated samples. | Uses a prior distribution to describe uncertainty about $p$, then updates it with data. |
+| **Question answered** | **If $p=0.50$, how unusual are our data?** The probability of 9 or fewer passes out of 20 is about 0.41. | **Given our data, how plausible is $p<0.50$?** Under the lower-pass prior, its posterior probability is about 87%. |
+| **Meaning of a 95% interval** | If we repeatedly sampled movies and constructed intervals this way, approximately 95% would contain the true $p$. | Given the prior, model, and data, there is a 95% probability that $p$ lies within the interval. |
+| **Useful when…** | We want methods that control how often we make errors across repeated studies—for example, incorrectly rejecting a true hypothesis. | We want to incorporate prior information, calculate probabilities about $p$, or update conclusions as new data arrive. |
+| **Main limitation** | Confidence intervals and p-values do not directly tell us how probable a particular claim about $p$ is. | Conclusions can depend strongly on the prior when data are limited, so we should check how different priors affect the results. |
+
+:::
+
+## What Could Go Wrong?
+
+**Important: The sample pass rate, 0.45 (9 of 20 movies), does not establish the pass rate for all movies.**
+
+- **Small sample.** Twenty movies leave substantial uncertainty, so different priors can produce different conclusions.
+- **Teaching priors.** Beta(3, 7), Beta(1, 1), and Beta(7, 3) illustrate viewpoints; they are not based on earlier studies.
+- **Sample selection.** Some years, genres, countries, budgets, or release types may be overrepresented.
+- **One shared $p$.** The model assumes a common pass probability, though it may vary across time and movie characteristics.
+- **Independence.** Movies sharing a studio, creative team, or franchise may have related outcomes.
+- **Judgment calls.** Viewers may disagree about whether a movie meets each test criterion.
+- **A narrow test.** Passing does not establish the quality, depth, or prominence of women’s representation.
+- **No causal conclusion.** This analysis cannot show whether passing changes revenue, reviews, or audience responses.
+
+Allowing the pass probability to vary by year or genre would require extending the model—for example, through regression or hierarchical modeling. That is beyond this introduction.

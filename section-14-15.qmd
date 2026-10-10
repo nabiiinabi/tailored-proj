@@ -1,8 +1,8 @@
 ---
-title: "Sections 14 and 15"
+title: "Does the Prior Change the Conclusion?"
 ---
 
-## Does the Prior Change the Conclusion?
+> Do these three priors lead to the same conclusion?
 
 The three posterior means are:
 
@@ -15,6 +15,8 @@ Their probabilities that $p$ is below 0.50 are also different:
 - Under Beta(12, 18): $P(p < 0.50 \mid y) \approx 0.868$
 - Under Beta(10, 12): $P(p < 0.50 \mid y) \approx 0.668$
 - Under Beta(16, 14): $P(p < 0.50 \mid y) \approx 0.356$
+
+### What each prior concludes
 
 The lower-pass analysis suggests that $p$ is probably below 0.50.
 
@@ -172,6 +174,8 @@ $$
 $$
 
 approaches 0.
+
+### The same pass rate, a larger sample
 
 Suppose two samples both have pass rates close to 45%.
 

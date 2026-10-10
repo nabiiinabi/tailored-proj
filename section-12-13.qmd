@@ -1,8 +1,6 @@
 ---
-title: "Sections 12 and 13"
+title: "The Posterior Mean and Shrinkage"
 ---
-
-## The Posterior Mean and Shrinkage
 
 After finding the entire posterior distribution, we may want a single value that summarizes our updated estimate of $p$. One common Bayesian estimate is the posterior mean.
 
@@ -34,7 +32,9 @@ $$
 y/n = 9/20 = 0.45
 $$
 
-However, the posterior mean is 0.40. Why is the posterior estimate lower than the sample proportion?
+However, the posterior mean is 0.40.
+
+> Why is the posterior estimate lower than the sample proportion?
 
 The Beta(3, 7) prior had a mean of:
 
@@ -45,6 +45,8 @@ $$
 The posterior mean falls between the prior mean of 0.30 and the sample proportion of 0.45. It has moved away from the sample proportion and toward the prior mean. This movement is called shrinkage.
 
 In Bayesian statistics, shrinkage occurs when the posterior estimate is pulled toward the prior estimate. The amount of shrinkage depends on the relative amount of information represented by the prior and the data.
+
+### A weighted average of the prior and the data
 
 The posterior mean can be written as:
 
@@ -230,7 +232,9 @@ The Bayesian interpretation is: given the Beta(3, 7) prior, the Binomial model, 
 
 This is different from the confidence-interval interpretation. A credible interval makes a probability statement about the unknown parameter, conditional on the model and prior.
 
-The posterior can also answer questions about meaningful thresholds. For example:
+The posterior can also answer a question about a threshold:
+
+> What is the probability that fewer than half of comparable movies pass?
 
 $$
 P(p < 0.50 \mid y) \approx 0.868

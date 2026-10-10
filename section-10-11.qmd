@@ -1,8 +1,6 @@
 ---
-title: "Sections 10 and 11"
+title: "Updating with Bayes' Rule"
 ---
-
-## Updating with Bayes' Rule
 
 Now we reach the central step of Bayesian inference: combining our prior beliefs with the movie data to produce an updated distribution for $p$.
 
@@ -23,6 +21,8 @@ Here:
 - The prior describes our uncertainty about $p$ before observing the sample.
 - The likelihood describes how compatible the observed data are with different values of $p$.
 - The posterior describes our updated uncertainty about $p$ after observing the sample.
+
+### Updating a Beta prior
 
 The likelihood for the 9 passing and 11 failing movies is:
 

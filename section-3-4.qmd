@@ -1,8 +1,6 @@
 ---
-title: "Sections 3 and 4"
+title: "Two Ways to Describe Uncertainty"
 ---
-
-## Two Ways to Describe Uncertainty
 
 Frequentist and Bayesian inference begin with the same data and can use the same Binomial model. Their main difference is how they represent uncertainty about $p$.
 
@@ -12,9 +10,11 @@ In frequentist inference, $p$ is fixed but unknown. It does not receive a probab
 
 A frequentist might ask:
 
-- Which value of $p$ makes the observed data most likely?
-- Which values of $p$ are reasonably compatible with the sample?
-- Would 9 or fewer passes be unusual if half of all movies passed?
+> Which value of $p$ makes the observed data most likely?
+
+> Which values of $p$ are reasonably compatible with the sample?
+
+> Would 9 or fewer passes be unusual if half of all movies passed?
 
 ### The Bayesian View
 
@@ -22,9 +22,11 @@ In Bayesian inference, uncertainty about $p$ is represented using a probability 
 
 A Bayesian might ask:
 
-- Which values of $p$ seemed plausible before observing these 20 movies?
-- How should the 9 passes and 11 failures change that uncertainty?
-- What is the probability that fewer than half of movies pass?
+> Which values of $p$ seemed plausible before observing these 20 movies?
+
+> How should the 9 passes and 11 failures change that uncertainty?
+
+> What is the probability that fewer than half of movies pass?
 
 The Bayesian analysis has three main ingredients:
 
@@ -66,7 +68,7 @@ $$
 
 The likelihood asks:
 
-**Which possible values of $p$ make the observed result of 9 passes and 11 failures relatively plausible?**
+> Which possible values of $p$ make the observed result of 9 passes and 11 failures relatively plausible?
 
 Values close to 0.45 receive the greatest likelihood support. Values close to 0 or 1 receive very little support because they make a mixed result of 9 passes and 11 failures unlikely.
 

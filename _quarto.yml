@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - .nojekyll
+    - images/frequentists_vs_bayesians_2x.png
 
 # Navigation options:
 # https://quarto.org/docs/websites/website-navigation.html
@@ -21,23 +22,29 @@ website:
       - href: the-question.qmd
         text: "The Question"
       - href: section-1.qmd
-        text: "Section 1"
+        text: "From Twenty Movies to an Unknown Proportion"
       - href: section-3-4.qmd
-        text: "Sections 3 and 4"
+        text: "Two Ways to Describe Uncertainty"
       - href: section-5.qmd
-        text: "Section 5"
+        text: "A Brief Frequentist Analysis"
       - href: section-6-7.qmd
-        text: "Sections 6 and 7"
+        text: "Beginning the Bayesian Analysis"
       - href: section-8-9.qmd
-        text: "Sections 8 and 9"
+        text: "What Do Alpha and Beta Control?"
       - href: section-10-11.qmd
-        text: "Sections 10 and 11"
+        text: "Updating with Bayes' Rule"
       - href: section-12-13.qmd
-        text: "Sections 12 and 13"
+        text: "The Posterior Mean and Shrinkage"
       - href: section-14-15.qmd
-        text: "Sections 14 and 15"
+        text: "Does the Prior Change the Conclusion?"
       - href: section-16-17.qmd
-        text: "Sections 16 and 17"
+        text: "Learning One Movie at a Time"
+      - href: section-18.qmd
+        text: "Tweets After a Movie Release"
+      - href: section-19-20.qmd
+        text: "Comparing the Frequentist and Bayesian Results"
+      - href: section-21.qmd
+        text: "Conclusions and Takeaways"
 
 format:
   html:

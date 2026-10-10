@@ -36,7 +36,7 @@ The Bechdel test is not a complete measure of whether a movie is good, feminist,
 
 This simple test leads to a simple curiosity:
 
-How many movies overall pass the Bechdel test?
+> How many movies overall pass the Bechdel test?
 
 We cannot watch and classify every movie ever produced so instead, we observe a sample and use it to learn about an unknown population proportion (i.e., the proportion of movies that pass the Bechdel test).
 

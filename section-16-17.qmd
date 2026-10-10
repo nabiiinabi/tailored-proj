@@ -1,8 +1,8 @@
 ---
-title: "Sections 16 and 17"
+title: "Learning One Movie at a Time"
 ---
 
-## Learning One Movie at a Time
+> Does the order of the movies change the final posterior?
 
 Bayesian learning can occur sequentially. Suppose we begin with the lower-pass prior:
 
@@ -207,35 +207,206 @@ viewof revealed = Inputs.range([0, 20], {
 
 ## Predicting Future Movies
 
-So far, we have used the posterior to learn about $p$. We can also use it to predict future movie outcomes.
+So far, we have used the posterior distribution to answer:
 
-Suppose $Y_{\text{new}}$ is the number of passing movies in a future sample of $m$ movies. Conditional on $p$:
+> What values of the population pass proportion $p$ are plausible, given the movies we observed?
 
-$$
-Y_{\text{new}} \mid p \sim \text{Binomial}(m, p)
-$$
+Now we ask a different question:
 
-But $p$ is unknown. Instead of substituting one estimate and pretending it is exact, Bayesian prediction averages over the entire posterior distribution:
+> How many movies might pass the Bechdel test in a new sample?
 
-$$
-f(y_{\text{new}} \mid y) = \int f(y_{\text{new}} \mid p)\, f(p \mid y)\, dp
-$$
+This is **posterior prediction**. We use our updated understanding of $p$ to calculate probabilities for new movie outcomes.
 
-When the posterior is Beta, this produces a Beta-Binomial posterior predictive distribution.
+### 1. Separate the unknown proportion from the future count
 
-Under the lower-pass posterior, Beta(12, 18), the expected number of passing movies in the next $m$ movies is:
+Let $y$ represent our observed number of passes in the original sample, and define:
 
 $$
-E(Y_{\text{new}} \mid y) = m \times 12/30 = 0.40\, m
+Y_{\text{new}} = \text{number of passing movies in a new sample of } m \text{ movies}.
 $$
 
-For the next 10 movies:
+These quantities play different roles:
+
+| Quantity | Meaning | Possible values |
+|---|---|---|
+| $p$ | The unknown population pass proportion | Any number between 0 and 1 |
+| $y$ | The number of passes we already observed | A known count |
+| $Y_{\text{new}}$ | The number of passes in the new sample | $0,1,\ldots,m$ |
+
+We assume the new movies follow the same model as the original movies: conditional on $p$, their outcomes are independent, with the same pass probability $p$.
+
+### 2. If we knew $p$, we could reuse the Binomial model
+
+For a given value of $p$, the future count follows:
 
 $$
-E(Y_{\text{new}} \mid y) = 10 \times 0.40 = 4
+Y_{\text{new}} \mid p \sim \operatorname{Binomial}(m,p).
 $$
 
-This does not mean that exactly 4 movies will pass. The number is the posterior predictive mean. The complete predictive distribution assigns probabilities to 0, 1, 2, ..., 10 passing movies.
+We are reusing the **Binomial probability mass function (PMF)**:
+
+$$
+P(Y_{\text{new}}=k\mid p)
+=
+\binom{m}{k}p^k(1-p)^{m-k},
+\qquad k=0,1,\ldots,m.
+$$
+
+It is called a PMF because $Y_{\text{new}}$ is a discrete count. It gives the probability of each exact count.
+
+For example, if we knew that $p=0.40$, the probability of exactly 4 passes among the next 10 movies would be:
+
+$$
+P(Y_{\text{new}}=4\mid p=0.40)
+=
+\binom{10}{4}(0.40)^4(0.60)^6.
+$$
+
+Even with a known $p$, we would not always observe 4 passes. The Binomial model accounts for randomness in which movies pass.
+
+### 3. But we do not know $p$
+
+Under our lower-pass analysis, we obtained:
+
+$$
+p\mid y\sim\operatorname{Beta}(12,18).
+$$
+
+Its posterior mean is:
+
+$$
+E(p\mid y)=\frac{12}{12+18}=0.40.
+$$
+
+However, $0.40$ is only a summary of the posterior. Other values of $p$ remain plausible.
+
+Using $\operatorname{Binomial}(m,0.40)$ would account for randomness in the future movies, but it would leave out our remaining uncertainty about $p$.
+
+Posterior prediction accounts for **both**:
+
+- **Sampling variability:** Even for a fixed $p$, the number of passes varies between samples.
+- **Parameter uncertainty:** We do not know which value of $p$ is the true population proportion.
+
+### 4. Average the Binomial probabilities over the Beta posterior
+
+For each possible $p$, we can calculate the probability of exactly $k$ future passes. We then average these probabilities, giving more weight to values of $p$ that our posterior considers more plausible:
+
+$$
+\boxed{
+P(Y_{\text{new}}=k\mid y)
+=
+\int_0^1
+\underbrace{P(Y_{\text{new}}=k\mid p)}_{\text{Binomial PMF}}
+\underbrace{f(p\mid y)}_{\text{Beta posterior PDF}}
+\,dp
+}
+$$
+
+The Beta distribution has a **probability density function (PDF)** because $p$ is continuous. Its density supplies the weights in this integral.
+
+For a general posterior $p\mid y\sim\operatorname{Beta}(a,b)$, we reuse the Beta PDF:
+
+$$
+f(p\mid y)
+=
+\frac{p^{a-1}(1-p)^{b-1}}{B(a,b)},
+\qquad 0<p<1.
+$$
+
+Here, $B(a,b)$ is the **beta function**, the normalizing constant that makes the density integrate to 1:
+
+$$
+B(a,b)
+=
+\int_0^1 t^{a-1}(1-t)^{b-1}\,dt.
+$$
+
+### 5. Combining the two formulas gives the predictive distribution
+
+Substitute the Binomial PMF and Beta PDF into the prediction integral:
+
+$$
+\begin{aligned}
+P(Y_{\text{new}}=k\mid y)
+&=
+\int_0^1
+\left[\binom{m}{k}p^k(1-p)^{m-k}\right]
+\left[\frac{p^{a-1}(1-p)^{b-1}}{B(a,b)}\right]
+\,dp \\[6pt]
+&=
+\frac{\binom{m}{k}}{B(a,b)}
+\int_0^1
+p^{a+k-1}(1-p)^{b+m-k-1}
+\,dp.
+\end{aligned}
+$$
+
+The remaining integral has the same form as the beta function, now with inputs $a+k$ and $b+m-k$. Therefore:
+
+$$
+\boxed{
+P(Y_{\text{new}}=k\mid y)
+=
+\binom{m}{k}
+\frac{B(a+k,b+m-k)}{B(a,b)}
+}
+$$
+
+This is the **Beta-Binomial posterior predictive PMF**:
+
+$$
+Y_{\text{new}}\mid y
+\sim
+\operatorname{BetaBinomial}(m,a,b).
+$$
+
+Notice the distinction: the **Beta posterior describes $p$**, while the **Beta-Binomial predictive distribution describes $Y_{\text{new}}$**.
+
+For our $\operatorname{Beta}(12,18)$ posterior and 10 future movies:
+
+$$
+P(Y_{\text{new}}=k\mid y)
+=
+\binom{10}{k}
+\frac{B(12+k,28-k)}{B(12,18)},
+\qquad k=0,1,\ldots,10.
+$$
+
+Evaluating this formula for each $k$ gives the probabilities shown by the bars below.
+
+### 6. What count do we expect?
+
+Using the law of total expectation, we average the conditional Binomial mean $mp$ over the posterior:
+
+$$
+\begin{aligned}
+E(Y_{\text{new}}\mid y)
+&=
+E\!\left[E(Y_{\text{new}}\mid p,y)\mid y\right] \\
+&=
+E(mp\mid y) \\
+&=
+m\frac{a}{a+b}.
+\end{aligned}
+$$
+
+For our posterior:
+
+$$
+E(Y_{\text{new}}\mid y)
+=
+m\frac{12}{30}
+=
+0.40m.
+$$
+
+Thus, among the next 10 movies, the expected number of passes is:
+
+$$
+E(Y_{\text{new}}\mid y)=4.
+$$
+
+**An expected count of 4 does not mean exactly 4 will pass.** The predictive distribution assigns a probability to every count from 0 to 10.
 
 **Choose how many future movies to predict. The bars are the probabilities of each possible number of passes. Each click draws one imaginary sample from that distribution.**
 

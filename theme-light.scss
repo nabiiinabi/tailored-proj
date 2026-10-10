@@ -351,3 +351,191 @@ $code-block-bg-alpha: -.8;
 .beta-card .binomial-readout {
   min-height: 2.6rem;
 }
+
+.compare {
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+}
+
+.compare table {
+  width: 100%;
+  min-width: 40rem;
+  margin: 0;
+  border: 1px solid #e3dcd4;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.compare thead th {
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-bottom: 2px solid $primary;
+  background: #f6f3ef;
+  color: #15151E;
+  font-family: $navbar-font;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.compare tbody th,
+.compare tbody td {
+  padding: 0.85rem 1rem;
+  border: 0;
+  border-top: 1px solid #e3dcd4;
+  vertical-align: top;
+  background: #ffffff;
+}
+
+.compare tbody th {
+  width: 11rem;
+  color: #15151E;
+  font-family: $navbar-font;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.compare tbody tr:nth-child(even) th,
+.compare tbody tr:nth-child(even) td {
+  background: #fbfaf8;
+}
+
+.callout.caveats {
+  margin-top: 0.4rem;
+  border: 1px solid #e3dcd4 !important;
+  border-top: 3px solid $primary !important;
+  border-radius: 4px;
+  background: #f6f3ef;
+}
+
+.callout.caveats .callout-header,
+.callout.caveats > .callout-body {
+  background: transparent;
+}
+
+.callout.caveats .callout-title,
+.callout.caveats .callout-icon {
+  color: #15151E;
+  font-family: $navbar-font;
+}
+
+.callout.caveats .callout-icon {
+  color: $primary;
+}
+
+.callout.caveats li {
+  margin: 0.4rem 0;
+}
+
+.callout.caveats li strong {
+  color: $primary;
+}
+
+.callout.caveats .callout-body > :last-child {
+  margin-bottom: 0;
+}
+
+.flip-check {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.flip-card {
+  display: block;
+  max-width: 40rem;
+  margin: 0.4rem 0 0.35rem;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+.flip-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
+}
+
+.flip-front,
+.flip-back {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  border: 1px solid #e3dcd4;
+  border-top: 3px solid $primary;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.flip-front img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 0 0;
+}
+
+.flip-hint {
+  display: block;
+  padding: 0.55rem 0.9rem 0.7rem;
+  color: #5c5660;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.flip-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.35rem 1.5rem 1.5rem;
+  background: #f6f3ef;
+  color: #15151E;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  transform: rotateY(180deg);
+}
+
+.flip-back .flip-hint {
+  padding: 0 0 0.8rem;
+}
+
+.flip-note {
+  display: block;
+  margin: 0 0 0.75rem;
+}
+
+.flip-note strong {
+  color: $primary;
+}
+
+.flip-math {
+  display: block;
+  margin: 0.15rem 0 0.85rem;
+  text-align: center;
+}
+
+.flip-scene .flip-check:checked + .flip-card .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-scene .flip-check:focus-visible + .flip-card {
+  outline: 2px solid $primary;
+  outline-offset: 3px;
+}
+
+.flip-credit {
+  max-width: 40rem;
+  margin: 0 0 1.5rem;
+  color: #5c5660;
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner {
+    transition: none;
+  }
+}
