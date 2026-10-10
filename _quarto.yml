@@ -10,7 +10,11 @@ website:
   title: "Beyond Pass or Fail"
   site-url: https://nabiiinabi.github.io/tailored-proj/
   navbar:
-    left:
+    pinned: true
+  sidebar:
+    style: docked
+    collapse-level: 1
+    contents:
       - href: index.qmd
         text: "Home"
         icon: book

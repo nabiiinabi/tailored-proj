@@ -33,3 +33,10 @@ and <strong> bolds the number. class="binomial-readout" is only a CSS hook for s
 The return builds one wrapper div. Inside it, in order: the y-axis label, 
 the plot SVG, the sentence chosen above, and the legend. ${plot}
 and ${readout} insert those already-built elements into that HTML.
+
+4. How to change page layout?
+The YAML is what moved the links. The CSS only restyled the new menu so it matches the rest of the site.
+
+_quarto.yml decides where navigation lives. The section links were under navbar, which Quarto draws across the top. Moving that list into sidebar is what puts them on the left and leaves the title in the top bar. Without that change, no amount of CSS would relocate the tabs.
+
+theme-light.scss does not control the layout. The sidebar is a different set of elements from the old top links, so the existing font rule did not apply to them. The added rules give those links the same Quantico font, a light divider, and the red highlight on the current page.

@@ -7,13 +7,160 @@ $primary: #b32b2f;
 $body-font: Helvetica, sans-serif;
 $header-font: 'Georgia', serif;
 $navbar-font: 'Quantico', sans-serif;
+$sidebar-bg: #f6f3ef;
+$sidebar-fg: #15151E;
+$sidebar-hl: #b32b2f;
 
 // Code blocks
 $code-block-bg-alpha: -.8;
 
 /*-- scss:rules --*/
-.navbar-brand, h1, h2, h3, h4, h5, h6, .navbar-nav .nav-link, .dropdown-item {
+.navbar-brand, h1, h2, h3, h4, h5, h6, .navbar-nav .nav-link, .dropdown-item,
+#quarto-sidebar, #quarto-sidebar .sidebar-item-text, #quarto-sidebar .menu-text {
   font-family: $navbar-font !important;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus,
+.navbar .navbar-title {
+  color: #ffffff;
+}
+
+#quarto-sidebar.sidebar-navigation {
+  background: #f6f3ef;
+  border-right: 1px solid #e3dcd4 !important;
+}
+
+#quarto-sidebar .sidebar-menu-container {
+  padding: 1rem 0.75rem 1.5rem;
+}
+
+#quarto-sidebar .sidebar-menu-container > ul {
+  margin-top: 0;
+}
+
+#quarto-sidebar .sidebar-menu-container > ul::before {
+  content: "Contents";
+  display: block;
+  margin: 0 0.35rem 0.7rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid #e3dcd4;
+  color: #5c5660;
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+#quarto-sidebar .sidebar-item {
+  margin: 0.15rem 0;
+  line-height: 1.25;
+}
+
+#quarto-sidebar .sidebar-item-text.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.42rem 0.65rem;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  color: #15151E;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+#quarto-sidebar .sidebar-item-text.sidebar-link:hover {
+  background: #efeae4;
+  color: #15151E;
+}
+
+#quarto-sidebar .sidebar-item-text.sidebar-link.active {
+  background: #f4e4e3;
+  border-left-color: $primary;
+  color: $primary;
+  font-weight: 700;
+}
+
+#quarto-sidebar .sidebar-item-text .bi {
+  color: $primary;
+  font-size: 0.95rem;
+}
+
+#quarto-document-content {
+  color: #15151E;
+}
+
+#title-block-header .title {
+  color: #15151E;
+}
+
+#title-block-header .title::after {
+  content: "";
+  display: block;
+  width: 3.25rem;
+  height: 3px;
+  margin-top: 0.75rem;
+  background: $primary;
+}
+
+#title-block-header .subtitle {
+  color: #15151E;
+}
+
+.quarto-title-meta-heading {
+  color: $primary;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.quarto-title-meta-contents {
+  color: #15151E;
+}
+
+#quarto-document-content h2 {
+  color: #15151E;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid $primary;
+}
+
+#quarto-document-content h3 {
+  color: #15151E;
+}
+
+#quarto-document-content a {
+  color: $primary;
+}
+
+#quarto-document-content a:hover {
+  color: #15151E;
+}
+
+#TOC {
+  border-left: 2px solid $primary;
+  padding-left: 0.9rem;
+}
+
+#toc-title {
+  color: #15151E;
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#TOC a {
+  color: #15151E;
+  text-decoration: none;
+}
+
+#TOC a:hover,
+#TOC a.active {
+  color: $primary;
 }
 
 .bechdel-try.callout {
