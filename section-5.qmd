@@ -146,3 +146,23 @@ It does not mean that there is a 41.2% probability that $p$ equals 0.50. It meas
 ```
 
 :::
+
+### From the data to the parameter
+
+The frequentist test asks about **possible data under a fixed parameter value**:
+
+> If $p=0.50$, how often would repeated samples of 20 movies produce 9 or fewer passes?
+
+But we may want to ask the question in the other direction:
+
+> Given the movies we observed, what is the probability that $p<0.50$?
+
+These are different probabilities:
+
+$$
+P(Y\leq9\mid p=0.50)
+\qquad\text{versus}\qquad
+P(p<0.50\mid Y=9).
+$$
+
+The p-value answers the first question. To answer the second, we need a probability model for our uncertainty about $p$. That is where Bayesian inference begins.

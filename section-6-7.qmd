@@ -1,6 +1,7 @@
 ---
 title: "Beginning the Bayesian Analysis"
 ---
+**We now shift from asking about data given a parameter to asking about the parameter given our data.**
 
 The frequentist analysis told us that 9 or fewer passes would not be unusual if $p$ were 0.50. However, it does not directly answer the question we may be most interested in:
 

@@ -272,8 +272,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#the-maximum-likelihood-estimate" id="toc-the-maximum-likelihood-estimate" class="nav-link active" data-scroll-target="#the-maximum-likelihood-estimate">The maximum likelihood estimate</a></li>
-  <li><a href="#a-confidence-interval" id="toc-a-confidence-interval" class="nav-link" data-scroll-target="#a-confidence-interval">A confidence interval</a></li>
-  <li><a href="#a-hypothesis-test" id="toc-a-hypothesis-test" class="nav-link" data-scroll-target="#a-hypothesis-test">A hypothesis test</a></li>
+  <li><a href="#a-frequentist-confidence-interval" id="toc-a-frequentist-confidence-interval" class="nav-link" data-scroll-target="#a-frequentist-confidence-interval">A frequentist confidence interval</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis testing</a></li>
+  <li><a href="#from-the-data-to-the-parameter" id="toc-from-the-data-to-the-parameter" class="nav-link" data-scroll-target="#from-the-data-to-the-parameter">From the data to the parameter</a></li>
   </ul>
 </nav>
     </div>
@@ -320,8 +321,8 @@ window.Quarto = {
 \hat{p}_{\text{MLE}} = 9/20 = 0.45
 \]</span></p>
 </section>
-<section id="a-confidence-interval" class="level3">
-<h3 class="anchored" data-anchor-id="a-confidence-interval">A confidence interval</h3>
+<section id="a-frequentist-confidence-interval" class="level3">
+<h3 class="anchored" data-anchor-id="a-frequentist-confidence-interval">A frequentist confidence interval</h3>
 <p>The MLE gives us a single best estimate of <span class="math inline">\(p\)</span>, but it does not show how precise that estimate is. To represent the uncertainty caused by sampling only 20 movies, we can construct a 95% Wilson confidence interval:</p>
 <p><span class="math display">\[
 (0.258,\ 0.658)
@@ -330,8 +331,8 @@ window.Quarto = {
 <p>Formally, the 95% confidence level describes the long-run reliability of the Wilson interval procedure. If we repeatedly sampled 20 movies in the same way and constructed an interval from each sample, approximately 95% of those intervals would contain the fixed true value of <span class="math inline">\(p\)</span>. It does not formally mean that there is a 95% probability that <span class="math inline">\(p\)</span> lies between 0.258 and 0.658. In the frequentist framework, <span class="math inline">\(p\)</span> is fixed, while the interval changes from sample to sample.</p>
 <p>This differs from a Bayesian 95% credible interval, which allows us to say that, given the prior, model, and observed data, there is a 95% posterior probability that <span class="math inline">\(p\)</span> lies within the reported interval.</p>
 </section>
-<section id="a-hypothesis-test" class="level3">
-<h3 class="anchored" data-anchor-id="a-hypothesis-test">A hypothesis test</h3>
+<section id="hypothesis-testing" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis testing</h3>
 <blockquote class="blockquote">
 <p>Is the pass rate below 0.50?</p>
 </blockquote>
@@ -431,6 +432,24 @@ P(H_0 \text{ is true} \mid \text{data})
 </div>
 </div>
 </div>
+</section>
+<section id="from-the-data-to-the-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="from-the-data-to-the-parameter">From the data to the parameter</h3>
+<p>The frequentist test asks about <strong>possible data under a fixed parameter value</strong>:</p>
+<blockquote class="blockquote">
+<p>If <span class="math inline">\(p=0.50\)</span>, how often would repeated samples of 20 movies produce 9 or fewer passes?</p>
+</blockquote>
+<p>But we may want to ask the question in the other direction:</p>
+<blockquote class="blockquote">
+<p>Given the movies we observed, what is the probability that <span class="math inline">\(p&lt;0.50\)</span>?</p>
+</blockquote>
+<p>These are different probabilities:</p>
+<p><span class="math display">\[
+P(Y\leq9\mid p=0.50)
+\qquad\text{versus}\qquad
+P(p&lt;0.50\mid Y=9).
+\]</span></p>
+<p>The p-value answers the first question. To answer the second, we need a probability model for our uncertainty about <span class="math inline">\(p\)</span>. That is where Bayesian inference begins.</p>
 
 
 </section>
