@@ -1,0 +1,372 @@
+---
+title: "Sections 16 and 17"
+---
+
+## Learning One Movie at a Time
+
+Bayesian learning can occur sequentially. Suppose we begin with the lower-pass prior:
+
+$$
+p \sim \text{Beta}(3, 7)
+$$
+
+The 20 movies still contain 9 passes and 11 failures. The order below is one possible order for those same movies. The final posterior does not depend on that order.
+
+The first movie passes. The updated distribution becomes:
+
+$$
+p \mid \text{first movie} \sim \text{Beta}(4, 7)
+$$
+
+The second movie fails:
+
+$$
+p \mid \text{first two movies} \sim \text{Beta}(4, 8)
+$$
+
+Each passing movie adds one to the first parameter. Each failing movie adds one to the second parameter.
+
+After all 20 movies, the result is:
+
+$$
+p \mid \text{all 20 movies} \sim \text{Beta}(12, 18)
+$$
+
+The posterior after one stage becomes the prior for the next stage. Updating one movie at a time produces the same final posterior as updating with all 20 movies at once, assuming the same model and starting prior.
+
+**Move through the movies one at a time. The density is the updated distribution after the movies revealed so far. The lower graph tracks its mean, with a band one standard deviation on either side.**
+
+::: {.binomial-panel}
+
+```{ojs}
+// How many movies from the made-up sequence have been revealed
+viewof revealed = Inputs.range([0, 20], {
+  label: "Movies revealed",
+  value: 0,
+  step: 1
+})
+```
+
+```{ojs}
+// Sequential Beta update for one order of 9 passes and 11 failures
+{
+  // One possible order of the same 20 movies. 1 is a pass and 0 is a failure.
+  const sequence = [1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1];
+  const priorAlpha = 3;
+  const priorBeta = 7;
+
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function betaDensity(x, a, b) {
+    if (!(x > 0 && x < 1)) return 0;
+    const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
+    const density = Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
+    return Number.isFinite(density) ? density : 0;
+  }
+
+  function betaCurve(a, b) {
+    return Array.from({length: 201}, (_, i) => {
+      const p = i / 200;
+      const x = Math.min(1 - 1e-6, Math.max(1e-6, p));
+      return {p, density: betaDensity(x, a, b)};
+    });
+  }
+
+  function formatMean(x) {
+    const three = x.toFixed(3);
+    return three.endsWith("0") ? x.toFixed(2) : three;
+  }
+
+  const seen = sequence.slice(0, revealed);
+  const passes = seen.reduce((sum, value) => sum + value, 0);
+  const failures = seen.length - passes;
+  const alpha = priorAlpha + passes;
+  const beta = priorBeta + failures;
+  const mean = alpha / (alpha + beta);
+  const sd = Math.sqrt((alpha * beta) / ((alpha + beta) ** 2 * (alpha + beta + 1)));
+
+  const path = Array.from({length: revealed + 1}, (_, step) => {
+    const prefix = sequence.slice(0, step);
+    const stepPasses = prefix.reduce((sum, value) => sum + value, 0);
+    const a = priorAlpha + stepPasses;
+    const b = priorBeta + (step - stepPasses);
+    const stepMean = a / (a + b);
+    const stepSd = Math.sqrt((a * b) / ((a + b) ** 2 * (a + b + 1)));
+    return {
+      step,
+      mean: stepMean,
+      low: Math.max(0, stepMean - stepSd),
+      high: Math.min(1, stepMean + stepSd)
+    };
+  });
+
+  const density = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 300,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {
+      label: "Population proportion, p",
+      domain: [0, 1],
+      ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+    },
+    y: {label: null, grid: true, nice: true},
+    marks: [
+      Plot.areaY(betaCurve(alpha, beta), {
+        x: "p",
+        y: "density",
+        fill: "#2c3140",
+        fillOpacity: 0.12,
+        curve: "linear"
+      }),
+      Plot.line(betaCurve(alpha, beta), {
+        x: "p",
+        y: "density",
+        stroke: "#2c3140",
+        strokeWidth: 2.25
+      }),
+      Plot.ruleX([mean], {stroke: "#b32b2f", strokeWidth: 2}),
+      Plot.ruleY([0])
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+
+  const trace = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 220,
+    marginTop: 12,
+    marginRight: 16,
+    marginBottom: 40,
+    marginLeft: 52,
+    x: {label: "Movies revealed", domain: [0, 20], ticks: [0, 5, 10, 15, 20]},
+    y: {label: "Mean", domain: [0, 1], grid: true, ticks: [0, 0.25, 0.5, 0.75, 1]},
+    marks: [
+      Plot.areaY(path, {
+        x: "step",
+        y1: "low",
+        y2: "high",
+        fill: "#2c3140",
+        fillOpacity: 0.12,
+        curve: "linear"
+      }),
+      Plot.line(path, {x: "step", y: "mean", stroke: "#b32b2f", strokeWidth: 2.25}),
+      Plot.dot(path.slice(-1), {x: "step", y: "mean", fill: "#b32b2f", r: 4}),
+      Plot.ruleY([0])
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+
+  const outcomeText = seen.length
+    ? seen.map(value => value ? "P" : "F").join(" ")
+    : "none yet";
+  const done = revealed === 20
+    ? " This is the same Beta(12, 18) posterior obtained by adding all 9 passes and 11 failures at once."
+    : "";
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Density</p>
+    ${density}
+    ${trace}
+    <p class="binomial-readout">After <strong>${revealed}</strong> movies, the distribution is Beta(${alpha}, ${beta}), with mean <strong>${formatMean(mean)}</strong>. Revealed outcomes: ${outcomeText}.${done}</p>
+    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Current distribution <span class="swatch swatch-observed"></span> Posterior mean <span class="swatch swatch-band"></span> One standard deviation</p>
+  </div>`;
+}
+```
+
+:::
+
+## Predicting Future Movies
+
+So far, we have used the posterior to learn about $p$. We can also use it to predict future movie outcomes.
+
+Suppose $Y_{\text{new}}$ is the number of passing movies in a future sample of $m$ movies. Conditional on $p$:
+
+$$
+Y_{\text{new}} \mid p \sim \text{Binomial}(m, p)
+$$
+
+But $p$ is unknown. Instead of substituting one estimate and pretending it is exact, Bayesian prediction averages over the entire posterior distribution:
+
+$$
+f(y_{\text{new}} \mid y) = \int f(y_{\text{new}} \mid p)\, f(p \mid y)\, dp
+$$
+
+When the posterior is Beta, this produces a Beta-Binomial posterior predictive distribution.
+
+Under the lower-pass posterior, Beta(12, 18), the expected number of passing movies in the next $m$ movies is:
+
+$$
+E(Y_{\text{new}} \mid y) = m \times 12/30 = 0.40\, m
+$$
+
+For the next 10 movies:
+
+$$
+E(Y_{\text{new}} \mid y) = 10 \times 0.40 = 4
+$$
+
+This does not mean that exactly 4 movies will pass. The number is the posterior predictive mean. The complete predictive distribution assigns probabilities to 0, 1, 2, ..., 10 passing movies.
+
+**Choose how many future movies to predict. The bars are the probabilities of each possible number of passes. Each click draws one imaginary sample from that distribution.**
+
+::: {.binomial-panel}
+
+```{ojs}
+viewof futureCount = Inputs.range([1, 30], {
+  label: "Future movies, m",
+  value: 10,
+  step: 1
+})
+```
+
+```{ojs}
+viewof draws = Inputs.button("Draw an imaginary sample")
+```
+
+```{ojs}
+// Beta-Binomial probabilities for a future sample, plus made-up draws
+{
+  const postAlpha = 12;
+  const postBeta = 18;
+  const m = futureCount;
+
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function logChoose(n, k) {
+    let sum = 0;
+    for (let i = 0; i < k; i++) sum += Math.log(n - i) - Math.log(i + 1);
+    return sum;
+  }
+
+  function logBeta(a, b) {
+    return logGamma(a) + logGamma(b) - logGamma(a + b);
+  }
+
+  // Repeatable random numbers, so each click adds one stable imaginary sample.
+  function randomFrom(seed) {
+    let state = seed >>> 0;
+    return () => {
+      state = (state + 0x6D2B79F5) >>> 0;
+      let t = Math.imul(state ^ (state >>> 15), 1 | state);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function sampleGammaInteger(shape, random) {
+    let sum = 0;
+    for (let i = 0; i < shape; i++) sum += -Math.log(random() || Number.EPSILON);
+    return sum;
+  }
+
+  const logNormalizer = logBeta(postAlpha, postBeta);
+  const rows = Array.from({length: m + 1}, (_, k) => ({
+    k,
+    probability: Math.exp(logChoose(m, k) + logBeta(postAlpha + k, postBeta + m - k) - logNormalizer)
+  }));
+  const expected = m * postAlpha / (postAlpha + postBeta);
+
+  const samples = Array.from({length: draws}, (_, i) => {
+    const random = randomFrom(1000 + i * 17 + m);
+    const x = sampleGammaInteger(postAlpha, random);
+    const y = sampleGammaInteger(postBeta, random);
+    const p = x / (x + y);
+    let passes = 0;
+    for (let movie = 0; movie < m; movie++) if (random() < p) passes += 1;
+    return passes;
+  });
+  const latest = samples.length ? samples[samples.length - 1] : null;
+  const counts = new Map();
+  for (const passes of samples) counts.set(passes, (counts.get(passes) || 0) + 1);
+
+  const plot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 360,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {
+      label: "Passing movies in the future sample",
+      ticks: m <= 15 ? undefined : Array.from({length: 7}, (_, i) => Math.round(i * m / 6))
+    },
+    y: {label: null, grid: true, nice: true},
+    marks: [
+      Plot.barY(rows, {
+        x: "k",
+        y: "probability",
+        fill: d => d.k === latest ? "#b32b2f" : counts.has(d.k) ? "#5c5660" : "#2c3140",
+        title: d => `Y = ${d.k}\nProbability = ${d.probability.toFixed(3)}\nImaginary samples: ${counts.get(d.k) || 0}`
+      }),
+      Plot.ruleY([0])
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+
+  const sampleText = latest === null
+    ? "No imaginary sample has been drawn yet."
+    : `The latest imaginary sample had <strong>${latest}</strong> passing movies out of ${m}. Drawn samples: ${samples.join(", ")}.`;
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Probability</p>
+    ${plot}
+    <p class="binomial-readout">The expected number of passing movies is <strong>${expected.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1")}</strong>. ${sampleText}</p>
+    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Predictive probability <span class="swatch swatch-max" style="width:0.75rem;height:0.75rem;border:0;background:#5c5660"></span> A value already drawn <span class="swatch swatch-observed"></span> Latest imaginary sample</p>
+  </div>`;
+}
+```
+
+:::

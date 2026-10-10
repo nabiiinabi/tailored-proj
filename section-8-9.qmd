@@ -1,0 +1,381 @@
+---
+title: "Sections 8 and 9"
+---
+
+## What Do Alpha and Beta Control?
+
+The parameters $\alpha$ and $\beta$ determine the location and concentration of a Beta distribution.
+
+Both parameters must be positive:
+
+$$
+\alpha > 0 \quad \text{and} \quad \beta > 0
+$$
+
+The mean of a Beta distribution is:
+
+$$
+E(p) = \frac{\alpha}{\alpha + \beta}
+$$
+
+This tells us where the prior is centered.
+
+- If $\alpha = \beta$, the prior mean is 0.50.
+- If $\alpha > \beta$, the prior favors higher values of $p$.
+- If $\alpha < \beta$, the prior favors lower values of $p$.
+
+The total
+
+$$
+\alpha + \beta
+$$
+
+helps determine the prior's concentration, or strength. A small total generally produces a more widely spread prior. A large total generally produces a more concentrated prior and gives the prior greater influence in the posterior update.
+
+Consider two examples:
+
+$$
+p \sim \text{Beta}(2, 2)
+$$
+
+$$
+p \sim \text{Beta}(20, 20)
+$$
+
+Both have a prior mean of 0.50:
+
+$$
+2/(2 + 2) = 0.50
+$$
+
+$$
+20/(20 + 20) = 0.50
+$$
+
+However, Beta(2, 2) is widely spread, while Beta(20, 20) is tightly concentrated near 0.50. The two priors agree about their center but disagree about their certainty.
+
+In a Beta-Binomial analysis, $\alpha$ and $\beta$ loosely behave like prior pass and failure information. However, they should not automatically be described as literal historical movie counts. In this example, they are parameters chosen to represent different hypothetical viewpoints.
+
+**Move $\alpha$ and $\beta$ to change the dark prior. The second slider keeps a comparison curve centered at 0.50 and changes only its concentration, $\alpha + \beta$.**
+
+::: {.binomial-panel}
+
+```{ojs}
+// Sliders for the prior's two parameters
+viewof alpha = Inputs.range([1, 30], {
+  label: "α",
+  value: 2,
+  step: 0.5
+})
+```
+
+```{ojs}
+viewof beta = Inputs.range([1, 30], {
+  label: "β",
+  value: 2,
+  step: 0.5
+})
+```
+
+```{ojs}
+// Second control: concentration of a prior whose mean stays at 0.50
+viewof strength = Inputs.range([2, 40], {
+  label: "α + β, mean fixed at 0.50",
+  value: 20,
+  step: 2
+})
+```
+
+```{ojs}
+// Beta(alpha, beta), compared with a same-mean curve of a chosen concentration
+{
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function betaDensity(x, a, b) {
+    if (!(x > 0 && x < 1)) return 0;
+    const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
+    const density = Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
+    return Number.isFinite(density) ? density : 0;
+  }
+
+  function betaCurve(a, b) {
+    return Array.from({length: 201}, (_, i) => {
+      const p = i / 200;
+      const x = Math.min(1 - 1e-6, Math.max(1e-6, p));
+      return {p, density: betaDensity(x, a, b)};
+    });
+  }
+
+  function formatParam(x) {
+    const rounded = Math.round(x * 100) / 100;
+    return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2).replace(/0$/, "");
+  }
+
+  const mean = alpha / (alpha + beta);
+  const total = alpha + beta;
+  // The comparison prior splits α + β equally, so its mean is exactly 0.50.
+  const half = strength / 2;
+  const chosen = betaCurve(alpha, beta);
+  const fixed = betaCurve(half, half);
+
+  const plot = Plot.plot({
+    width: Math.max(280, width - 4),
+    height: 360,
+    marginTop: 16,
+    marginRight: 16,
+    marginBottom: 48,
+    marginLeft: 52,
+    x: {
+      label: "Population proportion, p",
+      domain: [0, 1],
+      ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+    },
+    y: {label: null, grid: true, nice: true},
+    marks: [
+      Plot.areaY(chosen, {
+        x: "p",
+        y: "density",
+        fill: "#2c3140",
+        fillOpacity: 0.12,
+        curve: "linear"
+      }),
+      Plot.line(chosen, {
+        x: "p",
+        y: "density",
+        stroke: "#2c3140",
+        strokeWidth: 2.25
+      }),
+      Plot.line(fixed, {
+        x: "p",
+        y: "density",
+        stroke: "#b32b2f",
+        strokeWidth: 2.25,
+        strokeDasharray: "4,3"
+      }),
+      Plot.ruleX([mean], {
+        stroke: "#5c5660",
+        strokeDasharray: "4,3"
+      }),
+      Plot.ruleY([0])
+    ],
+    style: {
+      background: "transparent",
+      color: "#15151E",
+      fontFamily: "Helvetica, sans-serif",
+      fontSize: "13px"
+    }
+  });
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Density</p>
+    ${plot}
+    <p class="binomial-readout">The dark curve is Beta(${formatParam(alpha)}, ${formatParam(beta)}). Its mean is <strong>${mean.toFixed(2)}</strong> and its concentration is α + β = <strong>${formatParam(total)}</strong>.</p>
+    <p class="binomial-readout">The red curve holds the mean at 0.50 and sets α + β = <strong>${formatParam(strength)}</strong>, so it is Beta(${formatParam(half)}, ${formatParam(half)}).</p>
+    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Prior from α and β <span class="swatch swatch-fixed"></span> Mean fixed at 0.50 <span class="swatch swatch-max"></span> Mean of the dark curve</p>
+  </div>`;
+}
+```
+
+:::
+
+## Three Different Starting Beliefs
+
+The parameters $\alpha$ and $\beta$ now give a prior to each of the three moviegoers.
+
+### The lower-pass viewpoint
+
+The first moviegoer believes that most movies probably fail:
+
+$$
+p \sim \text{Beta}(3, 7)
+$$
+
+The prior mean is:
+
+$$
+E(p) = 3/(3 + 7) = 0.30
+$$
+
+This prior places most of its density below 0.50, but it does not completely rule out higher pass rates.
+
+### The neutral viewpoint
+
+The second moviegoer has no strong initial belief about whether the pass rate is low or high:
+
+$$
+p \sim \text{Beta}(1, 1)
+$$
+
+The prior mean is:
+
+$$
+E(p) = 1/(1 + 1) = 0.50
+$$
+
+Beta(1, 1) is equivalent to a Uniform(0, 1) distribution. Its density is flat, so it gives equal prior density to every value between 0 and 1.
+
+This does not mean that $p$ has no prior. It means that the prior deliberately avoids favoring one region of the interval.
+
+### The higher-pass viewpoint
+
+The third moviegoer expects a higher pass rate:
+
+$$
+p \sim \text{Beta}(7, 3)
+$$
+
+The prior mean is:
+
+$$
+E(p) = 7/(7 + 3) = 0.70
+$$
+
+This prior places more of its density above 0.50, but it still leaves room for lower pass rates.
+
+These priors are not equally uncertain. Beta(3, 7) and Beta(7, 3) are equally concentrated, since both have $\alpha + \beta = 10$, and each is the mirror image of the other. Beta(1, 1) is much more diffuse. Differences in their posteriors will reflect both where each prior is centered and how strongly it is concentrated.
+
+**The three priors are unlabeled. Predict which curve belongs to each viewpoint, then show the answers. The curves are drawn on the same density scale.**
+
+::: {.binomial-panel}
+
+```{ojs}
+viewof showAnswers = Inputs.toggle({
+  label: "Show the answers",
+  value: false
+})
+```
+
+```{ojs}
+viewof guessA = Inputs.select(
+  ["Choose one", "Lower-pass viewpoint", "Neutral viewpoint", "Higher-pass viewpoint"],
+  {label: "Curve A", value: "Choose one"}
+)
+```
+
+```{ojs}
+viewof guessB = Inputs.select(
+  ["Choose one", "Lower-pass viewpoint", "Neutral viewpoint", "Higher-pass viewpoint"],
+  {label: "Curve B", value: "Choose one"}
+)
+```
+
+```{ojs}
+viewof guessC = Inputs.select(
+  ["Choose one", "Lower-pass viewpoint", "Neutral viewpoint", "Higher-pass viewpoint"],
+  {label: "Curve C", value: "Choose one"}
+)
+```
+
+```{ojs}
+// Unlabeled Beta(7, 3), Beta(3, 7), and Beta(1, 1) priors
+{
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function betaDensity(x, a, b) {
+    if (!(x > 0 && x < 1)) return 0;
+    const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
+    const density = Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
+    return Number.isFinite(density) ? density : 0;
+  }
+
+  function betaCurve(a, b) {
+    return Array.from({length: 201}, (_, i) => {
+      const p = i / 200;
+      const x = Math.min(1 - 1e-6, Math.max(1e-6, p));
+      return {p, density: betaDensity(x, a, b)};
+    });
+  }
+
+  const cards = [
+    {name: "A", answer: "Higher-pass viewpoint", alpha: 7, beta: 3, guess: guessA},
+    {name: "B", answer: "Lower-pass viewpoint", alpha: 3, beta: 7, guess: guessB},
+    {name: "C", answer: "Neutral viewpoint", alpha: 1, beta: 1, guess: guessC}
+  ];
+  const curves = cards.map(card => betaCurve(card.alpha, card.beta));
+  const yMax = Math.max(...curves.flatMap(curve => curve.map(d => d.density)));
+  const stacked = width < 720;
+  const plotWidth = stacked ? Math.max(260, width - 8) : Math.max(160, Math.floor((width - 32) / 3));
+
+  const plots = cards.map((card, i) => {
+    const plot = Plot.plot({
+      width: plotWidth,
+      height: 240,
+      marginTop: 12,
+      marginRight: 12,
+      marginBottom: 40,
+      marginLeft: 36,
+      x: {label: "p", domain: [0, 1], ticks: [0, 0.5, 1]},
+      y: {label: null, domain: [0, yMax * 1.08], grid: true, ticks: 4},
+      marks: [
+        Plot.areaY(curves[i], {x: "p", y: "density", fill: "#2c3140", fillOpacity: 0.12, curve: "linear"}),
+        Plot.line(curves[i], {x: "p", y: "density", stroke: "#2c3140", strokeWidth: 2.25}),
+        Plot.ruleY([0])
+      ],
+      style: {
+        background: "transparent",
+        color: "#15151E",
+        fontFamily: "Helvetica, sans-serif",
+        fontSize: "12px"
+      }
+    });
+    const title = showAnswers ? card.answer : `Curve ${card.name}`;
+    const note = !showAnswers
+      ? ""
+      : card.guess === card.answer
+        ? `Beta(${card.alpha}, ${card.beta}). That match is right.`
+        : card.guess === "Choose one"
+          ? `Beta(${card.alpha}, ${card.beta}).`
+          : `Beta(${card.alpha}, ${card.beta}). That match is not the one for this curve.`;
+    return html`<div class="beta-card">
+      <p class="card-title">${title}</p>
+      ${plot}
+      <p class="binomial-readout">${note}</p>
+    </div>`;
+  });
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Density</p>
+    <div class="beta-gallery" style="grid-template-columns: ${stacked ? "1fr" : "repeat(3, minmax(0, 1fr))"};">
+      ${plots}
+    </div>
+  </div>`;
+}
+```
+
+:::

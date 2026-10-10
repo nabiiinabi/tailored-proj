@@ -91,8 +91,12 @@ $code-block-bg-alpha: -.8;
   background: white;
 }
 
-.binomial-panel input[type="range"] {
+.binomial-panel input[type="range"],
+.binomial-panel input[type="radio"] {
   accent-color: $primary;
+}
+
+.binomial-panel input[type="range"] {
   width: min(100%, 28rem);
 }
 
@@ -148,4 +152,55 @@ $code-block-bg-alpha: -.8;
   border-top: 2px dashed #5c5660;
   background: transparent;
   vertical-align: 0.22rem;
+}
+
+.swatch-band {
+  background: rgba(44, 49, 64, 0.18);
+  border: 1px solid #2c3140;
+  margin-left: 0.9rem;
+}
+
+.binomial-panel button {
+  border: 1px solid #d9d1c8;
+  border-radius: 4px;
+  background: white;
+  color: $body-color;
+  font-family: $body-font;
+  font-size: 1rem;
+  padding: 0.25rem 0.7rem;
+}
+
+.swatch-fixed {
+  width: 0.95rem;
+  height: 0;
+  margin-left: 0.9rem;
+  border-top: 2px dashed $primary;
+  background: transparent;
+  vertical-align: 0.22rem;
+}
+
+.binomial-panel select {
+  border: 1px solid #d9d1c8;
+  border-radius: 4px;
+  padding: 0.25rem 0.45rem;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  color: $body-color;
+  background: white;
+}
+
+.beta-gallery {
+  display: grid;
+  gap: 0.75rem 1rem;
+  margin-top: 0.35rem;
+}
+
+.beta-card .card-title {
+  margin: 0.15rem 0 0;
+  font-family: $navbar-font;
+  font-size: 0.95rem;
+}
+
+.beta-card .binomial-readout {
+  min-height: 2.6rem;
 }

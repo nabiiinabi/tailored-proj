@@ -1,0 +1,185 @@
+---
+title: "Sections 6 and 7"
+---
+
+## Beginning the Bayesian Analysis
+
+The frequentist analysis told us that 9 or fewer passes would not be unusual if $p$ were 0.50. However, it does not directly answer the question we may be most interested in:
+
+- What is the probability that fewer than half of comparable movies pass?
+
+To make a probability statement about $p$ itself, we need to represent our uncertainty about $p$ with a probability distribution. This brings us to the Bayesian approach. Unlike the frequentist analysis, Bayesian inference requires us to consider what values of $p$ seemed plausible before we observed the sample.
+
+Suppose three moviegoers are asked the following question before seeing the sample: What proportion of movies do you believe pass the Bechdel test?
+
+- The first expects the pass rate to be relatively low.
+- The second is genuinely uncertain and does not favor low, middle, or high values.
+- The third expects the pass rate to be relatively high.
+
+These people do not begin with the same beliefs. A Bayesian analysis does not require us to hide this disagreement. Instead, each person can represent their uncertainty with a prior distribution.
+
+A prior is not simply one predicted value. It is a distribution over all possible values of $p$. For example, someone might think that $p$ is probably near 0.30 but admit that values such as 0.20 or 0.50 are also possible. Another person might place equal prior plausibility on every value between 0 and 1.
+
+The prior makes these starting assumptions visible.
+
+## Why Choose a Beta Prior for the Movies?
+
+The Beta distribution can represent those three beliefs. Because $p$ is a proportion, it must lie between 0 and 1. We therefore need a prior distribution with the same possible values.
+
+The Beta distribution is a convenient choice:
+
+$$
+p \sim \text{Beta}(\alpha, \beta)
+$$
+
+Its density is:
+
+$$
+f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 < p < 1
+$$
+
+The term $B(\alpha, \beta)$ is a normalizing constant. It ensures that the total area under the prior density equals one.
+
+The Beta distribution is useful for two reasons.
+
+First, it is flexible. Depending on $\alpha$ and $\beta$, it can favor:
+
+- low values of $p$,
+- high values of $p$,
+- values near 0.50,
+
+or every value equally.
+
+Second, the Beta distribution is conjugate to the Binomial likelihood. Conjugacy means that a Beta prior combined with a Binomial likelihood produces a Beta posterior. The family of the distribution stays the same, although its parameters change.
+
+This makes the update mathematically simple and visually intuitive.
+
+**Match each curve to a description, then show the answers. The curves are drawn on the same density scale.**
+
+::: {.binomial-panel}
+
+```{ojs}
+viewof showAnswers = Inputs.toggle({
+  label: "Show the answers",
+  value: false
+})
+```
+
+```{ojs}
+viewof guessA = Inputs.select(
+  ["Choose one", "Uncertain", "Expects a low pass rate", "Strongly expects a high pass rate"],
+  {label: "Curve A", value: "Choose one"}
+)
+```
+
+```{ojs}
+viewof guessB = Inputs.select(
+  ["Choose one", "Uncertain", "Expects a low pass rate", "Strongly expects a high pass rate"],
+  {label: "Curve B", value: "Choose one"}
+)
+```
+
+```{ojs}
+viewof guessC = Inputs.select(
+  ["Choose one", "Uncertain", "Expects a low pass rate", "Strongly expects a high pass rate"],
+  {label: "Curve C", value: "Choose one"}
+)
+```
+
+```{ojs}
+// Three unlabeled Beta priors on a shared density scale
+{
+  // f(x) = x^(a-1) * (1-x)^(b-1) / B(a, b),
+  // with B(a, b) = Γ(a)Γ(b) / Γ(a+b) computed on the log scale.
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
+
+  function betaDensity(x, a, b) {
+    if (!(x > 0 && x < 1)) return 0;
+    const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
+    const density = Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
+    return Number.isFinite(density) ? density : 0;
+  }
+
+  function betaCurve(a, b) {
+    return Array.from({length: 201}, (_, i) => {
+      const p = i / 200;
+      const x = Math.min(1 - 1e-6, Math.max(1e-6, p));
+      return {p, density: betaDensity(x, a, b)};
+    });
+  }
+
+  const cards = [
+    {name: "A", answer: "Strongly expects a high pass rate", alpha: 10, beta: 2, guess: guessA},
+    {name: "B", answer: "Expects a low pass rate", alpha: 2, beta: 8, guess: guessB},
+    {name: "C", answer: "Uncertain", alpha: 1, beta: 1, guess: guessC}
+  ];
+  const curves = cards.map(card => betaCurve(card.alpha, card.beta));
+  const yMax = Math.max(...curves.flatMap(curve => curve.map(d => d.density)));
+  const stacked = width < 720;
+  const plotWidth = stacked ? Math.max(260, width - 8) : Math.max(160, Math.floor((width - 32) / 3));
+
+  const plots = cards.map((card, i) => {
+    const plot = Plot.plot({
+      width: plotWidth,
+      height: 240,
+      marginTop: 12,
+      marginRight: 12,
+      marginBottom: 40,
+      marginLeft: 36,
+      x: {label: "p", domain: [0, 1], ticks: [0, 0.5, 1]},
+      y: {label: null, domain: [0, yMax * 1.08], grid: true, ticks: 4},
+      marks: [
+        Plot.areaY(curves[i], {x: "p", y: "density", fill: "#2c3140", fillOpacity: 0.12, curve: "linear"}),
+        Plot.line(curves[i], {x: "p", y: "density", stroke: "#2c3140", strokeWidth: 2.25}),
+        Plot.ruleY([0])
+      ],
+      style: {
+        background: "transparent",
+        color: "#15151E",
+        fontFamily: "Helvetica, sans-serif",
+        fontSize: "12px"
+      }
+    });
+    const title = showAnswers ? card.answer : `Curve ${card.name}`;
+    const note = !showAnswers
+      ? ""
+      : card.guess === card.answer
+        ? `Beta(${card.alpha}, ${card.beta}). That match is right.`
+        : card.guess === "Choose one"
+          ? `Beta(${card.alpha}, ${card.beta}).`
+          : `Beta(${card.alpha}, ${card.beta}). That match is not the one for this curve.`;
+    return html`<div class="beta-card">
+      <p class="card-title">${title}</p>
+      ${plot}
+      <p class="binomial-readout">${note}</p>
+    </div>`;
+  });
+
+  return html`<div class="binomial-figure">
+    <p class="binomial-ylabel">Density</p>
+    <div class="beta-gallery" style="grid-template-columns: ${stacked ? "1fr" : "repeat(3, minmax(0, 1fr))"};">
+      ${plots}
+    </div>
+  </div>`;
+}
+```
+
+:::

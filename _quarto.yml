@@ -20,6 +20,20 @@ website:
         text: "Section 1"
       - href: section-3-4.qmd
         text: "Sections 3 and 4"
+      - href: section-5.qmd
+        text: "Section 5"
+      - href: section-6-7.qmd
+        text: "Sections 6 and 7"
+      - href: section-8-9.qmd
+        text: "Sections 8 and 9"
+      - href: section-10-11.qmd
+        text: "Sections 10 and 11"
+      - href: section-12-13.qmd
+        text: "Sections 12 and 13"
+      - href: section-14-15.qmd
+        text: "Sections 14 and 15"
+      - href: section-16-17.qmd
+        text: "Sections 16 and 17"
 
 format:
   html:
