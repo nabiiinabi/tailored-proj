@@ -72,6 +72,7 @@ viewof alpha = Inputs.range([1, 30], {
 ```
 
 ```{ojs}
+// The beta slider. It is separate from alpha so each one can move on its own.
 viewof beta = Inputs.range([1, 30], {
   label: "β",
   value: 2,
@@ -91,6 +92,9 @@ viewof strength = Inputs.range([2, 40], {
 ```{ojs}
 // Beta(alpha, beta), compared with a same-mean curve of a chosen concentration
 {
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -111,6 +115,7 @@ viewof strength = Inputs.range([2, 40], {
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Height of the Beta(a, b) curve at p = x. Outside 0 to 1, the height is 0.
   function betaDensity(x, a, b) {
     if (!(x > 0 && x < 1)) return 0;
     const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
@@ -118,6 +123,12 @@ viewof strength = Inputs.range([2, 40], {
     return Number.isFinite(density) ? density : 0;
   }
 
+  // Points on that curve, from p near 0 to p near 1.
+  // Similar to what we did in section 6-7.
+  // Overall, the curve is drawn as 201 dots 
+  // which are evenly spaced from p = 0 to p = 1.
+  // The density formula uses log(p) and log(1 - p), which break at the endpoints.
+  // So the height is calculated a tiny step inside (0, 1), while the dot stays at p.
   function betaCurve(a, b) {
     return Array.from({length: 201}, (_, i) => {
       const p = i / 200;
@@ -126,6 +137,7 @@ viewof strength = Inputs.range([2, 40], {
     });
   }
 
+  // Short decimal for a slider value. Drops a trailing zero, so 2.50 prints as 2.5.
   function formatParam(x) {
     const rounded = Math.round(x * 100) / 100;
     return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2).replace(/0$/, "");
@@ -259,6 +271,7 @@ These priors are not equally uncertain. Beta(3, 7) and Beta(7, 3) are equally co
 ::: {.binomial-panel}
 
 ```{ojs}
+// Off at first, so the three priors stay unlabeled.
 viewof showAnswers = Inputs.toggle({
   label: "Show the answers",
   value: false
@@ -266,6 +279,7 @@ viewof showAnswers = Inputs.toggle({
 ```
 
 ```{ojs}
+// The reader's guess for curve A. The plot cell checks it against the real answer.
 viewof guessA = Inputs.select(
   ["Choose one", "Lower-pass viewpoint", "Neutral viewpoint", "Higher-pass viewpoint"],
   {label: "Curve A", value: "Choose one"}
@@ -273,6 +287,7 @@ viewof guessA = Inputs.select(
 ```
 
 ```{ojs}
+// Same kind of menu for curve B.
 viewof guessB = Inputs.select(
   ["Choose one", "Lower-pass viewpoint", "Neutral viewpoint", "Higher-pass viewpoint"],
   {label: "Curve B", value: "Choose one"}
@@ -280,6 +295,7 @@ viewof guessB = Inputs.select(
 ```
 
 ```{ojs}
+// Same kind of menu for curve C.
 viewof guessC = Inputs.select(
   ["Choose one", "Lower-pass viewpoint", "Neutral viewpoint", "Higher-pass viewpoint"],
   {label: "Curve C", value: "Choose one"}
@@ -289,6 +305,9 @@ viewof guessC = Inputs.select(
 ```{ojs}
 // Unlabeled Beta(7, 3), Beta(3, 7), and Beta(1, 1) priors
 {
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -309,6 +328,7 @@ viewof guessC = Inputs.select(
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Height of the Beta(a, b) curve at p = x. Outside 0 to 1, the height is 0.
   function betaDensity(x, a, b) {
     if (!(x > 0 && x < 1)) return 0;
     const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
@@ -316,6 +336,11 @@ viewof guessC = Inputs.select(
     return Number.isFinite(density) ? density : 0;
   }
 
+  // Points on that curve, from p near 0 to p near 1.
+  // Curve drawn as 201 dots 
+  // which are evenly spaced from p = 0 to p = 1.
+  // The density formula uses log(p) and log(1 - p), which break at the endpoints.
+  // So the height is calculated a tiny step inside (0, 1), while the dot stays at p.
   function betaCurve(a, b) {
     return Array.from({length: 201}, (_, i) => {
       const p = i / 200;
@@ -356,6 +381,7 @@ viewof guessC = Inputs.select(
         fontSize: "12px"
       }
     });
+    // Hide the viewpoint name until "Show the answers" is on.
     const title = showAnswers ? card.answer : `Curve ${card.name}`;
     const note = !showAnswers
       ? ""

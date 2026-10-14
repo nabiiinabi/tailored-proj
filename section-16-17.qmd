@@ -55,6 +55,9 @@ viewof revealed = Inputs.range([0, 20], {
   const priorAlpha = 3;
   const priorBeta = 7;
 
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -82,6 +85,7 @@ viewof revealed = Inputs.range([0, 20], {
     return Number.isFinite(density) ? density : 0;
   }
 
+  // Points on that curve, from p near 0 to p near 1.
   function betaCurve(a, b) {
     return Array.from({length: 201}, (_, i) => {
       const p = i / 200;
@@ -90,6 +94,7 @@ viewof revealed = Inputs.range([0, 20], {
     });
   }
 
+  // Three decimals, unless the last digit is 0. Then two decimals is enough.
   function formatMean(x) {
     const three = x.toFixed(3);
     return three.endsWith("0") ? x.toFixed(2) : three;
@@ -413,6 +418,7 @@ $$
 ::: {.binomial-panel}
 
 ```{ojs}
+// How many future movies the prediction covers.
 viewof futureCount = Inputs.range([1, 30], {
   label: "Future movies, m",
   value: 10,
@@ -421,6 +427,7 @@ viewof futureCount = Inputs.range([1, 30], {
 ```
 
 ```{ojs}
+// Counts clicks. Each click adds one more imaginary sample.
 viewof draws = Inputs.button("Draw an imaginary sample")
 ```
 
@@ -431,6 +438,9 @@ viewof draws = Inputs.button("Draw an imaginary sample")
   const postBeta = 18;
   const m = futureCount;
 
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -451,12 +461,14 @@ viewof draws = Inputs.button("Draw an imaginary sample")
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Log of "n choose k", added one factor at a time so it does not overflow.
   function logChoose(n, k) {
     let sum = 0;
     for (let i = 0; i < k; i++) sum += Math.log(n - i) - Math.log(i + 1);
     return sum;
   }
 
+  // Log of the Beta function, Beta(a, b) = Gamma(a)Gamma(b) / Gamma(a + b).
   function logBeta(a, b) {
     return logGamma(a) + logGamma(b) - logGamma(a + b);
   }
@@ -472,6 +484,7 @@ viewof draws = Inputs.button("Draw an imaginary sample")
     };
   }
 
+  // One Gamma draw when the shape is a whole number. Sum of exponential draws.
   function sampleGammaInteger(shape, random) {
     let sum = 0;
     for (let i = 0; i < shape; i++) sum += -Math.log(random() || Number.EPSILON);

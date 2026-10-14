@@ -192,6 +192,9 @@ viewof viewpoint = Inputs.radio(
     "Higher-pass": {alpha: 7, beta: 3}
   };
 
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -212,6 +215,7 @@ viewof viewpoint = Inputs.radio(
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Height of the Beta(a, b) curve at p = x. Outside 0 to 1, the height is 0.
   function betaDensity(x, a, b) {
     if (!(x > 0 && x < 1)) return 0;
     const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
@@ -219,6 +223,12 @@ viewof viewpoint = Inputs.radio(
     return Number.isFinite(density) ? density : 0;
   }
 
+  // Points on that curve, from p near 0 to p near 1.
+  // Again, similar to previous sections 
+  // Curve drawn as 201 dots 
+  // which are evenly spaced from p = 0 to p = 1.
+  // The density formula uses log(p) and log(1 - p), which break at the endpoints.
+  // So the height is calculated a tiny step inside (0, 1), while the dot stays at p.
   function betaCurve(a, b) {
     return Array.from({length: 201}, (_, i) => {
       const p = i / 200;
@@ -227,11 +237,14 @@ viewof viewpoint = Inputs.radio(
     });
   }
 
+  // Three decimals, unless the last digit is 0. Then two decimals is enough.
   function formatMean(x) {
     const three = x.toFixed(3);
     return three.endsWith("0") ? x.toFixed(2) : three;
   }
 
+  // A Beta prior plus binomial data stays Beta.
+  // Passes add to alpha. Failures add to beta.
   const prior = priors[viewpoint];
   const postAlpha = prior.alpha + passes;
   const postBeta = prior.beta + failures;

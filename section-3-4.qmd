@@ -93,8 +93,8 @@ viewof p = Inputs.range([0, 1], {
 {
   const mle = 0.45;
 
-  // Kernel of L(p | y) for y = 9 and n = 20. The binomial coefficient
-  // is constant in p, so it cancels in the relative likelihood.
+  // How well this p explains 9 passes and 11 failures.
+  // The binomial coefficient does not change with p, so it is left out.
   function kernel(x) {
     return (x ** 9) * ((1 - x) ** 11);
   }

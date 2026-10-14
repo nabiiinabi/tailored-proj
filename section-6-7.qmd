@@ -60,6 +60,7 @@ This makes the update mathematically simple and visually intuitive.
 ::: {.binomial-panel}
 
 ```{ojs}
+// Off at first, so the curves stay unlabeled.
 viewof showAnswers = Inputs.toggle({
   label: "Show the answers",
   value: false
@@ -67,6 +68,7 @@ viewof showAnswers = Inputs.toggle({
 ```
 
 ```{ojs}
+// The reader's guess for curve A. The plot cell checks it against the real answer.
 viewof guessA = Inputs.select(
   ["Choose one", "Uncertain", "Expects a low pass rate", "Strongly expects a high pass rate"],
   {label: "Curve A", value: "Choose one"}
@@ -74,6 +76,7 @@ viewof guessA = Inputs.select(
 ```
 
 ```{ojs}
+// Same kind of menu for curve B.
 viewof guessB = Inputs.select(
   ["Choose one", "Uncertain", "Expects a low pass rate", "Strongly expects a high pass rate"],
   {label: "Curve B", value: "Choose one"}
@@ -81,6 +84,7 @@ viewof guessB = Inputs.select(
 ```
 
 ```{ojs}
+// Same kind of menu for curve C.
 viewof guessC = Inputs.select(
   ["Choose one", "Uncertain", "Expects a low pass rate", "Strongly expects a high pass rate"],
   {label: "Curve C", value: "Choose one"}
@@ -91,7 +95,7 @@ viewof guessC = Inputs.select(
 // Three unlabeled Beta priors on a shared density scale
 {
   // f(x) = x^(a-1) * (1-x)^(b-1) / B(a, b),
-  // with B(a, b) = Γ(a)Γ(b) / Γ(a+b) computed on the log scale.
+  // with B(a, b) = Γ(a)Γ(b) / Γ(a+b) computed 
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -112,6 +116,7 @@ viewof guessC = Inputs.select(
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Height of the Beta(a, b) curve at p = x. Outside 0 to 1, the height is 0.
   function betaDensity(x, a, b) {
     if (!(x > 0 && x < 1)) return 0;
     const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
@@ -119,6 +124,10 @@ viewof guessC = Inputs.select(
     return Number.isFinite(density) ? density : 0;
   }
 
+  // Points on that curve, from p near 0 to p near 1.
+  // Draw the curve as 201 dots, evenly spaced from p = 0 to p = 1.
+  // The density formula uses log(p) and log(1 - p), which break at the endpoints.
+  // So the height is calculated a tiny step inside (0, 1), while the dot stays at p.
   function betaCurve(a, b) {
     return Array.from({length: 201}, (_, i) => {
       const p = i / 200;
@@ -159,6 +168,7 @@ viewof guessC = Inputs.select(
         fontSize: "12px"
       }
     });
+    // Hide the description until "Show the answers" is on.
     const title = showAnswers ? card.answer : `Curve ${card.name}`;
     const note = !showAnswers
       ? ""

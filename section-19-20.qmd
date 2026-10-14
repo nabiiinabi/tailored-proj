@@ -84,6 +84,7 @@ The frequentist calculation conditions on the null value and looks at the data. 
 ::: {.binomial-panel}
 
 ```{ojs}
+// Which prior the credible interval uses. The Wilson interval stays the same.
 viewof comparedPrior = Inputs.radio(
   ["Lower-pass", "Neutral", "Higher-pass"],
   {label: "Prior", value: "Lower-pass"}
@@ -98,12 +99,17 @@ viewof comparedPrior = Inputs.radio(
     Neutral: {alpha: 1, beta: 1},
     "Higher-pass": {alpha: 7, beta: 3}
   };
+  // Calculate the posterior parameters based on the selected prior.
   const prior = priors[comparedPrior];
   const postAlpha = prior.alpha + 9;
   const postBeta = prior.beta + 11;
   const posteriorMean = postAlpha / (postAlpha + postBeta);
+  // Wilson 95% interval for 9 passes out of 20. It does not depend on the prior.
   const wilson = [0.258, 0.658];
 
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -124,6 +130,7 @@ viewof comparedPrior = Inputs.radio(
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Chance that p is below x. For whole-number parameters this is a binomial sum.
   function betaCDF(x, a, b) {
     if (x <= 0) return 0;
     if (x >= 1) return 1;
@@ -148,6 +155,7 @@ viewof comparedPrior = Inputs.radio(
     return (low + high) / 2;
   }
 
+  // Calculate the 95% credible interval.
   const credible = [
     betaQuantile(0.025, postAlpha, postBeta),
     betaQuantile(0.975, postAlpha, postBeta)
@@ -191,6 +199,7 @@ viewof comparedPrior = Inputs.radio(
     }
   });
 
+  // Three decimals, unless the last digit is 0. Then two decimals is enough.
   function formatMean(x) {
     const three = x.toFixed(3);
     return three.endsWith("0") ? x.toFixed(2) : three;

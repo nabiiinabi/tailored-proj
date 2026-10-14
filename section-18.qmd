@@ -132,6 +132,7 @@ For Gamma(62, 7), $\alpha' = 62$ and $\beta' = 7$. As in [Predicting Future Movi
 ::: {.binomial-panel}
 
 ```{ojs}
+// Switch between editing the prior and editing the five tweet counts.
 viewof whatChanges = Inputs.radio(
   ["Prior", "Observed data"],
   {label: "What to change", value: "Prior"}
@@ -170,6 +171,9 @@ viewof varied = whatChanges === "Prior"
   const sampleRate = total / n;
   const posteriorMean = postShape / postRate;
 
+  // Log of the gamma function. The Gamma formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -190,6 +194,7 @@ viewof varied = whatChanges === "Prior"
     return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
+  // Height of the Gamma(a, b) curve. Rate b is the second parameter.
   function gammaDensity(x, a, b) {
     if (x < 0 || a <= 0 || b <= 0) return 0;
     if (x === 0) return a === 1 ? b : 0;
@@ -198,6 +203,7 @@ viewof varied = whatChanges === "Prior"
     return Number.isFinite(density) ? density : 0;
   }
 
+  // Spread of a Gamma(a, b). Used only to choose how wide the x-axis should be.
   function gammaSd(a, b) {
     return Math.sqrt(a) / b;
   }
@@ -257,6 +263,10 @@ viewof varied = whatChanges === "Prior"
 
   const predictiveVariance = postShape * (postRate + 1) / (postRate * postRate);
   const kMax = Math.max(12, Math.ceil(posteriorMean + 4 * Math.sqrt(predictiveVariance)));
+  // Negative-binomial probabilities for the tweet count in the next minute.
+  // Refresher on the formula:
+  // P(Y = k) = (k + α - 1)! / (k! (α - 1)!) (β / (β + 1))^α (1 / (β + 1))^k
+  // Using logGamma to avoid overflow since JavaScript can't handle large numbers.
   const predictive = Array.from({length: kMax + 1}, (_, k) => {
     const logProbability = logGamma(postShape + k) - logGamma(postShape) - logGamma(k + 1)
       + postShape * Math.log(postRate / (postRate + 1))
@@ -291,11 +301,13 @@ viewof varied = whatChanges === "Prior"
     style: plotStyle
   });
 
+  // Short decimal. Drops a trailing zero, so 2.50 prints as 2.5.
   function formatParam(x) {
     const tenth = Math.round(x * 10) / 10;
     return Number.isInteger(tenth) ? String(tenth) : tenth.toFixed(1);
   }
 
+  // Two decimals, or a whole number when the value lands on one.
   function formatMean(x) {
     const hundredths = Math.round(x * 100) / 100;
     return Number.isInteger(hundredths) ? String(hundredths) : hundredths.toFixed(2);

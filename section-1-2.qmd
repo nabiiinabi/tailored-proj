@@ -98,7 +98,7 @@ viewof p = Inputs.range([0, 1], {
   }
 
   // P(Y = y) = C(n, y) * p^y * (1 - p)^(n - y).
-  // At p = 0 or p = 1 this is a point mass: JS treats 0^0 as 1.
+  // At p = 0 or p = 1 this is a point mass: JavaScript treats 0^0 as 1.
   const rows = Array.from({length: n + 1}, (_, y) => ({
     y,
     probability: binomialCoefficient(n, y) * (p ** y) * ((1 - p) ** (n - y))
@@ -130,6 +130,7 @@ viewof p = Inputs.range([0, 1], {
       Plot.barY(rows, {
         x: "y",
         y: "probability",
+        // Red bar is the observed count. The other counts stay dark.
         fill: d => d.y === 9 ? "#b32b2f" : "#2c3140",
         title: d => `Y = ${d.y}\nProbability = ${d.probability.toFixed(3)}`
       }),

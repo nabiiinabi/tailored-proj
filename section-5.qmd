@@ -123,6 +123,7 @@ It does not mean that there is a 41.2% probability that $p$ equals 0.50. It meas
       Plot.barY(rows, {
         x: "y",
         y: "probability",
+        // Red bars are the outcomes added into the p-value.
         fill: d => d.y <= 9 ? "#b32b2f" : "#2c3140",
         title: d => `Y = ${d.y}\nProbability = ${d.probability.toFixed(3)}`
       }),

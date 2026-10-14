@@ -1,7 +1,8 @@
+// Load Quantico for the site title, sidebar, and headings.
 @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /*-- scss:defaults --*/
-// Base document colors
+// Shared colors and fonts. These override the journal theme.
 $body-color: #15151E;
 $primary: #b32b2f;
 $body-font: Helvetica, sans-serif;
@@ -11,15 +12,17 @@ $sidebar-bg: #f6f3ef;
 $sidebar-fg: #15151E;
 $sidebar-hl: #b32b2f;
 
-// Code blocks
+// A negative value lightens the code-block background 
 $code-block-bg-alpha: -.8;
 
 /*-- scss:rules --*/
+// Title, headings, and sidebar all use Quantico.
 .navbar-brand, h1, h2, h3, h4, h5, h6, .navbar-nav .nav-link, .dropdown-item,
 #quarto-sidebar, #quarto-sidebar .sidebar-item-text, #quarto-sidebar .menu-text {
   font-family: $navbar-font !important;
 }
 
+// the site title stays white.
 .navbar .navbar-brand,
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus,
@@ -27,6 +30,7 @@ $code-block-bg-alpha: -.8;
   color: #ffffff;
 }
 
+// Left sidebar: a "Contents" label, and a red bar on the current page.
 #quarto-sidebar.sidebar-navigation {
   background: #f6f3ef;
   border-right: 1px solid #e3dcd4 !important;
@@ -90,6 +94,7 @@ $code-block-bg-alpha: -.8;
   font-size: 0.95rem;
 }
 
+// Page text, the red underline under the title, and the "Last updated" label.
 #quarto-document-content {
   color: #15151E;
 }
@@ -140,6 +145,7 @@ $code-block-bg-alpha: -.8;
   color: #15151E;
 }
 
+// "On this page" list. The current section is red.
 #TOC {
   border-left: 2px solid $primary;
   padding-left: 0.9rem;
@@ -163,6 +169,7 @@ $code-block-bg-alpha: -.8;
   color: $primary;
 }
 
+// The movie-poster callout on the question page.
 .bechdel-try.callout {
   border-left-color: $primary !important;
   background: #f6f3ef;
@@ -173,6 +180,7 @@ $code-block-bg-alpha: -.8;
   color: $primary;
 }
 
+// Two posters side by side. They stack on a narrow screen.
 .movie-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -205,6 +213,7 @@ $code-block-bg-alpha: -.8;
   }
 }
 
+// The box around each interactive figure: sliders, plot, and the sentence under it.
 .binomial-panel {
   background: #f6f3ef;
   border: 1px solid #e3dcd4;
@@ -247,6 +256,7 @@ $code-block-bg-alpha: -.8;
   width: min(100%, 28rem);
 }
 
+// Axis title, sentence under the plot, and the small color key.
 .binomial-ylabel {
   margin: 0.35rem 0 0;
   color: #5c5660;
@@ -274,6 +284,7 @@ $code-block-bg-alpha: -.8;
   margin-bottom: 0.6rem;
 }
 
+// Small color squares in the figure key. Some are lines instead of squares.
 .swatch {
   display: inline-block;
   width: 0.75rem;
@@ -336,6 +347,7 @@ $code-block-bg-alpha: -.8;
   background: white;
 }
 
+// Side-by-side cards for the "match the curve" questions.
 .beta-gallery {
   display: grid;
   gap: 0.75rem 1rem;
@@ -352,6 +364,7 @@ $code-block-bg-alpha: -.8;
   min-height: 2.6rem;
 }
 
+// Comparison table. It can scroll sideways on a small screen.
 .compare {
   margin: 1.5rem 0 2rem;
   overflow-x: auto;
@@ -405,6 +418,7 @@ $code-block-bg-alpha: -.8;
   background: #fbfaf8;
 }
 
+// Callout used for limits and caveats. Red top border, warm background.
 .callout.caveats {
   margin-top: 0.4rem;
   border: 1px solid #e3dcd4 !important;
@@ -440,6 +454,8 @@ $code-block-bg-alpha: -.8;
   margin-bottom: 0;
 }
 
+// Click-to-flip comic. A hidden checkbox stores the flip.
+// CSS turns the card over when that box is checked. No JavaScript.
 .flip-check {
   position: absolute;
   width: 1px;
@@ -534,6 +550,7 @@ $code-block-bg-alpha: -.8;
   font-size: 0.85rem;
 }
 
+// Skip the spin for people who asked the browser to reduce motion.
 @media (prefers-reduced-motion: reduce) {
   .flip-inner {
     transition: none;

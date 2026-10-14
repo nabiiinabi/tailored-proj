@@ -1,14 +1,19 @@
+# Site setup. `quarto render` turns the .qmd files into the website in docs/.
 project:
   type: website
   output-dir: docs
+  # Files to copy into docs/ as they are. .nojekyll tells GitHub Pages
+  # not to run Jekyll, which would hide folders whose names start with _.
   resources:
     - .nojekyll
     - images/frequentists_vs_bayesians_2x.png
 
-# Navigation options:
+# Sidebar links, in reading order. The text here is the link label.
+# The page title still comes from each .qmd file.
 # https://quarto.org/docs/websites/website-navigation.html
 website:
   title: "Beyond Pass or Fail"
+  # Needed so Quarto can write sitemap.xml and robots.txt.
   site-url: https://nabiiinabi.github.io/tailored-proj/
   navbar:
     pinned: true
@@ -48,6 +53,7 @@ website:
 
 format:
   html:
+    # "Last updated" uses the file's last edit time
     date: last-modified
     published-title: "Last updated"
     date-format: "MMMM D, YYYY"
@@ -56,11 +62,14 @@ format:
     crossrefs-hover: false
     code-line-numbers: true
     highlight-style: arrow
+    # journal is the base theme. theme-light.scss overrides its colors and layout.
     # https://quarto.org/docs/output-formats/html-themes.html
     theme:
       light: [journal, theme-light.scss]
     fontsize: 13pt
 
+# Hide the code that builds the figures. Readers see the figure
+# Also hide R messages and warnings if a chunk prints them.
 execute:
   echo: false
   message: false
