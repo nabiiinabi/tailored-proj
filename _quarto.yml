@@ -67,6 +67,9 @@ format:
     theme:
       light: [journal, theme-light.scss]
     fontsize: 13pt
+    # Reference list for pages that cite bib/library.bib. ASA author-date style.
+    bibliography: bib/library.bib
+    csl: bib/american-statistical-association.csl
 
 # Hide the code that builds the figures. Readers see the figure
 # Also hide R messages and warnings if a chunk prints them.

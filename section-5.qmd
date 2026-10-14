@@ -26,6 +26,16 @@ $$
 
 The MLE gives us a single best estimate of $p$, but it does not show how precise that estimate is. To represent the uncertainty caused by sampling only 20 movies, we can construct a 95% Wilson confidence interval:
 
+<!--
+First calculation of the Wilson interval. Later pages reuse (0.258, 0.658) and do not calculate it again.
+Source: Wilson (1927), https://doi.org/10.1080/01621459.1927.10502953
+
+For y = 9, n = 20, p-hat = 0.45, and z = 1.96:
+
+(p-hat + z^2 / (2n) ± z * sqrt( p-hat * (1 - p-hat) / n + z^2 / (4n^2) )) / (1 + z^2 / n)
+≈ (0.258, 0.658)
+-->
+
 $$
 (0.258,\ 0.658)
 $$
