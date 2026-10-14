@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-10-10">
+<meta name="dcterms.date" content="2026-10-14">
 
 <title>Conclusions and Takeaways – Beyond Pass or Fail</title>
 <style>
@@ -27,7 +27,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -125,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./section-1.html" class="sidebar-item-text sidebar-link">
+  <a href="./section-1.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">From Twenty Movies to an Unknown Proportion</span></a>
   </div>
 </li>
@@ -207,6 +227,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#what-a-probability-refers-to" id="toc-what-a-probability-refers-to" class="nav-link active" data-scroll-target="#what-a-probability-refers-to">What a probability refers to</a></li>
   <li><a href="#thank-you-for-reading-my-blog-d-leaving-you-with-a-comic-to-reflect-on-your-new-bayesian-knowledge" id="toc-thank-you-for-reading-my-blog-d-leaving-you-with-a-comic-to-reflect-on-your-new-bayesian-knowledge" class="nav-link" data-scroll-target="#thank-you-for-reading-my-blog-d-leaving-you-with-a-comic-to-reflect-on-your-new-bayesian-knowledge">Thank you for reading my blog :D Leaving you with a comic to reflect on your new Bayesian knowledge!</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Last updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 10, 2026</p>
+      <p class="date">October 14, 2026</p>
     </div>
   </div>
   
@@ -264,11 +285,32 @@ ul.task-list li input[type="checkbox"] {
 <p class="flip-credit">
 Randall Munroe, xkcd, “Frequentists vs.&nbsp;Bayesians.”
 </p>
+</section>
+<section id="sources" class="level3">
+<h3 class="anchored" data-anchor-id="sources">Sources</h3>
+<p>The Beta-Binomial model and the conjugate updates follow <span class="citation" data-cites="johnson2022bayes">Johnson et al. (<a href="#ref-johnson2022bayes" role="doc-biblioref">2022</a>)</span>, especially Chapters 3 and 5. Posterior prediction, including the part that goes beyond the course notes, is in Chapter 8 of that book. Prof.&nbsp;Wagaman’s notes are <span class="citation" data-cites="wagamanNotes16">Prof. Wagaman (<a href="#ref-wagamanNotes16" role="doc-biblioref">n.d.</a>)</span>, Chapter 16. The Stat 370 lecture notes are <span class="citation" data-cites="stat370notes"><span>“Lecture notes for <span>Stat</span> 370”</span> (<a href="#ref-stat370notes" role="doc-biblioref">n.d.</a>)</span>. The Wilson interval for 9 passes out of 20 is <span class="citation" data-cites="wilson1927">Wilson (<a href="#ref-wilson1927" role="doc-biblioref">1927</a>)</span>. The large-sample curves use the gamma approximation of <span class="citation" data-cites="lanczos1964">Lanczos (<a href="#ref-lanczos1964" role="doc-biblioref">1964</a>)</span>.</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-johnson2022bayes" class="csl-entry" role="listitem">
+Johnson, A. A., Ott, M. Q., and Dogucu, M. (2022), <em><a href="https://www.bayesrulesbook.com/">Bayes rules! An introduction to applied bayesian modeling</a></em>, Chapman; Hall/CRC.
+</div>
+<div id="ref-lanczos1964" class="csl-entry" role="listitem">
+Lanczos, C. (1964), <span>“A precision approximation of the gamma function,”</span> <em>Journal of the Society for Industrial and Applied Mathematics, Series B: Numerical Analysis</em>, 1, 86–96. <a href="https://doi.org/10.1137/0701008">https://doi.org/10.1137/0701008</a>.
+</div>
+<div id="ref-stat370notes" class="csl-entry" role="listitem">
+<span>“Lecture notes for <span>Stat</span> 370”</span> (n.d.).
+</div>
+<div id="ref-wagamanNotes16" class="csl-entry" role="listitem">
+Prof. Wagaman (n.d.). <span>“Notes 16.”</span>
+</div>
+<div id="ref-wilson1927" class="csl-entry" role="listitem">
+Wilson, E. B. (1927), <span>“Probable inference, the law of succession, and statistical inference,”</span> <em>Journal of the American Statistical Association</em>, 22, 209–212. <a href="https://doi.org/10.1080/01621459.1927.10502953">https://doi.org/10.1080/01621459.1927.10502953</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

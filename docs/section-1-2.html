@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-10-10">
+<meta name="dcterms.date" content="2026-10-14">
 
 <title>From Twenty Movies to an Unknown Proportion – Beyond Pass or Fail</title>
 <style>
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./section-1.html">From Twenty Movies to an Unknown Proportion</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">From Twenty Movies to an Unknown Proportion</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -191,7 +191,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./section-1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./section-1.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">From Twenty Movies to an Unknown Proportion</span></a>
   </div>
 </li>
@@ -294,7 +294,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Last updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 10, 2026</p>
+      <p class="date">October 14, 2026</p>
     </div>
   </div>
   
@@ -378,7 +378,7 @@ window.Quarto = {
 <span id="cb2-96"><a href="#cb2-96" aria-label="96"></a>  }</span>
 <span id="cb2-97"><a href="#cb2-97" aria-label="97"></a></span>
 <span id="cb2-98"><a href="#cb2-98" aria-label="98"></a>  <span class="co">// P(Y = y) = C(n, y) * p^y * (1 - p)^(n - y).</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-label="99"></a>  <span class="co">// At p = 0 or p = 1 this is a point mass: JS treats 0^0 as 1.</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-label="99"></a>  <span class="co">// At p = 0 or p = 1 this is a point mass: JavaScript treats 0^0 as 1.</span></span>
 <span id="cb2-100"><a href="#cb2-100" aria-label="100"></a>  <span class="kw">const</span> rows <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n <span class="op">+</span> <span class="dv">1</span>}<span class="op">,</span> (_<span class="op">,</span> y) <span class="kw">=&gt;</span> ({</span>
 <span id="cb2-101"><a href="#cb2-101" aria-label="101"></a>    y<span class="op">,</span></span>
 <span id="cb2-102"><a href="#cb2-102" aria-label="102"></a>    <span class="dt">probability</span><span class="op">:</span> <span class="fu">binomialCoefficient</span>(n<span class="op">,</span> y) <span class="op">*</span> (p <span class="op">**</span> y) <span class="op">*</span> ((<span class="dv">1</span> <span class="op">-</span> p) <span class="op">**</span> (n <span class="op">-</span> y))</span>
@@ -410,25 +410,26 @@ window.Quarto = {
 <span id="cb2-128"><a href="#cb2-128" aria-label="128"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(rows<span class="op">,</span> {</span>
 <span id="cb2-129"><a href="#cb2-129" aria-label="129"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span></span>
 <span id="cb2-130"><a href="#cb2-130" aria-label="130"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"probability"</span><span class="op">,</span></span>
-<span id="cb2-131"><a href="#cb2-131" aria-label="131"></a>        <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">y</span> <span class="op">===</span> <span class="dv">9</span> <span class="op">?</span> <span class="st">"#b32b2f"</span> <span class="op">:</span> <span class="st">"#2c3140"</span><span class="op">,</span></span>
-<span id="cb2-132"><a href="#cb2-132" aria-label="132"></a>        <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`Y = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">y</span><span class="sc">}\n</span><span class="vs">Probability = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">probability</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-label="133"></a>      })<span class="op">,</span></span>
-<span id="cb2-134"><a href="#cb2-134" aria-label="134"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb2-135"><a href="#cb2-135" aria-label="135"></a>    ]<span class="op">,</span></span>
-<span id="cb2-136"><a href="#cb2-136" aria-label="136"></a>    <span class="dt">style</span><span class="op">:</span> {</span>
-<span id="cb2-137"><a href="#cb2-137" aria-label="137"></a>      <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span></span>
-<span id="cb2-138"><a href="#cb2-138" aria-label="138"></a>      <span class="dt">color</span><span class="op">:</span> <span class="st">"#15151E"</span><span class="op">,</span></span>
-<span id="cb2-139"><a href="#cb2-139" aria-label="139"></a>      <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Helvetica, sans-serif"</span><span class="op">,</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-label="140"></a>      <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span></span>
-<span id="cb2-141"><a href="#cb2-141" aria-label="141"></a>    }</span>
-<span id="cb2-142"><a href="#cb2-142" aria-label="142"></a>  })<span class="op">;</span></span>
-<span id="cb2-143"><a href="#cb2-143" aria-label="143"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="binomial-figure"&gt;</span></span>
-<span id="cb2-144"><a href="#cb2-144" aria-label="144"></a><span class="vs">    &lt;p class="binomial-ylabel"&gt;Probability&lt;/p&gt;</span></span>
-<span id="cb2-145"><a href="#cb2-145" aria-label="145"></a><span class="vs">    </span><span class="sc">${</span>plot<span class="sc">}</span></span>
-<span id="cb2-146"><a href="#cb2-146" aria-label="146"></a><span class="vs">    &lt;p class="binomial-readout"&gt;When &lt;em&gt;p&lt;/em&gt; = </span><span class="sc">${</span>p<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, the probability of exactly 9 passing movies is &lt;strong&gt;</span><span class="sc">${</span>chanceText<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;</span></span>
-<span id="cb2-147"><a href="#cb2-147" aria-label="147"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Observed sample, Y = 9 &lt;span class="swatch swatch-other"&gt;&lt;/span&gt; Other possible outcomes&lt;/p&gt;</span></span>
-<span id="cb2-148"><a href="#cb2-148" aria-label="148"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb2-149"><a href="#cb2-149" aria-label="149"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-131"><a href="#cb2-131" aria-label="131"></a>        <span class="co">// Red bar is the observed count. The other counts stay dark.</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-label="132"></a>        <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">y</span> <span class="op">===</span> <span class="dv">9</span> <span class="op">?</span> <span class="st">"#b32b2f"</span> <span class="op">:</span> <span class="st">"#2c3140"</span><span class="op">,</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-label="133"></a>        <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`Y = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">y</span><span class="sc">}\n</span><span class="vs">Probability = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">probability</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-label="134"></a>      })<span class="op">,</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-label="135"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb2-136"><a href="#cb2-136" aria-label="136"></a>    ]<span class="op">,</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-label="137"></a>    <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb2-138"><a href="#cb2-138" aria-label="138"></a>      <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-label="139"></a>      <span class="dt">color</span><span class="op">:</span> <span class="st">"#15151E"</span><span class="op">,</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-label="140"></a>      <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Helvetica, sans-serif"</span><span class="op">,</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-label="141"></a>      <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-label="142"></a>    }</span>
+<span id="cb2-143"><a href="#cb2-143" aria-label="143"></a>  })<span class="op">;</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-label="144"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="binomial-figure"&gt;</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-label="145"></a><span class="vs">    &lt;p class="binomial-ylabel"&gt;Probability&lt;/p&gt;</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-label="146"></a><span class="vs">    </span><span class="sc">${</span>plot<span class="sc">}</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-label="147"></a><span class="vs">    &lt;p class="binomial-readout"&gt;When &lt;em&gt;p&lt;/em&gt; = </span><span class="sc">${</span>p<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, the probability of exactly 9 passing movies is &lt;strong&gt;</span><span class="sc">${</span>chanceText<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-label="148"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Observed sample, Y = 9 &lt;span class="swatch swatch-other"&gt;&lt;/span&gt; Other possible outcomes&lt;/p&gt;</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-label="149"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-label="150"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="expression">
 
@@ -443,7 +444,7 @@ window.Quarto = {
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gc2xpZGVyIGZvciB0aGUgdW5rbm93biBwb3B1bGF0aW9uIHByb3BvcnRpb24gcFxudmlld29mIHAgPSBJbnB1dHMucmFuZ2UoWzAsIDFdLCB7XG4gIGxhYmVsOiBcInBcIixcbiAgdmFsdWU6IDAuNDUsXG4gIHN0ZXA6IDAuMDFcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIGJpbm9taWFsIHByb2JhYmlsaXRpZXMgZm9yIFkgPSAwLCAxLCAuLi4sIG5cbntcbiAgY29uc3QgbiA9IDIwO1xuXG4gIC8vIEMobiwgeSkgPSBuISAvICh5ISAobiAtIHkpISksIG11bHRpcGxpZWQgb25lIGZhY3RvciBhdCBhIHRpbWVcbiAgLy8gc28gdGhlIGludGVybWVkaWF0ZSB2YWx1ZXMgc3RheSBleGFjdCBmb3IgbiA9IDIwLlxuICBmdW5jdGlvbiBiaW5vbWlhbENvZWZmaWNpZW50KG4sIHkpIHtcbiAgICBjb25zdCBrID0gTWF0aC5taW4oeSwgbiAtIHkpO1xuICAgIGxldCBjb2VmZmljaWVudCA9IDE7XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBrOyBpKyspIHtcbiAgICAgIGNvZWZmaWNpZW50ICo9IChuIC0gaSkgLyAoaSArIDEpO1xuICAgIH1cbiAgICByZXR1cm4gY29lZmZpY2llbnQ7XG4gIH1cblxuICAvLyBQKFkgPSB5KSA9IEMobiwgeSkgKiBwXnkgKiAoMSAtIHApXihuIC0geSkuXG4gIC8vIEF0IHAgPSAwIG9yIHAgPSAxIHRoaXMgaXMgYSBwb2ludCBtYXNzOiBKUyB0cmVhdHMgMF4wIGFzIDEuXG4gIGNvbnN0IHJvd3MgPSBBcnJheS5mcm9tKHtsZW5ndGg6IG4gKyAxfSwgKF8sIHkpID0+ICh7XG4gICAgeSxcbiAgICBwcm9iYWJpbGl0eTogYmlub21pYWxDb2VmZmljaWVudChuLCB5KSAqIChwICoqIHkpICogKCgxIC0gcCkgKiogKG4gLSB5KSlcbiAgfSkpO1xuXG4gIC8vIFRoZSBzYW1wbGUgaGFkIDkgcGFzc2luZyBtb3ZpZXMsIHNvIHRoaXMgaXMgUChZID0gOSB8IHApLlxuICBjb25zdCBvYnNlcnZlZCA9IHJvd3NbOV0ucHJvYmFiaWxpdHk7XG4gIGNvbnN0IGNoYW5jZSA9IG9ic2VydmVkICogMTAwO1xuICBjb25zdCBjaGFuY2VUZXh0ID0gY2hhbmNlID49IDFcbiAgICA/IGAke2NoYW5jZS50b0ZpeGVkKDEpfSVgXG4gICAgOiBjaGFuY2UgPj0gMC4wMVxuICAgICAgPyBgJHtjaGFuY2UudG9GaXhlZCgyKX0lYFxuICAgICAgOiBjaGFuY2UgPiAwXG4gICAgICAgID8gXCI8IDAuMDElXCJcbiAgICAgICAgOiBcIjAlXCI7XG4gIGNvbnN0IHBsb3QgPSBQbG90LnBsb3Qoe1xuICAgIHdpZHRoOiBNYXRoLm1heCgyODAsIHdpZHRoIC0gNCksXG4gICAgaGVpZ2h0OiAzNjAsXG4gICAgbWFyZ2luVG9wOiAxNixcbiAgICBtYXJnaW5SaWdodDogMTYsXG4gICAgbWFyZ2luQm90dG9tOiA0OCxcbiAgICBtYXJnaW5MZWZ0OiA1MixcbiAgICB4OiB7XG4gICAgICBsYWJlbDogXCJOdW1iZXIgb2YgcGFzc2luZyBtb3ZpZXMsIFlcIixcbiAgICAgIHRpY2tzOiBbMCwgMiwgNCwgNiwgOCwgMTAsIDEyLCAxNCwgMTYsIDE4LCAyMF1cbiAgICB9LFxuICAgIHk6IHtsYWJlbDogbnVsbCwgZ3JpZDogdHJ1ZSwgbmljZTogdHJ1ZX0sXG4gICAgbWFya3M6IFtcbiAgICAgIFBsb3QuYmFyWShyb3dzLCB7XG4gICAgICAgIHg6IFwieVwiLFxuICAgICAgICB5OiBcInByb2JhYmlsaXR5XCIsXG4gICAgICAgIGZpbGw6IGQgPT4gZC55ID09PSA5ID8gXCIjYjMyYjJmXCIgOiBcIiMyYzMxNDBcIixcbiAgICAgICAgdGl0bGU6IGQgPT4gYFkgPSAke2QueX1cXG5Qcm9iYWJpbGl0eSA9ICR7ZC5wcm9iYWJpbGl0eS50b0ZpeGVkKDMpfWBcbiAgICAgIH0pLFxuICAgICAgUGxvdC5ydWxlWShbMF0pXG4gICAgXSxcbiAgICBzdHlsZToge1xuICAgICAgYmFja2dyb3VuZDogXCJ0cmFuc3BhcmVudFwiLFxuICAgICAgY29sb3I6IFwiIzE1MTUxRVwiLFxuICAgICAgZm9udEZhbWlseTogXCJIZWx2ZXRpY2EsIHNhbnMtc2VyaWZcIixcbiAgICAgIGZvbnRTaXplOiBcIjEzcHhcIlxuICAgIH1cbiAgfSk7XG4gIHJldHVybiBodG1sYDxkaXYgY2xhc3M9XCJiaW5vbWlhbC1maWd1cmVcIj5cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLXlsYWJlbFwiPlByb2JhYmlsaXR5PC9wPlxuICAgICR7cGxvdH1cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLXJlYWRvdXRcIj5XaGVuIDxlbT5wPC9lbT4gPSAke3AudG9GaXhlZCgyKX0sIHRoZSBwcm9iYWJpbGl0eSBvZiBleGFjdGx5IDkgcGFzc2luZyBtb3ZpZXMgaXMgPHN0cm9uZz4ke2NoYW5jZVRleHR9PC9zdHJvbmc+LjwvcD5cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLWxlZ2VuZFwiPjxzcGFuIGNsYXNzPVwic3dhdGNoIHN3YXRjaC1vYnNlcnZlZFwiPjwvc3Bhbj4gT2JzZXJ2ZWQgc2FtcGxlLCBZID0gOSA8c3BhbiBjbGFzcz1cInN3YXRjaCBzd2F0Y2gtb3RoZXJcIj48L3NwYW4+IE90aGVyIHBvc3NpYmxlIG91dGNvbWVzPC9wPlxuICA8L2Rpdj5gO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwJykifV19
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gc2xpZGVyIGZvciB0aGUgdW5rbm93biBwb3B1bGF0aW9uIHByb3BvcnRpb24gcFxudmlld29mIHAgPSBJbnB1dHMucmFuZ2UoWzAsIDFdLCB7XG4gIGxhYmVsOiBcInBcIixcbiAgdmFsdWU6IDAuNDUsXG4gIHN0ZXA6IDAuMDFcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIGJpbm9taWFsIHByb2JhYmlsaXRpZXMgZm9yIFkgPSAwLCAxLCAuLi4sIG5cbntcbiAgY29uc3QgbiA9IDIwO1xuXG4gIC8vIEMobiwgeSkgPSBuISAvICh5ISAobiAtIHkpISksIG11bHRpcGxpZWQgb25lIGZhY3RvciBhdCBhIHRpbWVcbiAgLy8gc28gdGhlIGludGVybWVkaWF0ZSB2YWx1ZXMgc3RheSBleGFjdCBmb3IgbiA9IDIwLlxuICBmdW5jdGlvbiBiaW5vbWlhbENvZWZmaWNpZW50KG4sIHkpIHtcbiAgICBjb25zdCBrID0gTWF0aC5taW4oeSwgbiAtIHkpO1xuICAgIGxldCBjb2VmZmljaWVudCA9IDE7XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBrOyBpKyspIHtcbiAgICAgIGNvZWZmaWNpZW50ICo9IChuIC0gaSkgLyAoaSArIDEpO1xuICAgIH1cbiAgICByZXR1cm4gY29lZmZpY2llbnQ7XG4gIH1cblxuICAvLyBQKFkgPSB5KSA9IEMobiwgeSkgKiBwXnkgKiAoMSAtIHApXihuIC0geSkuXG4gIC8vIEF0IHAgPSAwIG9yIHAgPSAxIHRoaXMgaXMgYSBwb2ludCBtYXNzOiBKYXZhU2NyaXB0IHRyZWF0cyAwXjAgYXMgMS5cbiAgY29uc3Qgcm93cyA9IEFycmF5LmZyb20oe2xlbmd0aDogbiArIDF9LCAoXywgeSkgPT4gKHtcbiAgICB5LFxuICAgIHByb2JhYmlsaXR5OiBiaW5vbWlhbENvZWZmaWNpZW50KG4sIHkpICogKHAgKiogeSkgKiAoKDEgLSBwKSAqKiAobiAtIHkpKVxuICB9KSk7XG5cbiAgLy8gVGhlIHNhbXBsZSBoYWQgOSBwYXNzaW5nIG1vdmllcywgc28gdGhpcyBpcyBQKFkgPSA5IHwgcCkuXG4gIGNvbnN0IG9ic2VydmVkID0gcm93c1s5XS5wcm9iYWJpbGl0eTtcbiAgY29uc3QgY2hhbmNlID0gb2JzZXJ2ZWQgKiAxMDA7XG4gIGNvbnN0IGNoYW5jZVRleHQgPSBjaGFuY2UgPj0gMVxuICAgID8gYCR7Y2hhbmNlLnRvRml4ZWQoMSl9JWBcbiAgICA6IGNoYW5jZSA+PSAwLjAxXG4gICAgICA/IGAke2NoYW5jZS50b0ZpeGVkKDIpfSVgXG4gICAgICA6IGNoYW5jZSA+IDBcbiAgICAgICAgPyBcIjwgMC4wMSVcIlxuICAgICAgICA6IFwiMCVcIjtcbiAgY29uc3QgcGxvdCA9IFBsb3QucGxvdCh7XG4gICAgd2lkdGg6IE1hdGgubWF4KDI4MCwgd2lkdGggLSA0KSxcbiAgICBoZWlnaHQ6IDM2MCxcbiAgICBtYXJnaW5Ub3A6IDE2LFxuICAgIG1hcmdpblJpZ2h0OiAxNixcbiAgICBtYXJnaW5Cb3R0b206IDQ4LFxuICAgIG1hcmdpbkxlZnQ6IDUyLFxuICAgIHg6IHtcbiAgICAgIGxhYmVsOiBcIk51bWJlciBvZiBwYXNzaW5nIG1vdmllcywgWVwiLFxuICAgICAgdGlja3M6IFswLCAyLCA0LCA2LCA4LCAxMCwgMTIsIDE0LCAxNiwgMTgsIDIwXVxuICAgIH0sXG4gICAgeToge2xhYmVsOiBudWxsLCBncmlkOiB0cnVlLCBuaWNlOiB0cnVlfSxcbiAgICBtYXJrczogW1xuICAgICAgUGxvdC5iYXJZKHJvd3MsIHtcbiAgICAgICAgeDogXCJ5XCIsXG4gICAgICAgIHk6IFwicHJvYmFiaWxpdHlcIixcbiAgICAgICAgLy8gUmVkIGJhciBpcyB0aGUgb2JzZXJ2ZWQgY291bnQuIFRoZSBvdGhlciBjb3VudHMgc3RheSBkYXJrLlxuICAgICAgICBmaWxsOiBkID0+IGQueSA9PT0gOSA/IFwiI2IzMmIyZlwiIDogXCIjMmMzMTQwXCIsXG4gICAgICAgIHRpdGxlOiBkID0+IGBZID0gJHtkLnl9XFxuUHJvYmFiaWxpdHkgPSAke2QucHJvYmFiaWxpdHkudG9GaXhlZCgzKX1gXG4gICAgICB9KSxcbiAgICAgIFBsb3QucnVsZVkoWzBdKVxuICAgIF0sXG4gICAgc3R5bGU6IHtcbiAgICAgIGJhY2tncm91bmQ6IFwidHJhbnNwYXJlbnRcIixcbiAgICAgIGNvbG9yOiBcIiMxNTE1MUVcIixcbiAgICAgIGZvbnRGYW1pbHk6IFwiSGVsdmV0aWNhLCBzYW5zLXNlcmlmXCIsXG4gICAgICBmb250U2l6ZTogXCIxM3B4XCJcbiAgICB9XG4gIH0pO1xuICByZXR1cm4gaHRtbGA8ZGl2IGNsYXNzPVwiYmlub21pYWwtZmlndXJlXCI+XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC15bGFiZWxcIj5Qcm9iYWJpbGl0eTwvcD5cbiAgICAke3Bsb3R9XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC1yZWFkb3V0XCI+V2hlbiA8ZW0+cDwvZW0+ID0gJHtwLnRvRml4ZWQoMil9LCB0aGUgcHJvYmFiaWxpdHkgb2YgZXhhY3RseSA5IHBhc3NpbmcgbW92aWVzIGlzIDxzdHJvbmc+JHtjaGFuY2VUZXh0fTwvc3Ryb25nPi48L3A+XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC1sZWdlbmRcIj48c3BhbiBjbGFzcz1cInN3YXRjaCBzd2F0Y2gtb2JzZXJ2ZWRcIj48L3NwYW4+IE9ic2VydmVkIHNhbXBsZSwgWSA9IDkgPHNwYW4gY2xhc3M9XCJzd2F0Y2ggc3dhdGNoLW90aGVyXCI+PC9zcGFuPiBPdGhlciBwb3NzaWJsZSBvdXRjb21lczwvcD5cbiAgPC9kaXY+YDtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncCcpIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
