@@ -1,5 +1,8 @@
 ---
 title: "Conclusions and Takeaways"
+bibliography: bib/library.bib
+nocite: |
+  @*
 ---
 
 Bayesian inference gives us a way to **learn about an unknown quantity, describe our uncertainty, and revise our conclusions as evidence arrives.**
@@ -44,3 +47,8 @@ A probability about data under an assumed parameter value is a frequentist state
 </div>
 
 <p class="flip-credit">Randall Munroe, xkcd, “Frequentists vs. Bayesians.”</p>
+
+## References
+
+::: {#refs}
+:::

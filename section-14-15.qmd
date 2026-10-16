@@ -45,9 +45,11 @@ If the conclusion remains stable across multiple defensible priors, it is relati
     {name: "Higher-pass", alpha: 7, beta: 3, stroke: "#b32b2f"}
   ];
 
-  // Log of the gamma function. The Beta formula needs it.
-  // Working in logs keeps the numbers from overflowing.
-  // The long list of decimals is the Lanczos approximation.
+  // Log of the gamma function, using the Lanczos approximation
+  // (Lanczos 1964, https://doi.org/10.1137/0701008).
+  // The next figure on this page uses a sample of 500 movies.
+  // That needs Γ(α + β + n), past Γ(171), which JavaScript stores as Infinity.
+  // Both figures therefore use logs instead of gamma values.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -216,9 +218,11 @@ viewof sampleSize = Inputs.radio(
     {name: "Higher-pass", alpha: 7, beta: 3, stroke: "#b32b2f"}
   ];
 
-  // Log of the gamma function. The Beta formula needs it.
-  // Working in logs keeps the numbers from overflowing.
-  // The long list of decimals is the Lanczos approximation.
+  // Log of the gamma function, using the Lanczos approximation
+  // (Lanczos 1964, https://doi.org/10.1137/0701008).
+  // A sample of 500 movies needs Γ(α + β + n), which is past Γ(171).
+  // JavaScript cannot store a number that large: it becomes Infinity.
+  // The density is therefore built from logs, not from the gamma values.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
