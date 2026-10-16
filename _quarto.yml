@@ -26,7 +26,7 @@ website:
         icon: book
       - href: the-question.qmd
         text: "The Question"
-      - href: section-1.qmd
+      - href: section-1-2.qmd
         text: "From Twenty Movies to an Unknown Proportion"
       - href: section-3-4.qmd
         text: "Two Ways to Describe Uncertainty"
