@@ -26,7 +26,7 @@ website:
         icon: book
       - href: the-question.qmd
         text: "The Question"
-      - href: section-1-2.qmd
+      - href: section-1.qmd
         text: "From Twenty Movies to an Unknown Proportion"
       - href: section-3-4.qmd
         text: "Two Ways to Describe Uncertainty"
@@ -67,9 +67,6 @@ format:
     theme:
       light: [journal, theme-light.scss]
     fontsize: 13pt
-    # Reference list for pages that cite bib/library.bib. ASA author-date style.
-    bibliography: bib/library.bib
-    csl: bib/american-statistical-association.csl
 
 # Hide the code that builds the figures. Readers see the figure
 # Also hide R messages and warnings if a chunk prints them.

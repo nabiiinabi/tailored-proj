@@ -55,20 +55,33 @@ viewof revealed = Inputs.range([0, 20], {
   const priorAlpha = 3;
   const priorBeta = 7;
 
-  // Gamma(n) = (n - 1)! for a whole number n: 1 × 2 × ... × (n - 1).
-  // After 20 movies the posterior is Beta(12, 18). Gamma(30) still fits in JavaScript.
-  function gamma(n) {
-    let value = 1;
-    for (let k = 2; k < n; k++) value *= k;
-    return value;
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
-  // Height of the Beta(a, b) curve at p = x. Outside 0 to 1, the height is 0.
-  // B(a, b) = Gamma(a) Gamma(b) / Gamma(a + b).
   function betaDensity(x, a, b) {
     if (!(x > 0 && x < 1)) return 0;
-    const B = gamma(a) * gamma(b) / gamma(a + b);
-    const density = (x ** (a - 1)) * ((1 - x) ** (b - 1)) / B;
+    const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
+    const density = Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
     return Number.isFinite(density) ? density : 0;
   }
 
@@ -425,12 +438,27 @@ viewof draws = Inputs.button("Draw an imaginary sample")
   const postBeta = 18;
   const m = futureCount;
 
-  // Gamma(n) = (n - 1)! for a whole number n: 1 × 2 × ... × (n - 1).
-  // The largest value here is about Gamma(60), for 30 future movies. That still fits.
-  function gamma(n) {
-    let value = 1;
-    for (let k = 2; k < n; k++) value *= k;
-    return value;
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
 
   // Log of "n choose k", added one factor at a time so it does not overflow.
@@ -440,10 +468,9 @@ viewof draws = Inputs.button("Draw an imaginary sample")
     return sum;
   }
 
-  // Log of B(a, b) = Gamma(a) Gamma(b) / Gamma(a + b).
-  // Gamma(60) is about 10^80. Logging each piece keeps that product from becoming Infinity.
+  // Log of the Beta function, Beta(a, b) = Gamma(a)Gamma(b) / Gamma(a + b).
   function logBeta(a, b) {
-    return Math.log(gamma(a)) + Math.log(gamma(b)) - Math.log(gamma(a + b));
+    return logGamma(a) + logGamma(b) - logGamma(a + b);
   }
 
   // Repeatable random numbers, so each click adds one stable imaginary sample.
@@ -467,8 +494,6 @@ viewof draws = Inputs.button("Draw an imaginary sample")
   const logNormalizer = logBeta(postAlpha, postBeta);
   const rows = Array.from({length: m + 1}, (_, k) => ({
     k,
-    // The bar height is a small probability made of huge factors.
-    // Add their logs, then exp once, instead of multiplying the factors directly.
     probability: Math.exp(logChoose(m, k) + logBeta(postAlpha + k, postBeta + m - k) - logNormalizer)
   }));
   const expected = m * postAlpha / (postAlpha + postBeta);

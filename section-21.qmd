@@ -44,7 +44,3 @@ A probability about data under an assumed parameter value is a frequentist state
 </div>
 
 <p class="flip-credit">Randall Munroe, xkcd, “Frequentists vs. Bayesians.”</p>
-
-### Sources
-
-The Beta-Binomial model and the conjugate updates follow @johnson2022bayes, especially Chapters 3 and 5. Posterior prediction, including the part that goes beyond the course notes, is in Chapter 8 of that book. Prof. Wagaman's notes are @wagamanNotes16, Chapter 16. The Stat 370 lecture notes are @stat370notes. The Wilson interval for 9 passes out of 20 is @wilson1927. The large-sample curves use the gamma approximation of @lanczos1964.

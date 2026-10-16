@@ -45,11 +45,9 @@ If the conclusion remains stable across multiple defensible priors, it is relati
     {name: "Higher-pass", alpha: 7, beta: 3, stroke: "#b32b2f"}
   ];
 
-  // Exact gamma values, Gamma(n) = (n - 1)!, become Infinity in JavaScript near Gamma(172).
-  // The 500-movie sample needs Gamma(alpha + beta + 500), which is past that limit.
-  // This approximates log Gamma(z) instead of computing Gamma(z).
-  // Lanczos (1964). The decimals are the g = 7 constants from
-  // https://en.wikipedia.org/wiki/Lanczos_approximation
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -153,7 +151,6 @@ If the conclusion remains stable across multiple defensible priors, it is relati
     ${plot}
     <p class="binomial-readout">The posterior probability that <em>p</em> is below 0.50 is <strong>${bits[0]}</strong>, <strong>${bits[1]}</strong>, and <strong>${bits[2]}</strong>.</p>
     <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Lower-pass <span class="swatch swatch-max"></span> Neutral <span class="swatch swatch-observed"></span> Higher-pass</p>
-    <p class="binomial-readout">* Not exact gamma values. The curves use the <a href="https://en.wikipedia.org/wiki/Lanczos_approximation">Lanczos approximation</a> (Lanczos, 1964). The next figure needs it: a sample of 500 makes exact gamma values too large for JavaScript.</p>
   </div>`;
 }
 ```
@@ -219,11 +216,9 @@ viewof sampleSize = Inputs.radio(
     {name: "Higher-pass", alpha: 7, beta: 3, stroke: "#b32b2f"}
   ];
 
-  // Exact gamma values, Gamma(n) = (n - 1)!, become Infinity in JavaScript near Gamma(172).
-  // The 500-movie sample needs Gamma(alpha + beta + 500), which is past that limit.
-  // This approximates log Gamma(z) instead of computing Gamma(z).
-  // Lanczos (1964). The decimals are the g = 7 constants from
-  // https://en.wikipedia.org/wiki/Lanczos_approximation
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
   function logGamma(z) {
     const c = [
       0.99999999999980993,
@@ -315,7 +310,6 @@ viewof sampleSize = Inputs.radio(
     ${plot}
     <p class="binomial-readout">This sample has <strong>${passes}</strong> passes out of <strong>${n}</strong>, a rate of <strong>${rate.toFixed(2)}</strong>. The posterior means are <strong>${means}</strong>.</p>
     <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Lower-pass <span class="swatch swatch-max"></span> Neutral <span class="swatch swatch-observed"></span> Higher-pass</p>
-    <p class="binomial-readout">* Not exact gamma values. The curves use the <a href="https://en.wikipedia.org/wiki/Lanczos_approximation">Lanczos approximation</a> (Lanczos, 1964), because a sample of 500 makes exact gamma values too large for JavaScript.</p>
   </div>`;
 }
 ```

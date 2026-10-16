@@ -84,7 +84,7 @@ The frequentist calculation conditions on the null value and looks at the data. 
 ::: {.binomial-panel}
 
 ```{ojs}
-// The selected name is passed into the plot cell as comparedPrior.
+// Which prior the credible interval uses. The Wilson interval stays the same.
 viewof comparedPrior = Inputs.radio(
   ["Lower-pass", "Neutral", "Higher-pass"],
   {label: "Prior", value: "Lower-pass"}
@@ -92,23 +92,43 @@ viewof comparedPrior = Inputs.radio(
 ```
 
 ```{ojs}
-// Two intervals for the same 9 passes out of 20.
-// The menu name picks one prior. The Wilson interval does not use that choice.
+// Wilson confidence interval beside the credible interval for the selected posterior
 {
-  // Menu label -> Beta(alpha, beta) before seeing the sample.
   const priors = {
     "Lower-pass": {alpha: 3, beta: 7},
     Neutral: {alpha: 1, beta: 1},
     "Higher-pass": {alpha: 7, beta: 3}
   };
-  // comparedPrior is the menu selection. Add the 9 passes to alpha and the 11 failures to beta.
+  // Calculate the posterior parameters based on the selected prior.
   const prior = priors[comparedPrior];
   const postAlpha = prior.alpha + 9;
   const postBeta = prior.beta + 11;
   const posteriorMean = postAlpha / (postAlpha + postBeta);
-  // Already calculated in section 5 for 9 passes out of 20. Not recalculated here.
-  // The prior does not enter that formula.
+  // Wilson 95% interval for 9 passes out of 20. It does not depend on the prior.
   const wilson = [0.258, 0.658];
+
+  // Log of the gamma function. The Beta formula needs it.
+  // Working in logs keeps the numbers from overflowing.
+  // The long list of decimals is the Lanczos approximation.
+  function logGamma(z) {
+    const c = [
+      0.99999999999980993,
+      676.5203681218851,
+      -1259.1392167224028,
+      771.32342877765313,
+      -176.61502916214059,
+      12.507343278686905,
+      -0.13857109526572012,
+      9.9843695780195716e-6,
+      1.5056327351493116e-7
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+    z -= 1;
+    let x = c[0];
+    for (let i = 1; i < c.length; i++) x += c[i] / (z + i);
+    const t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+  }
 
   // Chance that p is below x. For whole-number parameters this is a binomial sum.
   function betaCDF(x, a, b) {
@@ -160,10 +180,7 @@ viewof comparedPrior = Inputs.radio(
     },
     y: {label: null, domain: rows.map(row => row.name)},
     marks: [
-      // Gray line at p = 0.50. It does not depend on the prior.
       Plot.ruleX([0.5], {stroke: "#8a837c"}),
-      // Red bar: credible interval from the selected posterior.
-      // Gray bar: Wilson interval, the same for every prior.
       Plot.link(rows, {
         x1: "start",
         x2: "end",
@@ -172,7 +189,6 @@ viewof comparedPrior = Inputs.radio(
         strokeWidth: 10,
         strokeLinecap: "round"
       }),
-      // Dots: posterior mean on the red bar, and 0.45 (the MLE) on the Wilson bar.
       Plot.dot(rows, {x: "point", y: "name", fill: "color", r: 5})
     ],
     style: {
