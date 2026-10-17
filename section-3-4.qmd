@@ -99,6 +99,8 @@ viewof p = Inputs.range([0, 1], {
     return (x ** 9) * ((1 - x) ** 11);
   }
 
+  // Here we have 401 points between 0 and 1 for the likelihood curve
+  // Relative likelihood is the likelihood divided by the likelihood at the peak (normalization)
   const peak = kernel(mle);
   const curve = Array.from({length: 401}, (_, i) => {
     const x = i / 400;

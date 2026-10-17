@@ -176,4 +176,4 @@ P(Y\leq9\mid p=0.50)
 P(p<0.50\mid Y=9).
 $$
 
-The p-value answers the first question. To answer the second, we need a probability model for our uncertainty about $p$. That is where Bayesian inference begins.
+The p-value in the frequentist framework answers the first question. To answer the second, we need a probability model for our uncertainty about $p$. That is where Bayesian inference begins.

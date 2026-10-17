@@ -51,4 +51,4 @@ The observed pass rate is:
 
 $9/20 = 0.45$
 
-In other words, 45% of the movies in this particular sample passed. Our goal is to determine what this result can tell us about $\pi$, the unknown proportion of comparable movies that pass the test.
+In other words, 45% of the movies in this particular sample passed. Our goal is to determine what this result can tell us about $p$, the unknown proportion of comparable movies that pass the test.
