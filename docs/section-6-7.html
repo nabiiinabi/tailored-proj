@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -346,11 +346,11 @@ f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 &lt
 <p><strong>Match each curve to a description, then show the answers. The curves are drawn on the same density scale.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="62" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb1-62"><a href="#cb1-62" aria-label="62"></a><span class="co">// Off at first, so the curves stay unlabeled.</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="62" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb1-62"><a href="#cb1-62" aria-label="62"></a><span class="co">// Off at first, so the curves stay unlabeled.</span></span>
 <span id="cb1-63"><a href="#cb1-63" aria-label="63"></a>viewof showAnswers <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({</span>
 <span id="cb1-64"><a href="#cb1-64" aria-label="64"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Show the answers"</span><span class="op">,</span></span>
 <span id="cb1-65"><a href="#cb1-65" aria-label="65"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-label="66"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-66"><a href="#cb1-66" aria-label="66"></a>})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -358,11 +358,11 @@ f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 &lt
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="70" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 69;"><span id="cb2-70"><a href="#cb2-70" aria-label="70"></a><span class="co">// The reader's guess for curve A. The plot cell checks it against the real answer.</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="70" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 69;"><span id="cb2-70"><a href="#cb2-70" aria-label="70"></a><span class="co">// The reader's guess for curve A. The plot cell checks it against the real answer.</span></span>
 <span id="cb2-71"><a href="#cb2-71" aria-label="71"></a>viewof guessA <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
 <span id="cb2-72"><a href="#cb2-72" aria-label="72"></a>  [<span class="st">"Choose one"</span><span class="op">,</span> <span class="st">"Uncertain"</span><span class="op">,</span> <span class="st">"Expects a low pass rate"</span><span class="op">,</span> <span class="st">"Strongly expects a high pass rate"</span>]<span class="op">,</span></span>
 <span id="cb2-73"><a href="#cb2-73" aria-label="73"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Curve A"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Choose one"</span>}</span>
-<span id="cb2-74"><a href="#cb2-74" aria-label="74"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-74"><a href="#cb2-74" aria-label="74"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -370,11 +370,11 @@ f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 &lt
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="78" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb3-78"><a href="#cb3-78" aria-label="78"></a><span class="co">// Same kind of menu for curve B.</span></span>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="78" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb3-78"><a href="#cb3-78" aria-label="78"></a><span class="co">// Same kind of menu for curve B.</span></span>
 <span id="cb3-79"><a href="#cb3-79" aria-label="79"></a>viewof guessB <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
 <span id="cb3-80"><a href="#cb3-80" aria-label="80"></a>  [<span class="st">"Choose one"</span><span class="op">,</span> <span class="st">"Uncertain"</span><span class="op">,</span> <span class="st">"Expects a low pass rate"</span><span class="op">,</span> <span class="st">"Strongly expects a high pass rate"</span>]<span class="op">,</span></span>
 <span id="cb3-81"><a href="#cb3-81" aria-label="81"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Curve B"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Choose one"</span>}</span>
-<span id="cb3-82"><a href="#cb3-82" aria-label="82"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-82"><a href="#cb3-82" aria-label="82"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="declaration">
 
@@ -382,11 +382,11 @@ f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 &lt
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="86" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb4-86"><a href="#cb4-86" aria-label="86"></a><span class="co">// Same kind of menu for curve C.</span></span>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="86" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb4-86"><a href="#cb4-86" aria-label="86"></a><span class="co">// Same kind of menu for curve C.</span></span>
 <span id="cb4-87"><a href="#cb4-87" aria-label="87"></a>viewof guessC <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
 <span id="cb4-88"><a href="#cb4-88" aria-label="88"></a>  [<span class="st">"Choose one"</span><span class="op">,</span> <span class="st">"Uncertain"</span><span class="op">,</span> <span class="st">"Expects a low pass rate"</span><span class="op">,</span> <span class="st">"Strongly expects a high pass rate"</span>]<span class="op">,</span></span>
 <span id="cb4-89"><a href="#cb4-89" aria-label="89"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Curve C"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Choose one"</span>}</span>
-<span id="cb4-90"><a href="#cb4-90" aria-label="90"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-90"><a href="#cb4-90" aria-label="90"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-4" data-nodetype="declaration">
 
@@ -394,7 +394,7 @@ f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 &lt
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="94" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 93;"><span id="cb5-94"><a href="#cb5-94" aria-label="94"></a><span class="co">// Three unlabeled Beta priors on a shared density scale</span></span>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="94" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 93;"><span id="cb5-94"><a href="#cb5-94" aria-label="94"></a><span class="co">// Three unlabeled Beta priors on a shared density scale</span></span>
 <span id="cb5-95"><a href="#cb5-95" aria-label="95"></a>{</span>
 <span id="cb5-96"><a href="#cb5-96" aria-label="96"></a>  <span class="co">// f(x) = x^(a-1) * (1-x)^(b-1) / B(a, b),</span></span>
 <span id="cb5-97"><a href="#cb5-97" aria-label="97"></a>  <span class="co">// with B(a, b) = Γ(a)Γ(b) / Γ(a+b).</span></span>
@@ -479,7 +479,7 @@ f(p) = \frac{1}{B(\alpha, \beta)} p^{\alpha - 1}(1 - p)^{\beta - 1}, \quad 0 &lt
 <span id="cb5-176"><a href="#cb5-176" aria-label="176"></a><span class="vs">      </span><span class="sc">${</span>plots<span class="sc">}</span></span>
 <span id="cb5-177"><a href="#cb5-177" aria-label="177"></a><span class="vs">    &lt;/div&gt;</span></span>
 <span id="cb5-178"><a href="#cb5-178" aria-label="178"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb5-179"><a href="#cb5-179" aria-label="179"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-179"><a href="#cb5-179" aria-label="179"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="expression">
 
@@ -512,68 +512,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");

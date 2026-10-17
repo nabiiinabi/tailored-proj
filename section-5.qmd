@@ -26,19 +26,23 @@ $$
 
 The MLE gives us a single best estimate of $p$, but it does not show how precise that estimate is. To represent the uncertainty caused by sampling only 20 movies, we can construct a 95% Wilson confidence interval:
 
-<!--
-First calculation of this interval. Later pages reuse (0.258, 0.658) and do not calculate it again.
-Source: Wilson (1927), https://doi.org/10.1080/01621459.1927.10502953
-
-With p-hat = 9/20 = 0.45, n = 20, and z = 1.96:
-
-(p-hat + z^2 / (2n) ± z * sqrt(p-hat * (1 - p-hat) / n + z^2 / (4n^2))) / (1 + z^2 / n)
-≈ (0.258, 0.658)
--->
-
 $$
 (0.258,\ 0.658)
 $$
+
+::: {.callout-note}
+## How this interval is calculated
+
+The Wilson interval is a confidence interval for a proportion. It uses the sample proportion $\hat{p} = y/n$, the sample size $n$, and the standard normal cutoff $z$ (1.96 for 95%):
+
+$$
+\frac{\hat{p} + \frac{z^2}{2n} \pm z \sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}.
+$$
+
+With $\hat{p} = 9/20 = 0.45$ and $n = 20$, that formula gives $(0.258,\ 0.658)$. Later pages reuse these two numbers.
+
+[Wilson (1927)](https://doi.org/10.1080/01621459.1927.10502953)
+:::
 
 This interval is fairly wide because the sample is small. Based on the observed data, pass rates between approximately 25.8% and 65.8% are reasonably compatible with the sample.
 

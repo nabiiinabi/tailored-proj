@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -349,12 +349,12 @@ window.Quarto = {
 <p><strong>Move the slider for <span class="math inline">\(p\)</span> and watch the Binomial distribution for <span class="math inline">\(Y\)</span> change. The bars are the probabilities of observing 0, 1, 2, …, 20 passing movies when each movie passes with probability <span class="math inline">\(p\)</span>.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="73" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 72;"><span id="cb1-73"><a href="#cb1-73" aria-label="73"></a><span class="co">// slider for the unknown population proportion p</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="73" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 72;"><span id="cb1-73"><a href="#cb1-73" aria-label="73"></a><span class="co">// slider for the unknown population proportion p</span></span>
 <span id="cb1-74"><a href="#cb1-74" aria-label="74"></a>viewof p <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {</span>
 <span id="cb1-75"><a href="#cb1-75" aria-label="75"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"p"</span><span class="op">,</span></span>
 <span id="cb1-76"><a href="#cb1-76" aria-label="76"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">0.45</span><span class="op">,</span></span>
 <span id="cb1-77"><a href="#cb1-77" aria-label="77"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span></span>
-<span id="cb1-78"><a href="#cb1-78" aria-label="78"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-78"><a href="#cb1-78" aria-label="78"></a>})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -362,7 +362,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="83" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb2-83"><a href="#cb2-83" aria-label="83"></a><span class="co">// binomial probabilities for Y = 0, 1, ..., n</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="83" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb2-83"><a href="#cb2-83" aria-label="83"></a><span class="co">// binomial probabilities for Y = 0, 1, ..., n</span></span>
 <span id="cb2-84"><a href="#cb2-84" aria-label="84"></a>{</span>
 <span id="cb2-85"><a href="#cb2-85" aria-label="85"></a>  <span class="kw">const</span> n <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
 <span id="cb2-86"><a href="#cb2-86" aria-label="86"></a></span>
@@ -429,7 +429,7 @@ window.Quarto = {
 <span id="cb2-147"><a href="#cb2-147" aria-label="147"></a><span class="vs">    &lt;p class="binomial-readout"&gt;When &lt;em&gt;p&lt;/em&gt; = </span><span class="sc">${</span>p<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, the probability of exactly 9 passing movies is &lt;strong&gt;</span><span class="sc">${</span>chanceText<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;</span></span>
 <span id="cb2-148"><a href="#cb2-148" aria-label="148"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Observed sample, Y = 9 &lt;span class="swatch swatch-other"&gt;&lt;/span&gt; Other possible outcomes&lt;/p&gt;</span></span>
 <span id="cb2-149"><a href="#cb2-149" aria-label="149"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb2-150"><a href="#cb2-150" aria-label="150"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-150"><a href="#cb2-150" aria-label="150"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="expression">
 
@@ -463,68 +463,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");

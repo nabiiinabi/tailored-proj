@@ -299,7 +299,7 @@ viewof viewpoint = Inputs.radio(
     <p class="binomial-ylabel">Density</p>
     ${plot}
     <p class="binomial-readout">The ${viewpoint.toLowerCase()} prior is Beta(${prior.alpha}, ${prior.beta}), with mean <strong>${formatMean(priorMean)}</strong>. After 9 passes and 11 failures, the posterior is Beta(${postAlpha}, ${postBeta}), with mean <strong>${formatMean(posteriorMean)}</strong>.${match}</p>
-    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Prior <span class="swatch swatch-max"></span> Likelihood, area 1 <span class="swatch swatch-observed"></span> Posterior</p>
+    <p class="binomial-legend"><span class="swatch swatch-other" style="margin-left:0"></span> Prior <span class="swatch swatch-max"></span> Likelihood <span class="swatch swatch-observed"></span> Posterior</p>
   </div>`;
 }
 ```

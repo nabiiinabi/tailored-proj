@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -371,12 +371,12 @@ P(Y \le 9 \mid p = 0.50) \approx 0.412
 <p><strong>Choose a prior. The Wilson interval stays fixed. The credible interval, the posterior mean, and <span class="math inline">\(P(p &lt; 0.50 \mid y)\)</span> all change. The mark at 0.45 is the maximum likelihood estimate, and the gray line is <span class="math inline">\(p = 0.50\)</span>.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="86" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb1-86"><a href="#cb1-86" aria-label="86"></a><span class="co">// Menu choice. This is the only input that moves the red bar.</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="86" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb1-86"><a href="#cb1-86" aria-label="86"></a><span class="co">// Menu choice. This is the only input that moves the red bar.</span></span>
 <span id="cb1-87"><a href="#cb1-87" aria-label="87"></a><span class="co">// The Wilson interval does not use it.</span></span>
 <span id="cb1-88"><a href="#cb1-88" aria-label="88"></a>viewof comparedPrior <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
 <span id="cb1-89"><a href="#cb1-89" aria-label="89"></a>  [<span class="st">"Lower-pass"</span><span class="op">,</span> <span class="st">"Neutral"</span><span class="op">,</span> <span class="st">"Higher-pass"</span>]<span class="op">,</span></span>
 <span id="cb1-90"><a href="#cb1-90" aria-label="90"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Prior"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Lower-pass"</span>}</span>
-<span id="cb1-91"><a href="#cb1-91" aria-label="91"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-91"><a href="#cb1-91" aria-label="91"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -384,7 +384,7 @@ P(Y \le 9 \mid p = 0.50) \approx 0.412
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="95" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 94;"><span id="cb2-95"><a href="#cb2-95" aria-label="95"></a><span class="co">// Two rows: the credible interval for the selected prior, and the fixed Wilson interval.</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="95" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 94;"><span id="cb2-95"><a href="#cb2-95" aria-label="95"></a><span class="co">// Two rows: the credible interval for the selected prior, and the fixed Wilson interval.</span></span>
 <span id="cb2-96"><a href="#cb2-96" aria-label="96"></a>{</span>
 <span id="cb2-97"><a href="#cb2-97" aria-label="97"></a>  <span class="co">// The menu label picks one prior.</span></span>
 <span id="cb2-98"><a href="#cb2-98" aria-label="98"></a>  <span class="co">// Lower-pass is Beta(3, 7), neutral is Beta(1, 1), higher-pass is Beta(7, 3).</span></span>
@@ -490,7 +490,7 @@ P(Y \le 9 \mid p = 0.50) \approx 0.412
 <span id="cb2-198"><a href="#cb2-198" aria-label="198"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The maximum likelihood estimate is &lt;strong&gt;0.45&lt;/strong&gt;. The </span><span class="sc">${</span>comparedPrior<span class="op">.</span><span class="fu">toLowerCase</span>()<span class="sc">}</span><span class="vs"> posterior mean is &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(posteriorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt;. The Wilson interval is &lt;strong&gt;(</span><span class="sc">${</span><span class="fu">formatBound</span>(wilson[<span class="dv">0</span>])<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="fu">formatBound</span>(wilson[<span class="dv">1</span>])<span class="sc">}</span><span class="vs">)&lt;/strong&gt;. The 95% credible interval is &lt;strong&gt;(</span><span class="sc">${</span><span class="fu">formatBound</span>(credible[<span class="dv">0</span>])<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="fu">formatBound</span>(credible[<span class="dv">1</span>])<span class="sc">}</span><span class="vs">)&lt;/strong&gt;. Given this prior, the posterior probability that p is below 0.50 is &lt;strong&gt;</span><span class="sc">${</span>(belowHalf <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%&lt;/strong&gt;.&lt;/p&gt;</span></span>
 <span id="cb2-199"><a href="#cb2-199" aria-label="199"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-max" style="margin-left:0"&gt;&lt;/span&gt; Wilson interval and MLE &lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Credible interval and posterior mean&lt;/p&gt;</span></span>
 <span id="cb2-200"><a href="#cb2-200" aria-label="200"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb2-201"><a href="#cb2-201" aria-label="201"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-201"><a href="#cb2-201" aria-label="201"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="expression">
 
@@ -586,68 +586,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -354,12 +354,12 @@ p \sim \text{Beta}(20, 20)
 <p><strong>Move <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> to change the dark prior. The second slider keeps a comparison curve centered at 0.50 and changes only its concentration, <span class="math inline">\(\alpha + \beta\)</span>.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="65" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 64;"><span id="cb1-65"><a href="#cb1-65" aria-label="65"></a><span class="co">// Sliders for the prior's two parameters</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="65" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 64;"><span id="cb1-65"><a href="#cb1-65" aria-label="65"></a><span class="co">// Sliders for the prior's two parameters</span></span>
 <span id="cb1-66"><a href="#cb1-66" aria-label="66"></a>viewof alpha <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {</span>
 <span id="cb1-67"><a href="#cb1-67" aria-label="67"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"α"</span><span class="op">,</span></span>
 <span id="cb1-68"><a href="#cb1-68" aria-label="68"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
 <span id="cb1-69"><a href="#cb1-69" aria-label="69"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-label="70"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-70"><a href="#cb1-70" aria-label="70"></a>})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -367,12 +367,12 @@ p \sim \text{Beta}(20, 20)
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="74" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 73;"><span id="cb2-74"><a href="#cb2-74" aria-label="74"></a><span class="co">// The beta slider. It is separate from alpha so each one can move on its own.</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="74" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 73;"><span id="cb2-74"><a href="#cb2-74" aria-label="74"></a><span class="co">// The beta slider. It is separate from alpha so each one can move on its own.</span></span>
 <span id="cb2-75"><a href="#cb2-75" aria-label="75"></a>viewof beta <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {</span>
 <span id="cb2-76"><a href="#cb2-76" aria-label="76"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"β"</span><span class="op">,</span></span>
 <span id="cb2-77"><a href="#cb2-77" aria-label="77"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
 <span id="cb2-78"><a href="#cb2-78" aria-label="78"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-label="79"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-79"><a href="#cb2-79" aria-label="79"></a>})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -380,12 +380,12 @@ p \sim \text{Beta}(20, 20)
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="83" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb3-83"><a href="#cb3-83" aria-label="83"></a><span class="co">// Second control: concentration of a prior whose mean stays at 0.50</span></span>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="83" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb3-83"><a href="#cb3-83" aria-label="83"></a><span class="co">// Second control: concentration of a prior whose mean stays at 0.50</span></span>
 <span id="cb3-84"><a href="#cb3-84" aria-label="84"></a>viewof strength <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
 <span id="cb3-85"><a href="#cb3-85" aria-label="85"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"α + β, mean fixed at 0.50"</span><span class="op">,</span></span>
 <span id="cb3-86"><a href="#cb3-86" aria-label="86"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
 <span id="cb3-87"><a href="#cb3-87" aria-label="87"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">2</span></span>
-<span id="cb3-88"><a href="#cb3-88" aria-label="88"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-88"><a href="#cb3-88" aria-label="88"></a>})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="declaration">
 
@@ -393,7 +393,7 @@ p \sim \text{Beta}(20, 20)
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="92" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb4-92"><a href="#cb4-92" aria-label="92"></a><span class="co">// Beta(alpha, beta), compared with a same-mean curve of a chosen concentration</span></span>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="92" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb4-92"><a href="#cb4-92" aria-label="92"></a><span class="co">// Beta(alpha, beta), compared with a same-mean curve of a chosen concentration</span></span>
 <span id="cb4-93"><a href="#cb4-93" aria-label="93"></a>{</span>
 <span id="cb4-94"><a href="#cb4-94" aria-label="94"></a>  <span class="co">// Γ(n) = (n - 1)! for a positive whole number n.</span></span>
 <span id="cb4-95"><a href="#cb4-95" aria-label="95"></a>  <span class="co">// Alpha and beta move by 1, so every value is a whole number.</span></span>
@@ -494,7 +494,7 @@ p \sim \text{Beta}(20, 20)
 <span id="cb4-190"><a href="#cb4-190" aria-label="190"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The red curve holds the mean at 0.50 and sets α + β = &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatParam</span>(strength)<span class="sc">}</span><span class="vs">&lt;/strong&gt;, so it is Beta(</span><span class="sc">${</span><span class="fu">formatParam</span>(half)<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="fu">formatParam</span>(half)<span class="sc">}</span><span class="vs">).&lt;/p&gt;</span></span>
 <span id="cb4-191"><a href="#cb4-191" aria-label="191"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Prior from α and β &lt;span class="swatch swatch-fixed"&gt;&lt;/span&gt; Mean fixed at 0.50 &lt;span class="swatch swatch-max"&gt;&lt;/span&gt; Mean of the dark curve&lt;/p&gt;</span></span>
 <span id="cb4-192"><a href="#cb4-192" aria-label="192"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb4-193"><a href="#cb4-193" aria-label="193"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-193"><a href="#cb4-193" aria-label="193"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-4" data-nodetype="expression">
 
@@ -546,11 +546,11 @@ E(p) = 7/(7 + 3) = 0.70
 <p><strong>The three priors are unlabeled. Predict which curve belongs to each viewpoint, then show the answers. The curves are drawn on the same density scale.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="259" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 258;"><span id="cb5-259"><a href="#cb5-259" aria-label="259"></a><span class="co">// Off at first, so the three priors stay unlabeled.</span></span>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="259" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 258;"><span id="cb5-259"><a href="#cb5-259" aria-label="259"></a><span class="co">// Off at first, so the three priors stay unlabeled.</span></span>
 <span id="cb5-260"><a href="#cb5-260" aria-label="260"></a>viewof showAnswers <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({</span>
 <span id="cb5-261"><a href="#cb5-261" aria-label="261"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Show the answers"</span><span class="op">,</span></span>
 <span id="cb5-262"><a href="#cb5-262" aria-label="262"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span></span>
-<span id="cb5-263"><a href="#cb5-263" aria-label="263"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-263"><a href="#cb5-263" aria-label="263"></a>})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="declaration">
 
@@ -558,11 +558,11 @@ E(p) = 7/(7 + 3) = 0.70
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="267" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 266;"><span id="cb6-267"><a href="#cb6-267" aria-label="267"></a><span class="co">// The reader's guess for curve A. The plot cell checks it against the real answer.</span></span>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="267" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 266;"><span id="cb6-267"><a href="#cb6-267" aria-label="267"></a><span class="co">// The reader's guess for curve A. The plot cell checks it against the real answer.</span></span>
 <span id="cb6-268"><a href="#cb6-268" aria-label="268"></a>viewof guessA <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
 <span id="cb6-269"><a href="#cb6-269" aria-label="269"></a>  [<span class="st">"Choose one"</span><span class="op">,</span> <span class="st">"Lower-pass viewpoint"</span><span class="op">,</span> <span class="st">"Neutral viewpoint"</span><span class="op">,</span> <span class="st">"Higher-pass viewpoint"</span>]<span class="op">,</span></span>
 <span id="cb6-270"><a href="#cb6-270" aria-label="270"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Curve A"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Choose one"</span>}</span>
-<span id="cb6-271"><a href="#cb6-271" aria-label="271"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-271"><a href="#cb6-271" aria-label="271"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-6" data-nodetype="declaration">
 
@@ -570,11 +570,11 @@ E(p) = 7/(7 + 3) = 0.70
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="275" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 274;"><span id="cb7-275"><a href="#cb7-275" aria-label="275"></a><span class="co">// Same kind of menu for curve B.</span></span>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="275" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 274;"><span id="cb7-275"><a href="#cb7-275" aria-label="275"></a><span class="co">// Same kind of menu for curve B.</span></span>
 <span id="cb7-276"><a href="#cb7-276" aria-label="276"></a>viewof guessB <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
 <span id="cb7-277"><a href="#cb7-277" aria-label="277"></a>  [<span class="st">"Choose one"</span><span class="op">,</span> <span class="st">"Lower-pass viewpoint"</span><span class="op">,</span> <span class="st">"Neutral viewpoint"</span><span class="op">,</span> <span class="st">"Higher-pass viewpoint"</span>]<span class="op">,</span></span>
 <span id="cb7-278"><a href="#cb7-278" aria-label="278"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Curve B"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Choose one"</span>}</span>
-<span id="cb7-279"><a href="#cb7-279" aria-label="279"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-279"><a href="#cb7-279" aria-label="279"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-7" data-nodetype="declaration">
 
@@ -582,11 +582,11 @@ E(p) = 7/(7 + 3) = 0.70
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="283" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 282;"><span id="cb8-283"><a href="#cb8-283" aria-label="283"></a><span class="co">// Same kind of menu for curve C.</span></span>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="283" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 282;"><span id="cb8-283"><a href="#cb8-283" aria-label="283"></a><span class="co">// Same kind of menu for curve C.</span></span>
 <span id="cb8-284"><a href="#cb8-284" aria-label="284"></a>viewof guessC <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
 <span id="cb8-285"><a href="#cb8-285" aria-label="285"></a>  [<span class="st">"Choose one"</span><span class="op">,</span> <span class="st">"Lower-pass viewpoint"</span><span class="op">,</span> <span class="st">"Neutral viewpoint"</span><span class="op">,</span> <span class="st">"Higher-pass viewpoint"</span>]<span class="op">,</span></span>
 <span id="cb8-286"><a href="#cb8-286" aria-label="286"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Curve C"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Choose one"</span>}</span>
-<span id="cb8-287"><a href="#cb8-287" aria-label="287"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-287"><a href="#cb8-287" aria-label="287"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-8" data-nodetype="declaration">
 
@@ -594,7 +594,7 @@ E(p) = 7/(7 + 3) = 0.70
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="291" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 290;"><span id="cb9-291"><a href="#cb9-291" aria-label="291"></a><span class="co">// Unlabeled Beta(7, 3), Beta(3, 7), and Beta(1, 1) priors</span></span>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="291" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 290;"><span id="cb9-291"><a href="#cb9-291" aria-label="291"></a><span class="co">// Unlabeled Beta(7, 3), Beta(3, 7), and Beta(1, 1) priors</span></span>
 <span id="cb9-292"><a href="#cb9-292" aria-label="292"></a>{</span>
 <span id="cb9-293"><a href="#cb9-293" aria-label="293"></a>  <span class="co">// Γ(n) = (n - 1)! for a positive whole number n.</span></span>
 <span id="cb9-294"><a href="#cb9-294" aria-label="294"></a>  <span class="co">// Alpha and beta move by 1, so every value is a whole number.</span></span>
@@ -680,7 +680,7 @@ E(p) = 7/(7 + 3) = 0.70
 <span id="cb9-374"><a href="#cb9-374" aria-label="374"></a><span class="vs">      </span><span class="sc">${</span>plots<span class="sc">}</span></span>
 <span id="cb9-375"><a href="#cb9-375" aria-label="375"></a><span class="vs">    &lt;/div&gt;</span></span>
 <span id="cb9-376"><a href="#cb9-376" aria-label="376"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb9-377"><a href="#cb9-377" aria-label="377"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-377"><a href="#cb9-377" aria-label="377"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-9" data-nodetype="expression">
 
@@ -714,68 +714,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");

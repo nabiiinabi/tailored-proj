@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -434,11 +434,11 @@ E(p \mid y) = 16/(16 + 14) = 16/30 \approx 0.533
 <p><strong>Choose a viewpoint. The graph shows that prior, the likelihood from these 20 movies, and the posterior that combines them. The likelihood is drawn with area 1, so it can sit on the same scale as the two Beta densities. On that scale it is a Beta(10, 12) curve.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="176" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 175;"><span id="cb1-176"><a href="#cb1-176" aria-label="176"></a><span class="co">// Which of the three moviegoers to update</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="176" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 175;"><span id="cb1-176"><a href="#cb1-176" aria-label="176"></a><span class="co">// Which of the three moviegoers to update</span></span>
 <span id="cb1-177"><a href="#cb1-177" aria-label="177"></a>viewof viewpoint <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
 <span id="cb1-178"><a href="#cb1-178" aria-label="178"></a>  [<span class="st">"Lower-pass"</span><span class="op">,</span> <span class="st">"Neutral"</span><span class="op">,</span> <span class="st">"Higher-pass"</span>]<span class="op">,</span></span>
 <span id="cb1-179"><a href="#cb1-179" aria-label="179"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Viewpoint"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Lower-pass"</span>}</span>
-<span id="cb1-180"><a href="#cb1-180" aria-label="180"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-180"><a href="#cb1-180" aria-label="180"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -446,7 +446,7 @@ E(p \mid y) = 16/(16 + 14) = 16/30 \approx 0.533
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="184" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 183;"><span id="cb2-184"><a href="#cb2-184" aria-label="184"></a><span class="co">// Prior, area-1 likelihood, and posterior for the selected viewpoint</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="184" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 183;"><span id="cb2-184"><a href="#cb2-184" aria-label="184"></a><span class="co">// Prior, area-1 likelihood, and posterior for the selected viewpoint</span></span>
 <span id="cb2-185"><a href="#cb2-185" aria-label="185"></a>{</span>
 <span id="cb2-186"><a href="#cb2-186" aria-label="186"></a>  <span class="kw">const</span> passes <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
 <span id="cb2-187"><a href="#cb2-187" aria-label="187"></a>  <span class="kw">const</span> failures <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
@@ -563,9 +563,9 @@ E(p \mid y) = 16/(16 + 14) = 16/30 \approx 0.533
 <span id="cb2-298"><a href="#cb2-298" aria-label="298"></a><span class="vs">    &lt;p class="binomial-ylabel"&gt;Density&lt;/p&gt;</span></span>
 <span id="cb2-299"><a href="#cb2-299" aria-label="299"></a><span class="vs">    </span><span class="sc">${</span>plot<span class="sc">}</span></span>
 <span id="cb2-300"><a href="#cb2-300" aria-label="300"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The </span><span class="sc">${</span>viewpoint<span class="op">.</span><span class="fu">toLowerCase</span>()<span class="sc">}</span><span class="vs"> prior is Beta(</span><span class="sc">${</span>prior<span class="op">.</span><span class="at">alpha</span><span class="sc">}</span><span class="vs">, </span><span class="sc">${</span>prior<span class="op">.</span><span class="at">beta</span><span class="sc">}</span><span class="vs">), with mean &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(priorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt;. After 9 passes and 11 failures, the posterior is Beta(</span><span class="sc">${</span>postAlpha<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span>postBeta<span class="sc">}</span><span class="vs">), with mean &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(posteriorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt;.</span><span class="sc">${</span>match<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb2-301"><a href="#cb2-301" aria-label="301"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Prior &lt;span class="swatch swatch-max"&gt;&lt;/span&gt; Likelihood, area 1 &lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Posterior&lt;/p&gt;</span></span>
+<span id="cb2-301"><a href="#cb2-301" aria-label="301"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Prior &lt;span class="swatch swatch-max"&gt;&lt;/span&gt; Likelihood &lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Posterior&lt;/p&gt;</span></span>
 <span id="cb2-302"><a href="#cb2-302" aria-label="302"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb2-303"><a href="#cb2-303" aria-label="303"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-303"><a href="#cb2-303" aria-label="303"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="expression">
 
@@ -580,7 +580,7 @@ E(p \mid y) = 16/(16 + 14) = 16/30 \approx 0.533
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIFdoaWNoIG9mIHRoZSB0aHJlZSBtb3ZpZWdvZXJzIHRvIHVwZGF0ZVxudmlld29mIHZpZXdwb2ludCA9IElucHV0cy5yYWRpbyhcbiAgW1wiTG93ZXItcGFzc1wiLCBcIk5ldXRyYWxcIiwgXCJIaWdoZXItcGFzc1wiXSxcbiAge2xhYmVsOiBcIlZpZXdwb2ludFwiLCB2YWx1ZTogXCJMb3dlci1wYXNzXCJ9XG4pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBQcmlvciwgYXJlYS0xIGxpa2VsaWhvb2QsIGFuZCBwb3N0ZXJpb3IgZm9yIHRoZSBzZWxlY3RlZCB2aWV3cG9pbnRcbntcbiAgY29uc3QgcGFzc2VzID0gOTtcbiAgY29uc3QgZmFpbHVyZXMgPSAxMTtcbiAgY29uc3QgcHJpb3JzID0ge1xuICAgIFwiTG93ZXItcGFzc1wiOiB7YWxwaGE6IDMsIGJldGE6IDd9LFxuICAgIFwiTmV1dHJhbFwiOiB7YWxwaGE6IDEsIGJldGE6IDF9LFxuICAgIFwiSGlnaGVyLXBhc3NcIjoge2FscGhhOiA3LCBiZXRhOiAzfVxuICB9O1xuXG4gIC8vIM6TKG4pID0gKG4gLSAxKSEgZm9yIGEgcG9zaXRpdmUgd2hvbGUgbnVtYmVyIG4uXG4gIC8vIFRoZSBsYXJnZXN0IHBvc3RlcmlvciBoZXJlIGlzIEJldGEoMTYsIDE0KSwgc28gzpMoMzApIHN0aWxsIGZpdHMuXG4gIGZ1bmN0aW9uIGdhbW1hKG4pIHtcbiAgICBsZXQgdmFsdWUgPSAxO1xuICAgIGZvciAobGV0IGsgPSAyOyBrIDwgbjsgaysrKSB2YWx1ZSAqPSBrO1xuICAgIHJldHVybiB2YWx1ZTtcbiAgfVxuXG4gIC8vIEhlaWdodCBvZiB0aGUgQmV0YShhLCBiKSBjdXJ2ZSBhdCBwID0geC5cbiAgLy8gQihhLCBiKSA9IM6TKGEpzpMoYikgLyDOkyhhICsgYikuIE91dHNpZGUgMCB0byAxLCB0aGUgaGVpZ2h0IGlzIDAuXG4gIGZ1bmN0aW9uIGJldGFEZW5zaXR5KHgsIGEsIGIpIHtcbiAgICBpZiAoISh4ID4gMCAmJiB4IDwgMSkpIHJldHVybiAwO1xuICAgIGNvbnN0IEIgPSBnYW1tYShhKSAqIGdhbW1hKGIpIC8gZ2FtbWEoYSArIGIpO1xuICAgIGNvbnN0IGRlbnNpdHkgPSAoeCAqKiAoYSAtIDEpKSAqICgoMSAtIHgpICoqIChiIC0gMSkpIC8gQjtcbiAgICByZXR1cm4gTnVtYmVyLmlzRmluaXRlKGRlbnNpdHkpID8gZGVuc2l0eSA6IDA7XG4gIH1cblxuICAvLyBQb2ludHMgb24gdGhhdCBjdXJ2ZSwgZnJvbSBwIG5lYXIgMCB0byBwIG5lYXIgMS5cbiAgLy8gQWdhaW4sIHNpbWlsYXIgdG8gcHJldmlvdXMgc2VjdGlvbnMgXG4gIC8vIEN1cnZlIGRyYXduIGFzIDIwMSBkb3RzIFxuICAvLyB3aGljaCBhcmUgZXZlbmx5IHNwYWNlZCBmcm9tIHAgPSAwIHRvIHAgPSAxLlxuICAvLyBUaGUgaGVpZ2h0IGlzIGNhbGN1bGF0ZWQgYSB0aW55IHN0ZXAgaW5zaWRlICgwLCAxKSwgd2hpbGUgdGhlIGRvdCBzdGF5cyBhdCBwLlxuICBmdW5jdGlvbiBiZXRhQ3VydmUoYSwgYikge1xuICAgIHJldHVybiBBcnJheS5mcm9tKHtsZW5ndGg6IDIwMX0sIChfLCBpKSA9PiB7XG4gICAgICBjb25zdCBwID0gaSAvIDIwMDtcbiAgICAgIGNvbnN0IHggPSBNYXRoLm1pbigxIC0gMWUtNiwgTWF0aC5tYXgoMWUtNiwgcCkpO1xuICAgICAgcmV0dXJuIHtwLCBkZW5zaXR5OiBiZXRhRGVuc2l0eSh4LCBhLCBiKX07XG4gICAgfSk7XG4gIH1cblxuICAvLyBUaHJlZSBkZWNpbWFscywgdW5sZXNzIHRoZSBsYXN0IGRpZ2l0IGlzIDAuIFRoZW4gdHdvIGRlY2ltYWxzIGlzIGVub3VnaC5cbiAgZnVuY3Rpb24gZm9ybWF0TWVhbih4KSB7XG4gICAgY29uc3QgdGhyZWUgPSB4LnRvRml4ZWQoMyk7XG4gICAgcmV0dXJuIHRocmVlLmVuZHNXaXRoKFwiMFwiKSA/IHgudG9GaXhlZCgyKSA6IHRocmVlO1xuICB9XG5cbiAgLy8gQSBCZXRhIHByaW9yIHBsdXMgYmlub21pYWwgZGF0YSBzdGF5cyBCZXRhLlxuICAvLyBQYXNzZXMgYWRkIHRvIGFscGhhLiBGYWlsdXJlcyBhZGQgdG8gYmV0YS5cbiAgY29uc3QgcHJpb3IgPSBwcmlvcnNbdmlld3BvaW50XTtcbiAgY29uc3QgcG9zdEFscGhhID0gcHJpb3IuYWxwaGEgKyBwYXNzZXM7XG4gIGNvbnN0IHBvc3RCZXRhID0gcHJpb3IuYmV0YSArIGZhaWx1cmVzO1xuICBjb25zdCBwcmlvck1lYW4gPSBwcmlvci5hbHBoYSAvIChwcmlvci5hbHBoYSArIHByaW9yLmJldGEpO1xuICBjb25zdCBwb3N0ZXJpb3JNZWFuID0gcG9zdEFscGhhIC8gKHBvc3RBbHBoYSArIHBvc3RCZXRhKTtcbiAgLy8gcF45ICgxLXApXjExLCBub3JtYWxpemVkLCBpcyB0aGUgQmV0YSgxMCwgMTIpIGRlbnNpdHkuXG4gIGNvbnN0IGxpa2VsaWhvb2QgPSBiZXRhQ3VydmUocGFzc2VzICsgMSwgZmFpbHVyZXMgKyAxKTtcbiAgY29uc3QgcHJpb3JDdXJ2ZSA9IGJldGFDdXJ2ZShwcmlvci5hbHBoYSwgcHJpb3IuYmV0YSk7XG4gIGNvbnN0IHBvc3RlcmlvckN1cnZlID0gYmV0YUN1cnZlKHBvc3RBbHBoYSwgcG9zdEJldGEpO1xuICBjb25zdCBjb2luY2lkZXMgPSBwcmlvci5hbHBoYSA9PT0gMSAmJiBwcmlvci5iZXRhID09PSAxO1xuXG4gIGNvbnN0IHBsb3QgPSBQbG90LnBsb3Qoe1xuICAgIHdpZHRoOiBNYXRoLm1heCgyODAsIHdpZHRoIC0gNCksXG4gICAgaGVpZ2h0OiAzNjAsXG4gICAgbWFyZ2luVG9wOiAxNixcbiAgICBtYXJnaW5SaWdodDogMTYsXG4gICAgbWFyZ2luQm90dG9tOiA0OCxcbiAgICBtYXJnaW5MZWZ0OiA1MixcbiAgICB4OiB7XG4gICAgICBsYWJlbDogXCJQb3B1bGF0aW9uIHByb3BvcnRpb24sIHBcIixcbiAgICAgIGRvbWFpbjogWzAsIDFdLFxuICAgICAgdGlja3M6IFswLCAwLjIsIDAuNCwgMC42LCAwLjgsIDFdXG4gICAgfSxcbiAgICB5OiB7bGFiZWw6IG51bGwsIGdyaWQ6IHRydWUsIG5pY2U6IHRydWV9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LmFyZWFZKHBvc3RlcmlvckN1cnZlLCB7XG4gICAgICAgIHg6IFwicFwiLFxuICAgICAgICB5OiBcImRlbnNpdHlcIixcbiAgICAgICAgZmlsbDogXCIjYjMyYjJmXCIsXG4gICAgICAgIGZpbGxPcGFjaXR5OiAwLjEyLFxuICAgICAgICBjdXJ2ZTogXCJsaW5lYXJcIlxuICAgICAgfSksXG4gICAgICBQbG90LmxpbmUocHJpb3JDdXJ2ZSwge1xuICAgICAgICB4OiBcInBcIixcbiAgICAgICAgeTogXCJkZW5zaXR5XCIsXG4gICAgICAgIHN0cm9rZTogXCIjMmMzMTQwXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyLjI1XG4gICAgICB9KSxcbiAgICAgIFBsb3QubGluZShwb3N0ZXJpb3JDdXJ2ZSwge1xuICAgICAgICB4OiBcInBcIixcbiAgICAgICAgeTogXCJkZW5zaXR5XCIsXG4gICAgICAgIHN0cm9rZTogXCIjYjMyYjJmXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyLjI1XG4gICAgICB9KSxcbiAgICAgIFBsb3QubGluZShsaWtlbGlob29kLCB7XG4gICAgICAgIHg6IFwicFwiLFxuICAgICAgICB5OiBcImRlbnNpdHlcIixcbiAgICAgICAgc3Ryb2tlOiBcIiM1YzU2NjBcIixcbiAgICAgICAgc3Ryb2tlV2lkdGg6IDIuMjUsXG4gICAgICAgIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIlxuICAgICAgfSksXG4gICAgICBQbG90LnJ1bGVZKFswXSlcbiAgICBdLFxuICAgIHN0eWxlOiB7XG4gICAgICBiYWNrZ3JvdW5kOiBcInRyYW5zcGFyZW50XCIsXG4gICAgICBjb2xvcjogXCIjMTUxNTFFXCIsXG4gICAgICBmb250RmFtaWx5OiBcIkhlbHZldGljYSwgc2Fucy1zZXJpZlwiLFxuICAgICAgZm9udFNpemU6IFwiMTNweFwiXG4gICAgfVxuICB9KTtcblxuICBjb25zdCBtYXRjaCA9IGNvaW5jaWRlc1xuICAgID8gXCIgVGhlIGZsYXQgcHJpb3IgbGV0cyB0aGUgcG9zdGVyaW9yIG1hdGNoIHRoZSBzY2FsZWQgbGlrZWxpaG9vZC5cIlxuICAgIDogXCJcIjtcblxuICByZXR1cm4gaHRtbGA8ZGl2IGNsYXNzPVwiYmlub21pYWwtZmlndXJlXCI+XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC15bGFiZWxcIj5EZW5zaXR5PC9wPlxuICAgICR7cGxvdH1cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLXJlYWRvdXRcIj5UaGUgJHt2aWV3cG9pbnQudG9Mb3dlckNhc2UoKX0gcHJpb3IgaXMgQmV0YSgke3ByaW9yLmFscGhhfSwgJHtwcmlvci5iZXRhfSksIHdpdGggbWVhbiA8c3Ryb25nPiR7Zm9ybWF0TWVhbihwcmlvck1lYW4pfTwvc3Ryb25nPi4gQWZ0ZXIgOSBwYXNzZXMgYW5kIDExIGZhaWx1cmVzLCB0aGUgcG9zdGVyaW9yIGlzIEJldGEoJHtwb3N0QWxwaGF9LCAke3Bvc3RCZXRhfSksIHdpdGggbWVhbiA8c3Ryb25nPiR7Zm9ybWF0TWVhbihwb3N0ZXJpb3JNZWFuKX08L3N0cm9uZz4uJHttYXRjaH08L3A+XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC1sZWdlbmRcIj48c3BhbiBjbGFzcz1cInN3YXRjaCBzd2F0Y2gtb3RoZXJcIiBzdHlsZT1cIm1hcmdpbi1sZWZ0OjBcIj48L3NwYW4+IFByaW9yIDxzcGFuIGNsYXNzPVwic3dhdGNoIHN3YXRjaC1tYXhcIj48L3NwYW4+IExpa2VsaWhvb2QsIGFyZWEgMSA8c3BhbiBjbGFzcz1cInN3YXRjaCBzd2F0Y2gtb2JzZXJ2ZWRcIj48L3NwYW4+IFBvc3RlcmlvcjwvcD5cbiAgPC9kaXY+YDtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgndmlld3BvaW50JykifV19
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIFdoaWNoIG9mIHRoZSB0aHJlZSBtb3ZpZWdvZXJzIHRvIHVwZGF0ZVxudmlld29mIHZpZXdwb2ludCA9IElucHV0cy5yYWRpbyhcbiAgW1wiTG93ZXItcGFzc1wiLCBcIk5ldXRyYWxcIiwgXCJIaWdoZXItcGFzc1wiXSxcbiAge2xhYmVsOiBcIlZpZXdwb2ludFwiLCB2YWx1ZTogXCJMb3dlci1wYXNzXCJ9XG4pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBQcmlvciwgYXJlYS0xIGxpa2VsaWhvb2QsIGFuZCBwb3N0ZXJpb3IgZm9yIHRoZSBzZWxlY3RlZCB2aWV3cG9pbnRcbntcbiAgY29uc3QgcGFzc2VzID0gOTtcbiAgY29uc3QgZmFpbHVyZXMgPSAxMTtcbiAgY29uc3QgcHJpb3JzID0ge1xuICAgIFwiTG93ZXItcGFzc1wiOiB7YWxwaGE6IDMsIGJldGE6IDd9LFxuICAgIFwiTmV1dHJhbFwiOiB7YWxwaGE6IDEsIGJldGE6IDF9LFxuICAgIFwiSGlnaGVyLXBhc3NcIjoge2FscGhhOiA3LCBiZXRhOiAzfVxuICB9O1xuXG4gIC8vIM6TKG4pID0gKG4gLSAxKSEgZm9yIGEgcG9zaXRpdmUgd2hvbGUgbnVtYmVyIG4uXG4gIC8vIFRoZSBsYXJnZXN0IHBvc3RlcmlvciBoZXJlIGlzIEJldGEoMTYsIDE0KSwgc28gzpMoMzApIHN0aWxsIGZpdHMuXG4gIGZ1bmN0aW9uIGdhbW1hKG4pIHtcbiAgICBsZXQgdmFsdWUgPSAxO1xuICAgIGZvciAobGV0IGsgPSAyOyBrIDwgbjsgaysrKSB2YWx1ZSAqPSBrO1xuICAgIHJldHVybiB2YWx1ZTtcbiAgfVxuXG4gIC8vIEhlaWdodCBvZiB0aGUgQmV0YShhLCBiKSBjdXJ2ZSBhdCBwID0geC5cbiAgLy8gQihhLCBiKSA9IM6TKGEpzpMoYikgLyDOkyhhICsgYikuIE91dHNpZGUgMCB0byAxLCB0aGUgaGVpZ2h0IGlzIDAuXG4gIGZ1bmN0aW9uIGJldGFEZW5zaXR5KHgsIGEsIGIpIHtcbiAgICBpZiAoISh4ID4gMCAmJiB4IDwgMSkpIHJldHVybiAwO1xuICAgIGNvbnN0IEIgPSBnYW1tYShhKSAqIGdhbW1hKGIpIC8gZ2FtbWEoYSArIGIpO1xuICAgIGNvbnN0IGRlbnNpdHkgPSAoeCAqKiAoYSAtIDEpKSAqICgoMSAtIHgpICoqIChiIC0gMSkpIC8gQjtcbiAgICByZXR1cm4gTnVtYmVyLmlzRmluaXRlKGRlbnNpdHkpID8gZGVuc2l0eSA6IDA7XG4gIH1cblxuICAvLyBQb2ludHMgb24gdGhhdCBjdXJ2ZSwgZnJvbSBwIG5lYXIgMCB0byBwIG5lYXIgMS5cbiAgLy8gQWdhaW4sIHNpbWlsYXIgdG8gcHJldmlvdXMgc2VjdGlvbnMgXG4gIC8vIEN1cnZlIGRyYXduIGFzIDIwMSBkb3RzIFxuICAvLyB3aGljaCBhcmUgZXZlbmx5IHNwYWNlZCBmcm9tIHAgPSAwIHRvIHAgPSAxLlxuICAvLyBUaGUgaGVpZ2h0IGlzIGNhbGN1bGF0ZWQgYSB0aW55IHN0ZXAgaW5zaWRlICgwLCAxKSwgd2hpbGUgdGhlIGRvdCBzdGF5cyBhdCBwLlxuICBmdW5jdGlvbiBiZXRhQ3VydmUoYSwgYikge1xuICAgIHJldHVybiBBcnJheS5mcm9tKHtsZW5ndGg6IDIwMX0sIChfLCBpKSA9PiB7XG4gICAgICBjb25zdCBwID0gaSAvIDIwMDtcbiAgICAgIGNvbnN0IHggPSBNYXRoLm1pbigxIC0gMWUtNiwgTWF0aC5tYXgoMWUtNiwgcCkpO1xuICAgICAgcmV0dXJuIHtwLCBkZW5zaXR5OiBiZXRhRGVuc2l0eSh4LCBhLCBiKX07XG4gICAgfSk7XG4gIH1cblxuICAvLyBUaHJlZSBkZWNpbWFscywgdW5sZXNzIHRoZSBsYXN0IGRpZ2l0IGlzIDAuIFRoZW4gdHdvIGRlY2ltYWxzIGlzIGVub3VnaC5cbiAgZnVuY3Rpb24gZm9ybWF0TWVhbih4KSB7XG4gICAgY29uc3QgdGhyZWUgPSB4LnRvRml4ZWQoMyk7XG4gICAgcmV0dXJuIHRocmVlLmVuZHNXaXRoKFwiMFwiKSA/IHgudG9GaXhlZCgyKSA6IHRocmVlO1xuICB9XG5cbiAgLy8gQSBCZXRhIHByaW9yIHBsdXMgYmlub21pYWwgZGF0YSBzdGF5cyBCZXRhLlxuICAvLyBQYXNzZXMgYWRkIHRvIGFscGhhLiBGYWlsdXJlcyBhZGQgdG8gYmV0YS5cbiAgY29uc3QgcHJpb3IgPSBwcmlvcnNbdmlld3BvaW50XTtcbiAgY29uc3QgcG9zdEFscGhhID0gcHJpb3IuYWxwaGEgKyBwYXNzZXM7XG4gIGNvbnN0IHBvc3RCZXRhID0gcHJpb3IuYmV0YSArIGZhaWx1cmVzO1xuICBjb25zdCBwcmlvck1lYW4gPSBwcmlvci5hbHBoYSAvIChwcmlvci5hbHBoYSArIHByaW9yLmJldGEpO1xuICBjb25zdCBwb3N0ZXJpb3JNZWFuID0gcG9zdEFscGhhIC8gKHBvc3RBbHBoYSArIHBvc3RCZXRhKTtcbiAgLy8gcF45ICgxLXApXjExLCBub3JtYWxpemVkLCBpcyB0aGUgQmV0YSgxMCwgMTIpIGRlbnNpdHkuXG4gIGNvbnN0IGxpa2VsaWhvb2QgPSBiZXRhQ3VydmUocGFzc2VzICsgMSwgZmFpbHVyZXMgKyAxKTtcbiAgY29uc3QgcHJpb3JDdXJ2ZSA9IGJldGFDdXJ2ZShwcmlvci5hbHBoYSwgcHJpb3IuYmV0YSk7XG4gIGNvbnN0IHBvc3RlcmlvckN1cnZlID0gYmV0YUN1cnZlKHBvc3RBbHBoYSwgcG9zdEJldGEpO1xuICBjb25zdCBjb2luY2lkZXMgPSBwcmlvci5hbHBoYSA9PT0gMSAmJiBwcmlvci5iZXRhID09PSAxO1xuXG4gIGNvbnN0IHBsb3QgPSBQbG90LnBsb3Qoe1xuICAgIHdpZHRoOiBNYXRoLm1heCgyODAsIHdpZHRoIC0gNCksXG4gICAgaGVpZ2h0OiAzNjAsXG4gICAgbWFyZ2luVG9wOiAxNixcbiAgICBtYXJnaW5SaWdodDogMTYsXG4gICAgbWFyZ2luQm90dG9tOiA0OCxcbiAgICBtYXJnaW5MZWZ0OiA1MixcbiAgICB4OiB7XG4gICAgICBsYWJlbDogXCJQb3B1bGF0aW9uIHByb3BvcnRpb24sIHBcIixcbiAgICAgIGRvbWFpbjogWzAsIDFdLFxuICAgICAgdGlja3M6IFswLCAwLjIsIDAuNCwgMC42LCAwLjgsIDFdXG4gICAgfSxcbiAgICB5OiB7bGFiZWw6IG51bGwsIGdyaWQ6IHRydWUsIG5pY2U6IHRydWV9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LmFyZWFZKHBvc3RlcmlvckN1cnZlLCB7XG4gICAgICAgIHg6IFwicFwiLFxuICAgICAgICB5OiBcImRlbnNpdHlcIixcbiAgICAgICAgZmlsbDogXCIjYjMyYjJmXCIsXG4gICAgICAgIGZpbGxPcGFjaXR5OiAwLjEyLFxuICAgICAgICBjdXJ2ZTogXCJsaW5lYXJcIlxuICAgICAgfSksXG4gICAgICBQbG90LmxpbmUocHJpb3JDdXJ2ZSwge1xuICAgICAgICB4OiBcInBcIixcbiAgICAgICAgeTogXCJkZW5zaXR5XCIsXG4gICAgICAgIHN0cm9rZTogXCIjMmMzMTQwXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyLjI1XG4gICAgICB9KSxcbiAgICAgIFBsb3QubGluZShwb3N0ZXJpb3JDdXJ2ZSwge1xuICAgICAgICB4OiBcInBcIixcbiAgICAgICAgeTogXCJkZW5zaXR5XCIsXG4gICAgICAgIHN0cm9rZTogXCIjYjMyYjJmXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyLjI1XG4gICAgICB9KSxcbiAgICAgIFBsb3QubGluZShsaWtlbGlob29kLCB7XG4gICAgICAgIHg6IFwicFwiLFxuICAgICAgICB5OiBcImRlbnNpdHlcIixcbiAgICAgICAgc3Ryb2tlOiBcIiM1YzU2NjBcIixcbiAgICAgICAgc3Ryb2tlV2lkdGg6IDIuMjUsXG4gICAgICAgIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIlxuICAgICAgfSksXG4gICAgICBQbG90LnJ1bGVZKFswXSlcbiAgICBdLFxuICAgIHN0eWxlOiB7XG4gICAgICBiYWNrZ3JvdW5kOiBcInRyYW5zcGFyZW50XCIsXG4gICAgICBjb2xvcjogXCIjMTUxNTFFXCIsXG4gICAgICBmb250RmFtaWx5OiBcIkhlbHZldGljYSwgc2Fucy1zZXJpZlwiLFxuICAgICAgZm9udFNpemU6IFwiMTNweFwiXG4gICAgfVxuICB9KTtcblxuICBjb25zdCBtYXRjaCA9IGNvaW5jaWRlc1xuICAgID8gXCIgVGhlIGZsYXQgcHJpb3IgbGV0cyB0aGUgcG9zdGVyaW9yIG1hdGNoIHRoZSBzY2FsZWQgbGlrZWxpaG9vZC5cIlxuICAgIDogXCJcIjtcblxuICByZXR1cm4gaHRtbGA8ZGl2IGNsYXNzPVwiYmlub21pYWwtZmlndXJlXCI+XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC15bGFiZWxcIj5EZW5zaXR5PC9wPlxuICAgICR7cGxvdH1cbiAgICA8cCBjbGFzcz1cImJpbm9taWFsLXJlYWRvdXRcIj5UaGUgJHt2aWV3cG9pbnQudG9Mb3dlckNhc2UoKX0gcHJpb3IgaXMgQmV0YSgke3ByaW9yLmFscGhhfSwgJHtwcmlvci5iZXRhfSksIHdpdGggbWVhbiA8c3Ryb25nPiR7Zm9ybWF0TWVhbihwcmlvck1lYW4pfTwvc3Ryb25nPi4gQWZ0ZXIgOSBwYXNzZXMgYW5kIDExIGZhaWx1cmVzLCB0aGUgcG9zdGVyaW9yIGlzIEJldGEoJHtwb3N0QWxwaGF9LCAke3Bvc3RCZXRhfSksIHdpdGggbWVhbiA8c3Ryb25nPiR7Zm9ybWF0TWVhbihwb3N0ZXJpb3JNZWFuKX08L3N0cm9uZz4uJHttYXRjaH08L3A+XG4gICAgPHAgY2xhc3M9XCJiaW5vbWlhbC1sZWdlbmRcIj48c3BhbiBjbGFzcz1cInN3YXRjaCBzd2F0Y2gtb3RoZXJcIiBzdHlsZT1cIm1hcmdpbi1sZWZ0OjBcIj48L3NwYW4+IFByaW9yIDxzcGFuIGNsYXNzPVwic3dhdGNoIHN3YXRjaC1tYXhcIj48L3NwYW4+IExpa2VsaWhvb2QgPHNwYW4gY2xhc3M9XCJzd2F0Y2ggc3dhdGNoLW9ic2VydmVkXCI+PC9zcGFuPiBQb3N0ZXJpb3I8L3A+XG4gIDwvZGl2PmA7XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3ZpZXdwb2ludCcpIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -599,68 +599,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");

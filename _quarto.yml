@@ -61,6 +61,7 @@ format:
     toc-expand: true
     crossrefs-hover: false
     code-line-numbers: true
+    code-copy: false
     highlight-style: arrow
     # journal is the base theme. theme-light.scss overrides its colors and layout.
     # https://quarto.org/docs/output-formats/html-themes.html

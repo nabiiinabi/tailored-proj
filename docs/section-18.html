@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -401,11 +401,11 @@ P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{
 <p><strong>Choose whether to change the prior or the observed counts. The other stays at the example: Gamma(12, 2), or the minutes 8, 11, 10, 13, and 8.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="134" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb1-134"><a href="#cb1-134" aria-label="134"></a><span class="co">// Switch between editing the prior and editing the five tweet counts.</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="134" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb1-134"><a href="#cb1-134" aria-label="134"></a><span class="co">// Switch between editing the prior and editing the five tweet counts.</span></span>
 <span id="cb1-135"><a href="#cb1-135" aria-label="135"></a>viewof whatChanges <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
 <span id="cb1-136"><a href="#cb1-136" aria-label="136"></a>  [<span class="st">"Prior"</span><span class="op">,</span> <span class="st">"Observed data"</span>]<span class="op">,</span></span>
 <span id="cb1-137"><a href="#cb1-137" aria-label="137"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"What to change"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Prior"</span>}</span>
-<span id="cb1-138"><a href="#cb1-138" aria-label="138"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-138"><a href="#cb1-138" aria-label="138"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -413,7 +413,7 @@ P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="142" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 141;"><span id="cb2-142"><a href="#cb2-142" aria-label="142"></a><span class="co">// Only the selected piece can move. The other stays at the worked example.</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="142" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 141;"><span id="cb2-142"><a href="#cb2-142" aria-label="142"></a><span class="co">// Only the selected piece can move. The other stays at the worked example.</span></span>
 <span id="cb2-143"><a href="#cb2-143" aria-label="143"></a>viewof varied <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span></span>
 <span id="cb2-144"><a href="#cb2-144" aria-label="144"></a>  <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
 <span id="cb2-145"><a href="#cb2-145" aria-label="145"></a>      <span class="dt">shape</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Shape α"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
@@ -425,7 +425,7 @@ P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{
 <span id="cb2-151"><a href="#cb2-151" aria-label="151"></a>      <span class="dt">minute3</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 3"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
 <span id="cb2-152"><a href="#cb2-152" aria-label="152"></a>      <span class="dt">minute4</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 4"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
 <span id="cb2-153"><a href="#cb2-153" aria-label="153"></a>      <span class="dt">minute5</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Minute 5"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})</span>
-<span id="cb2-154"><a href="#cb2-154" aria-label="154"></a>    })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-154"><a href="#cb2-154" aria-label="154"></a>    })</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -433,7 +433,7 @@ P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="158" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 157;"><span id="cb3-158"><a href="#cb3-158" aria-label="158"></a><span class="co">// Gamma prior, its Poisson update, and the next-minute predictive distribution</span></span>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="158" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 157;"><span id="cb3-158"><a href="#cb3-158" aria-label="158"></a><span class="co">// Gamma prior, its Poisson update, and the next-minute predictive distribution</span></span>
 <span id="cb3-159"><a href="#cb3-159" aria-label="159"></a>{</span>
 <span id="cb3-160"><a href="#cb3-160" aria-label="160"></a>  <span class="kw">const</span> shape <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span> <span class="op">?</span> varied<span class="op">.</span><span class="at">shape</span> <span class="op">:</span> <span class="dv">12</span><span class="op">;</span></span>
 <span id="cb3-161"><a href="#cb3-161" aria-label="161"></a>  <span class="kw">const</span> rate <span class="op">=</span> whatChanges <span class="op">===</span> <span class="st">"Prior"</span> <span class="op">?</span> varied<span class="op">.</span><span class="at">rate</span> <span class="op">:</span> <span class="dv">2</span><span class="op">;</span></span>
@@ -604,7 +604,7 @@ P(Y_{\text{new}} = k \mid \text{data}) = \binom{\alpha' + k - 1}{k} \left(\frac{
 <span id="cb3-326"><a href="#cb3-326" aria-label="326"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The next minute is expected to have about &lt;strong&gt;</span><span class="sc">${</span><span class="fu">formatMean</span>(posteriorMean)<span class="sc">}</span><span class="vs">&lt;/strong&gt; tweets. The bars are the probabilities of each possible count.&lt;/p&gt;</span></span>
 <span id="cb3-327"><a href="#cb3-327" aria-label="327"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Predictive probability &lt;span class="swatch swatch-observed" style="width:0.95rem;height:0;border-top:2px solid #b32b2f;background:transparent;vertical-align:0.22rem"&gt;&lt;/span&gt; Expected count&lt;/p&gt;</span></span>
 <span id="cb3-328"><a href="#cb3-328" aria-label="328"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb3-329"><a href="#cb3-329" aria-label="329"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-329"><a href="#cb3-329" aria-label="329"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="expression">
 
@@ -637,68 +637,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");

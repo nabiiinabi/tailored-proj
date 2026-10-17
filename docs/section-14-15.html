@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-86ce462537c4fe499fbb2cbd5b2ecd0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02ebc3b32bc8d3904d433db14bed0728.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -333,7 +333,7 @@ window.Quarto = {
 <p><strong>The three curves are the posteriors after the same 9 passes and 11 failures. The vertical line marks <span class="math inline">\(p = 0.50\)</span>.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="37" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb1-37"><a href="#cb1-37" aria-label="37"></a><span class="co">// Three posteriors after 9 passes and 11 failures, and P(p &lt; 0.50 | y)</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="37" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb1-37"><a href="#cb1-37" aria-label="37"></a><span class="co">// Three posteriors after 9 passes and 11 failures, and P(p &lt; 0.50 | y)</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-label="38"></a>{</span>
 <span id="cb1-39"><a href="#cb1-39" aria-label="39"></a>  <span class="kw">const</span> passes <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-label="40"></a>  <span class="kw">const</span> failures <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
@@ -452,7 +452,7 @@ window.Quarto = {
 <span id="cb1-153"><a href="#cb1-153" aria-label="153"></a><span class="vs">    &lt;p class="binomial-readout"&gt;The posterior probability that &lt;em&gt;p&lt;/em&gt; is below 0.50 is &lt;strong&gt;</span><span class="sc">${</span>bits[<span class="dv">0</span>]<span class="sc">}</span><span class="vs">&lt;/strong&gt;, &lt;strong&gt;</span><span class="sc">${</span>bits[<span class="dv">1</span>]<span class="sc">}</span><span class="vs">&lt;/strong&gt;, and &lt;strong&gt;</span><span class="sc">${</span>bits[<span class="dv">2</span>]<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;</span></span>
 <span id="cb1-154"><a href="#cb1-154" aria-label="154"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Lower-pass &lt;span class="swatch swatch-max"&gt;&lt;/span&gt; Neutral &lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Higher-pass&lt;/p&gt;</span></span>
 <span id="cb1-155"><a href="#cb1-155" aria-label="155"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb1-156"><a href="#cb1-156" aria-label="156"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-156"><a href="#cb1-156" aria-label="156"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="expression">
 
@@ -486,11 +486,11 @@ window.Quarto = {
 <p><strong>Choose a sample size. Each sample keeps a pass rate near 45%. The three posterior curves narrow and move toward one another as the sample grows.</strong></p>
 <div class="binomial-panel">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="200" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 199;"><span id="cb2-200"><a href="#cb2-200" aria-label="200"></a><span class="co">// Bigger samples that still have a pass rate near 45%.</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="200" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 199;"><span id="cb2-200"><a href="#cb2-200" aria-label="200"></a><span class="co">// Bigger samples that still have a pass rate near 45%.</span></span>
 <span id="cb2-201"><a href="#cb2-201" aria-label="201"></a>viewof sampleSize <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
 <span id="cb2-202"><a href="#cb2-202" aria-label="202"></a>  [<span class="st">"20 movies"</span><span class="op">,</span> <span class="st">"50 movies"</span><span class="op">,</span> <span class="st">"100 movies"</span><span class="op">,</span> <span class="st">"500 movies"</span>]<span class="op">,</span></span>
 <span id="cb2-203"><a href="#cb2-203" aria-label="203"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Sample size"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"20 movies"</span>}</span>
-<span id="cb2-204"><a href="#cb2-204" aria-label="204"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-204"><a href="#cb2-204" aria-label="204"></a>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -498,7 +498,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="208" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 207;"><span id="cb3-208"><a href="#cb3-208" aria-label="208"></a><span class="co">// The same three priors, updated by larger samples with a pass rate near 0.45</span></span>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="208" data-source-offset="0"><pre class="sourceCode numberSource js number-lines"><code class="sourceCode javascript" style="counter-reset: source-line 207;"><span id="cb3-208"><a href="#cb3-208" aria-label="208"></a><span class="co">// The same three priors, updated by larger samples with a pass rate near 0.45</span></span>
 <span id="cb3-209"><a href="#cb3-209" aria-label="209"></a>{</span>
 <span id="cb3-210"><a href="#cb3-210" aria-label="210"></a>  <span class="kw">const</span> n <span class="op">=</span> <span class="bu">Number</span>(sampleSize<span class="op">.</span><span class="fu">split</span>(<span class="st">" "</span>)[<span class="dv">0</span>])<span class="op">;</span></span>
 <span id="cb3-211"><a href="#cb3-211" aria-label="211"></a>  <span class="kw">const</span> passes <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="fl">0.45</span> <span class="op">*</span> n)<span class="op">;</span></span>
@@ -607,7 +607,7 @@ window.Quarto = {
 <span id="cb3-314"><a href="#cb3-314" aria-label="314"></a><span class="vs">    &lt;p class="binomial-readout"&gt;This sample has &lt;strong&gt;</span><span class="sc">${</span>passes<span class="sc">}</span><span class="vs">&lt;/strong&gt; passes out of &lt;strong&gt;</span><span class="sc">${</span>n<span class="sc">}</span><span class="vs">&lt;/strong&gt;, a rate of &lt;strong&gt;</span><span class="sc">${</span>rate<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;. The posterior means are &lt;strong&gt;</span><span class="sc">${</span>means<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;</span></span>
 <span id="cb3-315"><a href="#cb3-315" aria-label="315"></a><span class="vs">    &lt;p class="binomial-legend"&gt;&lt;span class="swatch swatch-other" style="margin-left:0"&gt;&lt;/span&gt; Lower-pass &lt;span class="swatch swatch-max"&gt;&lt;/span&gt; Neutral &lt;span class="swatch swatch-observed"&gt;&lt;/span&gt; Higher-pass&lt;/p&gt;</span></span>
 <span id="cb3-316"><a href="#cb3-316" aria-label="316"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
-<span id="cb3-317"><a href="#cb3-317" aria-label="317"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-317"><a href="#cb3-317" aria-label="317"></a>}</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="expression">
 
@@ -641,68 +641,6 @@ window._ojs.runtime.interpretFromScriptTags();
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/nabiiinabi\.github\.io\/tailored-proj\/");
