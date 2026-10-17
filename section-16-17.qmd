@@ -415,7 +415,11 @@ viewof futureCount = Inputs.range([1, 30], {
 
 ```{ojs}
 // Counts clicks. Each click adds one more imaginary sample.
-viewof draws = Inputs.button("Draw an imaginary sample")
+// futureCount has to be in this cell, or old clicks stick around when the slider moves.
+viewof draws = {
+  futureCount;
+  return Inputs.button("Draw an imaginary sample");
+}
 ```
 
 ```{ojs}
