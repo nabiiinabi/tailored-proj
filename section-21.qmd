@@ -22,8 +22,6 @@ Throughout this lesson, we connected several ideas:
 
 A probability about data under an assumed parameter value is a frequentist statement. A probability about that parameter after observing the data is a Bayesian statement. Confidence intervals and credible intervals reflect the same distinction.
 
-**Good inference makes both the conclusion and its uncertainty clear—and keeps the assumptions behind them visible.**
-
 ### Thank you for reading my blog :D Leaving you with a comic to reflect on your new Bayesian knowledge!
 
 <div class="flip-scene">
